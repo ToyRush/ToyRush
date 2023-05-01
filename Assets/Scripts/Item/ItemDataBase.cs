@@ -28,14 +28,14 @@ public class ItemDataBase : MonoBehaviour
             {
                 if (playerMove.bulletNum == _itemID - 100)
                 {
-                    playerMove.bulletMax = bulletData.maxBulletCnt;
+                    playerMove.bulletMaxCnt = bulletData.maxBulletCnt;
                     playerMove.ChargeBullet();
                     return;
                 }
                 else
                 {
                     bulletImage.sprite = bulletData.itemIcon;
-                    playerMove.bulletMax = bulletData.maxBulletCnt;
+                    playerMove.bulletMaxCnt = bulletData.maxBulletCnt;
                     playerMove.bulletNum = bulletData.itemID - 100;
                     playerMove.ChargeBullet();
                     return;

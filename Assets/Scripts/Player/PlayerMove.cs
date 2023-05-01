@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Bullets;
 
 public enum AnimationState
 {
@@ -13,51 +11,38 @@ public enum AnimationState
     Dead=4
 }
 
-public enum Direction
-{
-    Left,
-    Right
-}
-
-
-
 public class PlayerMove : MonoBehaviour
 {
-    Vector2 inputVec;
-    Vector3 mousePos;
-
-    bool canMove = true;
-
+    // 컴포넌트
     Animator anim;
     Rigidbody2D rb;
     SpriteRenderer spr;
 
+    Vector2 inputVec; // 플레이어의 이동 방향
+
     [Header("개발자 변수")]
-    public GameObject weaponRight;
-    public GameObject weaponLeft;
-    public Transform[] shootPos;
-
-    [Header("기획자 변수 : 속도 조절 변수")]
-    public float moveSpeed;
-
     WaitForSeconds shootDelay = new WaitForSeconds(0.2f);
-    public int bulletCnt;
-    public int bulletMax;
-    private bool canShoot=true;
-
-    bool isRolling=false;
-    public int bulletNum = 0;
     Direction direction;
     AnimationState animationState;
-    public Text currentText;
-    public Text maxText;
+
+
+    [Header("기획자 변수 : 속도 조절 변수")]
+    public float moveSpeed; // 플레이어의 이동 속도
+    public int bulletCnt; // 현재 가진 총알 개수
+    public int bulletMaxCnt; // 총알 최대 개수
+
+    bool canMove = true; // 플레이어의 움직임 제어
+    bool canShoot=true; // 총 발사 제어
+    bool isRolling=false; // 구르기 제어
+
+    public int bulletNum = 0;
 
     void Awake()    
     {
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        bulletCnt = bulletMax;
+        bulletCnt = bulletMaxCnt;
     }
     void Start() 
     {
@@ -90,11 +75,6 @@ public class PlayerMove : MonoBehaviour
     {
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
-        ShowBulletText();
-        MouseMove();
-        WeaponRotate();
-        ShootBullet();
-
 
         if (Input.GetMouseButtonDown(1)&&!isRolling)
             StartCoroutine("Roll", inputVec.normalized);
@@ -111,23 +91,10 @@ public class PlayerMove : MonoBehaviour
         {
             if (!isRolling)
             {
-                //rb.velocity = inputVec * speed;
                 Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
                 rb.MovePosition(rb.position + nextVec);
             }
         }
-    }
-    IEnumerator ShootDelay()
-    {
-        canShoot = false;
-        yield return shootDelay;
-        canShoot = true;
-    }
-
-    public void ChargeBullet()
-    {
-        bulletCnt = bulletMax;
-        canShoot = true;
     }
 
     void LateUpdate()
@@ -135,15 +102,6 @@ public class PlayerMove : MonoBehaviour
         SetAnimation();
     }
 
-    void MouseMove()
-    {
-        mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        if (transform.position.x - mousePos.x > 0)
-            spr.flipX = true;
-        else
-            spr.flipX = false;
-    }
     IEnumerator Roll(Vector2 rollDir)
     {
         isRolling = true;
@@ -152,82 +110,4 @@ public class PlayerMove : MonoBehaviour
         isRolling = false;
         rb.velocity = Vector2.zero;
     }   
-
-    void ShowBulletText()
-    {
-        if (bulletNum == 0)
-        {
-            currentText.text = "∞";
-            maxText.text = "∞";
-        }
-        else
-        {
-            currentText.text = bulletCnt.ToString();
-            maxText.text = bulletMax.ToString();
-        }
-        if (bulletCnt > bulletMax)
-            bulletCnt = bulletMax;
-    }
-
-    void WeaponRotate()
-    {
-        Vector3 playerPosition = Camera.main.WorldToScreenPoint(transform.position);
-        Vector3 mousePosition = mousePos;
-        mousePos -= playerPosition;
-        float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        weaponRight.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        weaponLeft.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-        if (angle < 90 && angle > -90)
-        {
-            weaponRight.SetActive(true);
-            weaponLeft.SetActive(false);
-            direction = Direction.Right;
-        }
-        else
-        {
-            weaponRight.SetActive(false);
-            weaponLeft.SetActive(true);
-            direction = Direction.Left;
-        }
-    }
-    void ShootBullet()
-    {
-        if (Input.GetMouseButtonDown(0) && canShoot)
-        {
-            if (bulletCnt <= 0)
-            {
-                if (bulletNum != 0)
-                {
-                    bulletNum = 0;
-                    canShoot = false;
-                    Invoke("ChargeBullet", 2f);
-                }
-                else
-                {
-                    ChargeBullet();
-                }
-            }
-            else
-            {
-                bulletCnt -= 1;
-                StartCoroutine("ShootDelay");
-            }
-
-            Vector3 dir = mousePos - transform.position;
-            Transform bullet = GameManager.instance.poolManager.Get(bulletNum).transform;
-            switch (direction)
-            {
-                case Direction.Left:
-                    bullet.position = shootPos[0].position;
-                    break;
-                case Direction.Right:
-                    bullet.position = shootPos[1].position;
-                    break;
-            }
-            dir.z = 0f;
-            dir = dir.normalized;
-            bullet.GetComponent<Bullet>().Init(dir);
-
-        }
-    }
 }
