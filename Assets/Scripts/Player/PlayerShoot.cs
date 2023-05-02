@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Bullets;
 
 public enum Direction
@@ -17,12 +18,16 @@ public class PlayerShoot : MonoBehaviour
     float gunAngle;
     Vector3 mousePos;
     Direction direction;
-    public int bulletNum = 0;
+    [SerializeField] int bulletID = 0;
+    int bulletCnt = 0;
+
+    [SerializeField] Text currentBulletCnt;
     SpriteRenderer spr;
 
     void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
+        SetBullet(GameManager.instance.bulletID, GameManager.instance.bulletCnt);
     }
 
     void Update()
@@ -48,7 +53,7 @@ public class PlayerShoot : MonoBehaviour
         gunAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
         rightGun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, gunAngle));
         leftGun.transform.rotation = Quaternion.Euler(new Vector3(0, 0, gunAngle));
-        if (gunAngle <=90 && gunAngle > -90)
+        if (gunAngle <= 90 && gunAngle > -90)
         {
             rightGun.SetActive(true);
             leftGun.SetActive(false);
@@ -67,7 +72,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 dir = mousePos - transform.position;
-            Transform bullet = GameManager.instance.poolManager.Get(bulletNum).transform;
+            Transform bullet = GameManager.instance.poolManager.Get(bulletID).transform;
             switch (direction)
             {
                 case Direction.Left:
@@ -80,6 +85,9 @@ public class PlayerShoot : MonoBehaviour
             dir.z = 0f;
             dir = dir.normalized;
             bullet.GetComponent<Bullet>().Init(dir);
+            bulletCnt -= 1;
+            SetBulletCntText();
+            SetNormalBullet();
         }
     }
 
@@ -96,4 +104,31 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
+    void SetNormalBullet()
+    {
+        if (bulletCnt == 0 && bulletID != 0)
+        {
+            bulletID = 0;
+            GameManager.instance.itemDataBase.ChangeNormalBullet();
+        }
+    }
+
+    void SetBulletCntText()
+    {
+        if (bulletID == 0 || bulletCnt==0)
+            currentBulletCnt.text = "¡Ä";
+        else
+            currentBulletCnt.text = bulletCnt.ToString();
+    }
+
+    public int  CheckBulletID()
+    {
+        return bulletID;
+    }
+    public void SetBullet(int _bulletID, int _bulletCnt)
+    {
+        bulletID = _bulletID;
+        bulletCnt = _bulletCnt;
+        SetBulletCntText();
+    }
 }

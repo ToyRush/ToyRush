@@ -9,9 +9,10 @@ public class ItemDataBase : MonoBehaviour
     // 새로 생성
     public List<ItemData> AllItems = new List<ItemData>();
 
-    public PlayerMove playerMove;
+    public PlayerShoot playerShoot;
     public Key key;
     public Image bulletImage;
+    [SerializeField] Sprite normalBulletImage;
     //public Sprite defaultBullet;
     //public Sprite defaultKey;
     private void Start()
@@ -20,24 +21,21 @@ public class ItemDataBase : MonoBehaviour
         AllItems.Add(new KeyData(301));
     }
 
+    public void ChangeNormalBullet()
+    {
+        bulletImage.sprite = normalBulletImage;
+    }
+
     public void FindItem(int _itemID) // 아이템 타입도 받아오면 더 좋을 듯
     {
         foreach (ItemData itemData in AllItems)
         {
             if (itemData is BulletData bulletData && bulletData.itemID == _itemID)
             {
-                if (playerMove.bulletNum == _itemID - 100)
-                {
-                    playerMove.bulletMaxCnt = bulletData.maxBulletCnt;
-                    return;
-                }
-                else
-                {
+                if (playerShoot.CheckBulletID() != _itemID - 100)
                     bulletImage.sprite = bulletData.itemIcon;
-                    playerMove.bulletMaxCnt = bulletData.maxBulletCnt;
-                    playerMove.bulletNum = bulletData.itemID - 100;
-                    return;
-                }
+                playerShoot.SetBullet(bulletData.itemID - 100, bulletData.maxBulletCnt);
+                return;
             }
             if(itemData is ConsumerData consumerType && consumerType.itemID == _itemID)
             {

@@ -9,8 +9,10 @@ public class GameManager : MonoBehaviour
     public PlayerStat playerStat;
     public ItemDataBase itemDataBase;
 
+    // 저장할 데이터
     float health;
-    int bulletCnt;
+    public int bulletCnt;
+    public int bulletID;
 
     // 스테이지 정보
     public int stageID;
