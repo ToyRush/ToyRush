@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
     public PoolManager poolManager;
     public PlayerStat playerStat;
     public ItemDataBase itemDataBase;
-    private int health;
+
+    float health;
+    int bulletCnt;
 
     // 스테이지 정보
     public int stageID;
@@ -32,7 +34,7 @@ public class GameManager : MonoBehaviour
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
     }
 
-    public void SetHealth(int _health)
+    public void SetHealth(float _health)
     {
         health = _health;
     }

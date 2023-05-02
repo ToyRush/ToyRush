@@ -5,14 +5,21 @@ using UnityEngine.UI;
 
 public class PlayerStat : MonoBehaviour
 {
-    public Image[] healthImage;
-    public int maxHealth;
-    public int health;
-    public int damage;
-    public int heal;
+    PlayerMove playerMove;
+    float maxHealth;
+    float currentHealth;
+    float damage;
+    float heal;
 
+    public Image[] healthImage;
     Color color;
     Color deafultColor;
+    
+    void Awake()
+    {
+        playerMove = GetComponent<PlayerMove>();    
+    }
+
     void Start()
     {
         color = healthImage[0].color;
@@ -20,31 +27,23 @@ public class PlayerStat : MonoBehaviour
         color.a = 0.3f;
     }
 
-    void Update()
+    public void Damaged(float damage)
     {
-        for (int i = 0; i < health; i++)
+        if (currentHealth > 0)
         {
-            healthImage[i].color = deafultColor;
+            currentHealth -= damage;
+            GameManager.instance.SetHealth(currentHealth);
         }
-        for(int i=health; i<maxHealth; i++)
-        {
-            healthImage[i].color = color;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-            Damaged(damage);
-        else if (Input.GetKeyDown(KeyCode.E))
-            Heal(heal);
-    }
+        else
+            playerMove.Dead();
+;    }
 
-    public void Damaged(int damage)
+    public void Heal(float heal)
     {
-        if (health > 0)
-            health-=damage;
-    }
-
-    public void Heal(int heal)
-    {
-        if(health<maxHealth)
-            health+=heal;
+        if (heal + currentHealth > maxHealth)
+            currentHealth = maxHealth;
+        else
+            currentHealth += heal;
+        GameManager.instance.SetHealth(currentHealth);
     }
 }
