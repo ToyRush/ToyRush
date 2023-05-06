@@ -10,22 +10,11 @@ public class PlayerStat : MonoBehaviour
     float currentHealth;
     float damage;
     float heal;
-
-    public Image[] healthImage;
-    Color color;
-    Color deafultColor;
-    
     void Awake()
     {
         playerMove = GetComponent<PlayerMove>();    
     }
 
-    void Start()
-    {
-        color = healthImage[0].color;
-        deafultColor = color;
-        color.a = 0.3f;
-    }
 
     public void Damaged(float damage)
     {

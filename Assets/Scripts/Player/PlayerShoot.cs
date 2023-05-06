@@ -87,7 +87,6 @@ public class PlayerShoot : MonoBehaviour
             bullet.GetComponent<Bullet>().Init(dir);
             bulletCnt -= 1;
             SetBulletCntText();
-            SetNormalBullet();
         }
     }
 
@@ -104,14 +103,6 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
-    void SetNormalBullet()
-    {
-        if (bulletCnt == 0 && bulletID != 0)
-        {
-            bulletID = 0;
-            GameManager.instance.itemDataBase.ChangeNormalBullet();
-        }
-    }
 
     void SetBulletCntText()
     {
@@ -125,6 +116,7 @@ public class PlayerShoot : MonoBehaviour
     {
         return bulletID;
     }
+
     public void SetBullet(int _bulletID, int _bulletCnt)
     {
         bulletID = _bulletID;

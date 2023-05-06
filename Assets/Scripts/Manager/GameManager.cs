@@ -7,12 +7,12 @@ public class GameManager : MonoBehaviour
     static public GameManager instance =null;
     public PoolManager poolManager;
     public PlayerStat playerStat;
-    public ItemDataBase itemDataBase;
+    public PlayerShoot playerShoot;
 
     // 저장할 데이터
     float health;
-    public int bulletCnt;
-    public int bulletID;
+    public int bulletCnt=0;
+    public int bulletID=0;
 
     // 스테이지 정보
     public int stageID;
@@ -30,7 +30,6 @@ public class GameManager : MonoBehaviour
             if(instance!=this)
                 Destroy(this.gameObject);
         }
-        itemDataBase = GetComponentInChildren<ItemDataBase>();
         poolManager = GetComponentInChildren<PoolManager>();
         //GetComponentInChildren는 자식 오브젝트에 달린 첫번째 컴포넌트를 불러온다.
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
@@ -39,5 +38,11 @@ public class GameManager : MonoBehaviour
     public void SetHealth(float _health)
     {
         health = _health;
+    }
+
+    public void UpdateBullet(int id, int cnt)
+    {
+        bulletID = id-100;
+        playerShoot.SetBullet(id-100, cnt);
     }
 }
