@@ -14,7 +14,8 @@ public enum AnimationState
 public enum Direction
 {
     Left,
-    Right
+    Right,
+    Middle
 }
 
 public class PlayerMove : MonoBehaviour
@@ -28,7 +29,7 @@ public class PlayerMove : MonoBehaviour
 
     [Header("개발자 변수")]
     WaitForSeconds shootDelay = new WaitForSeconds(0.2f);
-    Direction direction;
+    Direction direction=Direction.Middle;
     AnimationState animationState;
 
 

@@ -5,91 +5,131 @@ using UnityEngine.UI;
 
 public class WeaponManager : MonoBehaviour
 {
-    public int currentKey=1;
+    // 스크립트 
     public PlayerShoot playerShoot;
     public PlayerTrap playerTrap;
-    public Cursor cursor;
 
+    // 현재 가진 무기의 정보
+    public int currentKey = 0; 
+    public int bulletID = 100;
     public int bulletCnt = 0;
-    public int bulletID = 0;
-    public int trapCnt = 0;
     public int trapID = 0;
+    public int trapCnt = 0;
 
-    [SerializeField] Image weaponImage;
+    // 무기 UI
+    [SerializeField] GameObject bulletUI;
+    [SerializeField] GameObject trapUI;
+    [SerializeField] Image bulletImage;
+    [SerializeField] Image trapImage;
+    [SerializeField] Text bulletCntText;
+    [SerializeField] Text trapCntText;
+
+    // 아이템 데이터
     [SerializeField] ItemData normalBullet;
     Dictionary<int, ItemData> holdWeapon = new Dictionary<int, ItemData>();
 
     private void Awake()
     {
-        SetNormalBullet();
+        SetNormalBullet(); // 초기엔 보통 총알로 초기화
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && currentKey!=1)
         {
             currentKey = 1;
-            cursor.ChangeCursorState(currentKey);
+            Cursor.instance.ChangeCursorState(currentKey);
+            SetUILayer(2,1);
+            playerShoot.ControlGun(true);
+            playerTrap.ControlTrap(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey !=2)
         {
             currentKey = 2;
-            cursor.ChangeCursorState(currentKey);
+            Cursor.instance.ChangeCursorState(currentKey);
+            SetUILayer(1,2);
+            playerShoot.ControlGun(false);
+            playerTrap.ControlTrap(true);
         }
     }
 
-    public void AddWeapon(ItemData _itemData)
+    void SetUILayer(int bulletLayer, int trapLayer) // UI 렌더링 순서 변경
+    {
+        bulletUI.transform.SetSiblingIndex(bulletLayer);
+        trapUI.transform.SetSiblingIndex(trapLayer);
+    }
+
+    public void AddWeapon(ItemData _itemData) // 무기 습득 시, 호출
     {
         switch (_itemData.itemType)
         {
             case ItemData.ItemType.Bullet:
-                if (_itemData.itemID == bulletID)
+                if (_itemData.itemID != bulletID)
                 {
-                    // 총알 개수만 채우기
-                }
-                else
-                {
-                    // 총알 개수 채우기
                     DeleteWeapon(bulletID);
                     holdWeapon.Add(_itemData.itemID, _itemData);
                 }
                 UpdateBullet(_itemData);
                 break;
             case ItemData.ItemType.Trap:
-                if (_itemData.itemID == trapID)
+                if (_itemData.itemID != trapID)
                 {
-                    // 트랩 개수만 채우기
-                }
-                else
-                {
-                    // 트랩 개수 채우기
                     DeleteWeapon(trapID);
                     holdWeapon.Add(_itemData.itemID, _itemData);
                 }
+                UpdateTrap(_itemData);
                 break;
         }
     }
 
-    public void UpdateBullet(ItemData _itemData)
-    {
-        bulletID = _itemData.itemID;
-        playerShoot.SetBullet(_itemData.itemID-100, _itemData.itemCnt);
-    }
-
-    public void UpdateTrap(ItemData _itemData)
-    {
-        trapID = _itemData.itemID;
-        playerTrap.SetTrap(_itemData.itemID - 200, _itemData.itemCnt);
-    }
-
-    public void DeleteWeapon(int _id)
+    public void DeleteWeapon(int _id) // 해당 아이디의 무기를 딕셔너리에서 제거
     {
         holdWeapon.Remove(_id);
     }
 
-    public void SetNormalBullet()
+
+    public void ShootGun() // 총 발사 시, 총알 개수 카운트한다.
     {
-        bulletID = 101;
-        holdWeapon.Add(normalBullet.itemID, normalBullet);
+        bulletCnt -= 1;
+        if (bulletCnt <= 0 && bulletID!=normalBullet.itemID)
+            SetNormalBullet();
+        SetBulletCnt();
     }
+    public void UpdateBullet(ItemData _itemData) // 새 총알 습득 시, 초기화
+    {
+        bulletID = _itemData.itemID;
+        bulletCnt = _itemData.itemCnt;
+        bulletImage.sprite = holdWeapon[bulletID].itemIcon; // 이미지 설정
+        SetBulletCnt();
+        playerShoot.LoadBullet(_itemData.itemID);
+    }
+
+
+    public void SetNormalBullet() // 보통 총알로 초기화
+    {
+        DeleteWeapon(bulletID);
+        bulletID = normalBullet.itemID;
+        playerShoot.LoadBullet(bulletID);
+        bulletImage.sprite = normalBullet.itemIcon;
+        SetBulletCnt();
+        holdWeapon.Add(normalBullet.itemID, normalBullet);   
+    }
+
+    public void SetBulletCnt() // 총알의 개수
+    {
+        if (bulletID == normalBullet.itemID) 
+            bulletCntText.text = " ";
+        else
+            bulletCntText.text = bulletCnt.ToString();
+    }
+
+    public void UpdateTrap(ItemData _itemData) // 새 트랩 습득 시, 초기화
+    {
+        trapID = _itemData.itemID;
+        trapCnt = _itemData.itemCnt;
+        trapImage.sprite = _itemData.itemIcon;
+        playerTrap.LoadTrap(_itemData.itemID);
+    }
+
+
 }

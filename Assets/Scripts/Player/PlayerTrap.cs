@@ -44,51 +44,48 @@ public class PlayerTrap : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+        mousePos = Cursor.instance.mousePos;
+        if (gameObject.transform.position.x > mousePos.x)
+            direction = Direction.Left;
+        else
+            direction = Direction.Right;
     }
-
-  
 
     void SetUpTrap() // 총알의 ID를 받아와서 쏜더. 
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 dir = mousePos - transform.position;
+            Vector2 dir = mousePos - transform.position;
             Transform trap = GameManager.instance.poolManager.GetTrap(trapID).transform;
-            dir.z = 0f;
             dir = dir.normalized;
-            SetTrapCntText();
         }
     }
 
-    void Flip() // 총의 좌,우 반전을 적용시킨다.
+    void Flip() // 플레이어의 좌,우 반전을 적용시킨다.
     {
         switch (direction)
         {
             case Direction.Left:
+                leftTrap.SetActive(true);
+                rightTrap.SetActive(false);
                 spr.flipX = true;
                 break;
             case Direction.Right:
+                leftTrap.SetActive(false);
+                rightTrap.SetActive(true);
                 spr.flipX = false;
                 break;
         }
     }
-
-
-    void SetTrapCntText() // 현재 총알의 개수를 불러온다.
-    {
-       /* if (bulletID == 0 || bulletCnt == 0)
-            currentBulletCnt.text = "∞";
-        else
-            currentBulletCnt.text = bulletCnt.ToString();*/
-    }
-
     public void SetTrap(int _trapID, int _trapCnt) // WeaponManager에서 현재 들고 있는 총알과 총알의 개수를 받아온다.
     {
         trapID = _trapID;
         trapCnt = _trapCnt;
-        SetTrapCntText();
+    }
+
+    public void LoadTrap(int _trapID) // 트랩 아이디를 불러온다.
+    {
+        trapID = _trapID;
     }
 
     public void ControlTrap(bool _canShoot) // WeaponManager에서 1번,2번키를 누를때마다 쏠 수 있는지 불러온다.
@@ -109,9 +106,5 @@ public class PlayerTrap : MonoBehaviour
             canTrap = true;
     }
 
-    public void LoadTrap() // 트랩의 ID와 개수를 저장한다.
-    {
-        GameManager.instance.weaponManager.trapID = trapID + 200;
-        GameManager.instance.weaponManager.trapCnt = trapCnt;
-    }
+
 }
