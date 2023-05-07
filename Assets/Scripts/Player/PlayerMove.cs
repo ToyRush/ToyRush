@@ -110,4 +110,10 @@ public class PlayerMove : MonoBehaviour
         isRolling = false;
         rb.velocity = Vector2.zero;
     }   
+
+    public void Dead()
+    {
+        // Á×À½ ¸ð¼Ç
+    }
+
 }
