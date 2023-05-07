@@ -45,6 +45,7 @@ public class PlayerShoot : MonoBehaviour
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos.z = 0f;
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else
@@ -53,7 +54,8 @@ public class PlayerShoot : MonoBehaviour
 
     void GunRotate() // 플레이어가 총구를 겨누는 방향으로 회전한다.
     {
-        gunAngle = Mathf.Atan2(mousePos.y, mousePos.x) * Mathf.Rad2Deg;
+        Vector3 mouseDir = mousePos - transform.position;
+        gunAngle = Mathf.Atan2(mouseDir.y, mouseDir.x) * Mathf.Rad2Deg;
         switch (direction)
         {
             case Direction.Left:
@@ -74,7 +76,6 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 dir = mousePos - transform.position;
-            dir.z = 0;
             dir = dir.normalized;
             Transform bullet = GameManager.instance.poolManager.GetBullet(bulletID).transform;
             switch (direction)
