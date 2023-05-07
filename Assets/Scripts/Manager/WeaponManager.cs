@@ -7,7 +7,9 @@ public class WeaponManager : MonoBehaviour
 {
     public int currentKey=1;
     public PlayerShoot playerShoot;
-    
+    public PlayerTrap playerTrap;
+    public Cursor cursor;
+
     public int bulletCnt = 0;
     public int bulletID = 0;
     public int trapCnt = 0;
@@ -27,10 +29,12 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentKey = 1;
+            cursor.ChangeCursorState(currentKey);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             currentKey = 2;
+            cursor.ChangeCursorState(currentKey);
         }
     }
 
@@ -70,12 +74,12 @@ public class WeaponManager : MonoBehaviour
     {
         bulletID = _itemData.itemID;
         playerShoot.SetBullet(_itemData.itemID-100, _itemData.itemCnt);
-
     }
 
     public void UpdateTrap(ItemData _itemData)
     {
-        trapID = 0;
+        trapID = _itemData.itemID;
+        playerTrap.SetTrap(_itemData.itemID - 200, _itemData.itemCnt);
     }
 
     public void DeleteWeapon(int _id)

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fed6d6c47d31634380e93b1a95425ad, type: 3}
-  m_Name: Portion
+  m_Name: LightBullet
   m_EditorClassIdentifier: 
-  itemType: 1
-  itemIcon: {fileID: 21300000, guid: c66629df5b6254a4e8dc8c1b69369863, type: 3}
-  itemID: 201
-  ItemName: "\uB36B"
-  itemCnt: 0
-  statUP: 10
+  itemType: 0
+  itemIcon: {fileID: 21300000, guid: 59c8cd2a91ad7f846b9efd79b945c356, type: 3}
+  itemID: 101
+  ItemName: "\uBE5B\uB098\uB294 \uCD1D\uC54C"
+  itemCnt: 100
+  statUP: 0

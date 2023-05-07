@@ -6,7 +6,6 @@ public class Item : MonoBehaviour
 {
     public ItemData itemData;
     SpriteRenderer spr;
-    int cnt = 0;
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();

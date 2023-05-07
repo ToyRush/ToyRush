@@ -16,5 +16,5 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 38d5dde8fb892364296297a3a5c97a20, type: 3}
   itemID: 301
   ItemName: "\uD3EC\uC158"
-  bulletMaxCnt: 0
+  itemCnt: 10
   statUP: 10

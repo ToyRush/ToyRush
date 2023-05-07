@@ -75,7 +75,7 @@ public class PlayerShoot : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 dir = mousePos - transform.position;
-            Transform bullet = GameManager.instance.poolManager.Get(bulletID).transform;
+            Transform bullet = GameManager.instance.poolManager.GetBullet(bulletID).transform;
             switch (direction)
             {
                 case Direction.Left:
