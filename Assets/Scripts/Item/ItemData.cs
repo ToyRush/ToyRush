@@ -14,7 +14,7 @@ public class ItemData : ScriptableObject
     public string ItemName;
 
     [Header("ÃÑ¾Ë")]
-    public int bulletMaxCnt;
+    public int itemCnt;
 
     [Header("½ºÅÈ¾÷")]
     public float statUP;

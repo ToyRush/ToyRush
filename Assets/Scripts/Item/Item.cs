@@ -18,14 +18,13 @@ public class Item : MonoBehaviour
        
         if (collision.CompareTag("Player"))
         {
-            cnt += 1;
             switch (itemData.itemType)
             {
                 case ItemData.ItemType.Bullet:
-                    GameManager.instance.UpdateBullet(itemData.itemID, itemData.bulletMaxCnt);
-                    Debug.Log(cnt);
+                    GameManager.instance.weaponManager.AddWeapon(itemData);
                     break;
                 case ItemData.ItemType.Trap:
+                    GameManager.instance.weaponManager.AddWeapon(itemData);
                     break;
                 case ItemData.ItemType.StatUp:
                     break;

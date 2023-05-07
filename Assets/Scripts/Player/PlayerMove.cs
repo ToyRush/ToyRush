@@ -11,6 +11,12 @@ public enum AnimationState
     Dead=4
 }
 
+public enum Direction
+{
+    Left,
+    Right
+}
+
 public class PlayerMove : MonoBehaviour
 {
     // 컴포넌트
@@ -32,7 +38,6 @@ public class PlayerMove : MonoBehaviour
     public int bulletMaxCnt; // 총알 최대 개수
 
     bool canMove = true; // 플레이어의 움직임 제어
-    bool canShoot=true; // 총 발사 제어
     bool isRolling=false; // 구르기 제어
 
     public int bulletNum = 0;
