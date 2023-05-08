@@ -11,6 +11,7 @@ Material:
   m_Shader: {fileID: -6465566751694194690, guid: 1eb2c5d823dc22d4f8ba1913c9d13f97,
     type: 3}
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -54,15 +55,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 2
     - _CastShadows: 1
     - _Cull: 2
     - _Dissolve: 0
     - _DstBlend: 1
     - _EnableExternalAlpha: 0
-    - _Noise_Scaling: 227.58
-    - _Pixel: 200
+    - _Noise_Scaling: 41.08
+    - _Pixel: 249.8
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

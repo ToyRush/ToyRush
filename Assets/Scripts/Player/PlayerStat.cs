@@ -5,46 +5,34 @@ using UnityEngine.UI;
 
 public class PlayerStat : MonoBehaviour
 {
-    public Image[] healthImage;
-    public int maxHealth;
-    public int health;
-    public int damage;
-    public int heal;
-
-    Color color;
-    Color deafultColor;
-    void Start()
+    PlayerMove playerMove;
+    float maxHealth=150;
+    float currentHealth;
+    float damage;
+    float heal;
+    void Awake()
     {
-        color = healthImage[0].color;
-        deafultColor = color;
-        color.a = 0.3f;
+        playerMove = GetComponent<PlayerMove>();    
     }
 
-    void Update()
+
+    public void Damaged(float damage)
     {
-        for (int i = 0; i < health; i++)
+        if (currentHealth > 0)
         {
-            healthImage[i].color = deafultColor;
+            currentHealth -= damage;
+            GameManager.instance.SetHealth(currentHealth);
         }
-        for(int i=health; i<maxHealth; i++)
-        {
-            healthImage[i].color = color;
-        }
-        if (Input.GetKeyDown(KeyCode.Q))
-            Damaged(damage);
-        else if (Input.GetKeyDown(KeyCode.E))
-            Heal(heal);
-    }
+        else
+            playerMove.Dead();
+;    }
 
-    public void Damaged(int damage)
+    public void Heal(float heal)
     {
-        if (health > 0)
-            health-=damage;
-    }
-
-    public void Heal(int heal)
-    {
-        if(health<maxHealth)
-            health+=heal;
+        if (heal + currentHealth > maxHealth)
+            currentHealth = maxHealth;
+        else
+            currentHealth += heal;
+        GameManager.instance.SetHealth(currentHealth);
     }
 }

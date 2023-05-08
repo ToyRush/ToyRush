@@ -4,29 +4,33 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    public RectTransform rect;
-    public GameObject cursorObject;
-    private Vector3 offset;
-    Vector3 mousePos;
+    SpriteRenderer spr;
+    int currentKey = 0;
 
+    public static Cursor instance;
+    public Vector3 mousePos;
+    public Sprite[] cursorMode;
     private void Awake()
     {
-        cursorObject.SetActive(true);
-    }
-    private void Start()
-    {
-        rect = GetComponent<RectTransform>();
-        offset = new Vector3(rect.rect.width / 2, -rect.rect.height / 2,0);
+        spr = GetComponent<SpriteRenderer>();
+        currentKey = GameManager.instance.weaponManager.currentKey;
+        spr.sprite = cursorMode[currentKey - 1];
+        instance = this;
     }
 
-    private void FixedUpdate()
+    public void ChangeCursorState(int _currentKey)
     {
-        mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        if (Input.mousePosition.x < Screen.width && Input.mousePosition.y < Screen.height)
-        {
-            rect.position = Input.mousePosition + offset;
-        }
-        
+        currentKey = _currentKey;
+        spr.sprite = cursorMode[_currentKey - 1];
+    }
+
+    void Update()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (currentKey == 2)
+            mousePos = new Vector3(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y), 0);
+        else if (currentKey == 1)
+            mousePos.z = 0;
+        transform.position = mousePos;
     }
 }
