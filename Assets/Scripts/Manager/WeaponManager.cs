@@ -13,9 +13,9 @@ public class WeaponManager : MonoBehaviour
     public int currentKey = 0; 
     public int bulletID = 100;
     public int bulletCnt = 0;
-    public int trapID = 0;
+    public int trapID = 200;
     public int trapCnt = 0;
-
+    bool canSelectTrap;
     // 무기 UI
     [SerializeField] GameObject bulletUI;
     [SerializeField] GameObject trapUI;
@@ -30,7 +30,8 @@ public class WeaponManager : MonoBehaviour
 
     private void Awake()
     {
-        SetNormalBullet(); // 초기엔 보통 총알로 초기화
+        SetDefaultBullet(); // 초기엔 보통 총알로 초기화
+        SetDefaultTrap();
     }
 
     void Update()
@@ -43,7 +44,7 @@ public class WeaponManager : MonoBehaviour
             playerShoot.ControlGun(true);
             playerTrap.ControlTrap(false);
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey !=2)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey !=2 && canSelectTrap)
         {
             currentKey = 2;
             Cursor.instance.ChangeCursorState(currentKey);
@@ -92,7 +93,7 @@ public class WeaponManager : MonoBehaviour
     {
         bulletCnt -= 1;
         if (bulletCnt <= 0 && bulletID!=normalBullet.itemID)
-            SetNormalBullet();
+            SetDefaultBullet();
         SetBulletCnt();
     }
     public void UpdateBullet(ItemData _itemData) // 새 총알 습득 시, 초기화
@@ -105,7 +106,7 @@ public class WeaponManager : MonoBehaviour
     }
 
 
-    public void SetNormalBullet() // 보통 총알로 초기화
+    public void SetDefaultBullet() // 보통 총알로 초기화
     {
         DeleteWeapon(bulletID);
         bulletID = normalBullet.itemID;
@@ -129,7 +130,15 @@ public class WeaponManager : MonoBehaviour
         trapCnt = _itemData.itemCnt;
         trapImage.sprite = _itemData.itemIcon;
         playerTrap.LoadTrap(_itemData.itemID);
+        SetDefaultTrap();
     }
 
+    void SetDefaultTrap() // ID가 200일때 불러온다.
+    {
+        if (trapID == 200)
+            canSelectTrap = false;
+        else
+            canSelectTrap = true;
+    }
 
 }

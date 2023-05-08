@@ -5463,7 +5463,9 @@ MonoBehaviour:
   bulletPrefabs:
   - {fileID: 479187008514995868, guid: 39135fd8da0aa8f4fa37e14ed352c2bb, type: 3}
   - {fileID: 479187008514995868, guid: cb44b95b2a57c2f49a577f84604815eb, type: 3}
-  trapPrefabs: []
+  trapPrefabs:
+  - {fileID: 2348216157313694850, guid: 29a58e385b17b9647ad7b314c256a51b, type: 3}
+  - {fileID: 7249035195530833421, guid: d864e61c53d4e8049b8d3620f1ef1384, type: 3}
 --- !u!1 &1256668651
 GameObject:
   m_ObjectHideFlags: 0
@@ -5717,7 +5719,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344844955
 Transform:
   m_ObjectHideFlags: 0
@@ -15635,7 +15637,7 @@ MonoBehaviour:
   currentKey: 1
   bulletID: 100
   bulletCnt: 0
-  trapID: 0
+  trapID: 200
   trapCnt: 0
   bulletUI: {fileID: 1526238798}
   trapUI: {fileID: 1650878834}
@@ -15864,7 +15866,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85c0eae46ba248c428b364721dbde86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mousePos: {x: 0, y: 0, z: 0}
   cursorMode:
   - {fileID: 21300000, guid: 1c1379da1d423c24688ca78552c82e69, type: 3}
   - {fileID: -1010605625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
