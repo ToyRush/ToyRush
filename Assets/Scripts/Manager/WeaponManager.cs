@@ -27,7 +27,6 @@ public class WeaponManager : MonoBehaviour
     // 아이템 데이터
     [SerializeField] ItemData normalBullet;
     Dictionary<int, ItemData> holdWeapon = new Dictionary<int, ItemData>();
-
     private void Awake()
     {
         SetDefaultBullet(); // 초기엔 보통 총알로 초기화
@@ -52,6 +51,14 @@ public class WeaponManager : MonoBehaviour
             playerShoot.ControlGun(false);
             playerTrap.ControlTrap(true);
         }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            foreach(KeyValuePair<int, ItemData> pair in holdWeapon)
+            {
+                Debug.Log(pair.Key);
+            }
+        }    
     }
 
     void SetUILayer(int bulletLayer, int trapLayer) // UI 렌더링 순서 변경
@@ -88,7 +95,6 @@ public class WeaponManager : MonoBehaviour
         holdWeapon.Remove(_id);
     }
 
-
     public void ShootGun() // 총 발사 시, 총알 개수 카운트한다.
     {
         bulletCnt -= 1;
@@ -104,7 +110,6 @@ public class WeaponManager : MonoBehaviour
         SetBulletCnt();
         playerShoot.LoadBullet(_itemData.itemID);
     }
-
 
     public void SetDefaultBullet() // 보통 총알로 초기화
     {
@@ -129,16 +134,31 @@ public class WeaponManager : MonoBehaviour
         trapID = _itemData.itemID;
         trapCnt = _itemData.itemCnt;
         trapImage.sprite = _itemData.itemIcon;
+        trapCntText.text = trapCnt.ToString();
         playerTrap.LoadTrap(_itemData.itemID);
-        SetDefaultTrap();
+        canSelectTrap = true;
+    }
+
+    public void SetUpTrap()
+    {
+        trapCnt -= 1;
+        trapCntText.text = trapCnt.ToString();
+        if (trapCnt <= 0)
+        {
+            currentKey = 1;
+            Cursor.instance.ChangeCursorState(currentKey);
+            DeleteWeapon(trapID);
+            SetDefaultTrap();
+        }
     }
 
     void SetDefaultTrap() // ID가 200일때 불러온다.
     {
-        if (trapID == 200)
-            canSelectTrap = false;
-        else
-            canSelectTrap = true;
+        trapID = 200;
+        canSelectTrap = false;
+        SetUILayer(2, 1);
+        playerShoot.ControlGun(true);
+        playerTrap.ControlTrap(false);
     }
 
 }

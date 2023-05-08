@@ -11,8 +11,9 @@ public class Cursor : MonoBehaviour
     SpriteRenderer spr;
     Color defaultColor;
     Vector3 mousePos; // 마우스 위치
+    List<Vector3> trapPos = new List<Vector3>();
 
-    int currentKey = 0;
+    int currentKey;
     bool setTrap;
    
    
@@ -20,6 +21,7 @@ public class Cursor : MonoBehaviour
     {
         spr = GetComponent<SpriteRenderer>();
         currentKey = GameManager.instance.weaponManager.currentKey;
+        Debug.Log(currentKey);
         spr.sprite = cursorMode[currentKey - 1];
         instance = this;
         defaultColor = spr.color;
@@ -51,7 +53,7 @@ public class Cursor : MonoBehaviour
     {
         if (currentKey == 2)
         {
-            if (Mathf.Abs(transform.localPosition.x) > 3f || Mathf.Abs(transform.localPosition.y) > 3f)
+            if ((Mathf.Abs(transform.localPosition.x) > 3f || Mathf.Abs(transform.localPosition.y) > 3f)||trapPos.Contains(mousePos))
             {
                 spr.color = Color.red;
                 setTrap = false;
@@ -76,5 +78,15 @@ public class Cursor : MonoBehaviour
     public Vector3 GetMousePos()
     {
         return mousePos;
+    }
+
+    public void AddTrapPos(Vector3 _trapPos)
+    {
+        trapPos.Add(_trapPos);
+    }
+
+    public void DeleteTrapPos(Vector3 _trapPos)
+    {
+        trapPos.Remove(_trapPos);
     }
 }

@@ -23,7 +23,6 @@ public class PlayerTrap : MonoBehaviour
     {
         spr = GetComponent<SpriteRenderer>();
         LoadTrap(GameManager.instance.weaponManager.trapID);
-        Debug.Log(trapID);
         CheckHoldWeapon();
     }
 
@@ -60,6 +59,8 @@ public class PlayerTrap : MonoBehaviour
         {
             Transform trap = GameManager.instance.poolManager.GetTrap(trapID).transform;
             trap.transform.position = Cursor.instance.transform.position;
+            GameManager.instance.weaponManager.SetUpTrap();
+            Cursor.instance.AddTrapPos(trap.transform.position);
         }
     }
 
