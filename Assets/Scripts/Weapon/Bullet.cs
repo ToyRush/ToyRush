@@ -6,13 +6,13 @@ namespace Bullets
 {
     public abstract class Bullet : MonoBehaviour
     {
-        protected Rigidbody2D rigidBody;
+        protected Rigidbody2D rb;
         public float damage;
         public int speed;
 
         protected virtual void Awake()
         {
-            rigidBody = GetComponent<Rigidbody2D>();
+            rb = GetComponent<Rigidbody2D>();
         }
 
         public virtual void Init(Vector3 dir)
@@ -21,7 +21,7 @@ namespace Bullets
             transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
-            rigidBody.velocity = speed * dir;
+            rb.velocity = speed * dir;
         }
 
         protected virtual void OnCollisionEnter2D(Collision2D collision)

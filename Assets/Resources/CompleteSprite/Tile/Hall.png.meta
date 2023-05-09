@@ -1009,6 +1009,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Hall12
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 231
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b9129c9c144e6c4a883980a63501bf2
+      internalID: 433915473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1029,6 +1050,7 @@ TextureImporter:
       Hall2: 484109987
       Hall4: 592102127
       Hall8: 1523089320
+      Hall12: 433915473
       FirstTile_24: 1294765216
       FirstTile_5: 1109084529
       Object2: 1904847127
