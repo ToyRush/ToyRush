@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Bullets;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -14,8 +13,12 @@ public class PlayerShoot : MonoBehaviour
     Direction direction;
     int bulletID = 100;
     bool canShoot;
-    SpriteRenderer spr;
 
+    SpriteRenderer spr;
+    
+    WaitForSeconds shootDelay;
+    float loadBullet;
+    
     void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
