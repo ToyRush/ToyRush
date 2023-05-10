@@ -4,29 +4,89 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    public RectTransform rect;
-    public GameObject cursorObject;
-    private Vector3 offset;
-    Vector3 mousePos;
+    public static Cursor instance;
+    
+    public Sprite[] cursorMode; // 커서 이미지, 첫번째는 총알, 두번째는 함정
 
+    SpriteRenderer spr;
+    Color defaultColor;
+    Vector3 mousePos; // 마우스 위치
+    List<Vector3> trapPos = new List<Vector3>();
+
+    int currentKey;
+    bool setTrap;
+   
+   
     private void Awake()
     {
-        cursorObject.SetActive(true);
-    }
-    private void Start()
-    {
-        rect = GetComponent<RectTransform>();
-        offset = new Vector3(rect.rect.width / 2, -rect.rect.height / 2,0);
+        spr = GetComponent<SpriteRenderer>();
+        currentKey = GameManager.instance.weaponManager.currentKey;
+        Debug.Log(currentKey);
+        spr.sprite = cursorMode[currentKey - 1];
+        instance = this;
+        defaultColor = spr.color;
     }
 
-    private void FixedUpdate()
+    public void ChangeCursorState(int _currentKey)
     {
-        mousePos = Input.mousePosition;
-        mousePos = Camera.main.ScreenToWorldPoint(mousePos);
-        if (Input.mousePosition.x < Screen.width && Input.mousePosition.y < Screen.height)
+        currentKey = _currentKey;
+        spr.sprite = cursorMode[_currentKey - 1];
+    }
+
+    void Update()
+    {
+        CheckMousePos();
+        SetColorCursor();
+    }
+    
+    void CheckMousePos()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (currentKey == 1)
+            mousePos.z = 0;
+        else if (currentKey == 2)
+            mousePos = new Vector3(Mathf.Round(mousePos.x), Mathf.Round(mousePos.y), 0);
+        transform.position = mousePos;
+    }
+
+    void SetColorCursor()
+    {
+        if (currentKey == 2)
         {
-            rect.position = Input.mousePosition + offset;
+            if ((Mathf.Abs(transform.localPosition.x) > 3f || Mathf.Abs(transform.localPosition.y) > 3f)||trapPos.Contains(mousePos))
+            {
+                spr.color = Color.red;
+                setTrap = false;
+            }
+            else
+            {
+                spr.color = Color.green;
+                setTrap = true;
+            }
         }
-        
+        else
+        {
+            spr.color = defaultColor;
+        }
+    }
+
+    public bool CanSetTrap()
+    {
+        return setTrap;
+    }
+
+    public Vector3 GetMousePos()
+    {
+        return mousePos;
+    }
+
+    public void AddTrapPos(Vector3 _trapPos)
+    {
+        trapPos.Add(_trapPos);
+    }
+
+    public void DeleteTrapPos(Vector3 _trapPos)
+    {
+        trapPos.Remove(_trapPos);
     }
 }

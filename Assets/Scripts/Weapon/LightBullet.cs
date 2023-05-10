@@ -15,6 +15,7 @@ public class LightBullet : Bullet
     void BombBullet()
     {
         damageArea.SetActive(true);
+        rb.velocity = Vector3.zero;
         Invoke("TurnOffArea", 2f);
     }
 

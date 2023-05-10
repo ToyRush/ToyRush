@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayerStat : MonoBehaviour
 {
     PlayerMove playerMove;
-    float maxHealth;
+    float maxHealth=150;
     float currentHealth;
     float damage;
     float heal;
