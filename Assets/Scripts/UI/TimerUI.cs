@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Timer : MonoBehaviour
+public class TimerUI : MonoBehaviour
 {
     [SerializeField]
     private Slider slider;
@@ -19,6 +19,8 @@ public class Timer : MonoBehaviour
     void Update()
     {
         float time = maxTime - Time.time;
-        slider.value = time;    
+        slider.value = time;
+        if (slider.value == 0)
+            Debug.Log("중간보스가 등장했습니다!");
     }
 }
