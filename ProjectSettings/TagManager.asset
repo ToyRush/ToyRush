@@ -8,6 +8,8 @@ TagManager:
   - PlayerWeapon
   - Wall
   - Key
+  - Hp
+  - NonTarget
   layers:
   - Default
   - TransparentFX

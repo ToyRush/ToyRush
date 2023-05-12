@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     GameObject player;
     GameObject key;
     // 저장할 데이터
-    float health;
+    int health=5;
 
     // 스테이지 정보
     private int stageID=0;
@@ -54,8 +54,13 @@ public class GameManager : MonoBehaviour
         stageID = _stageID;
     }
 
-    public void SetHealth(float _health)
+    public void SetHealth(int _health)
     {
         health = _health;
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 }

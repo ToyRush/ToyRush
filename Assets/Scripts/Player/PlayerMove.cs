@@ -118,4 +118,9 @@ public class PlayerMove : MonoBehaviour
         // Á×À½ ¸ð¼Ç
     }
 
+    public void KnockBack()
+    {
+        // ³Ë¹é ±â´É ±¸Çö
+    }
+
 }

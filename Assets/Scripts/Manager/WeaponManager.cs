@@ -51,14 +51,6 @@ public class WeaponManager : MonoBehaviour
             playerShoot.ControlGun(false);
             playerTrap.ControlTrap(true);
         }
-
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            foreach(KeyValuePair<int, ItemData> pair in holdWeapon)
-            {
-                Debug.Log(pair.Key);
-            }
-        }    
     }
 
     void SetUILayer(int bulletLayer, int trapLayer) // UI 렌더링 순서 변경

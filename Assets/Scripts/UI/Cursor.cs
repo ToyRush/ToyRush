@@ -21,7 +21,6 @@ public class Cursor : MonoBehaviour
     {
         spr = GetComponent<SpriteRenderer>();
         currentKey = GameManager.instance.weaponManager.currentKey;
-        Debug.Log(currentKey);
         spr.sprite = cursorMode[currentKey - 1];
         instance = this;
         defaultColor = spr.color;
