@@ -28,6 +28,7 @@ public class Item : MonoBehaviour
                 case ItemData.ItemType.Consumer:
                     break;
                 case ItemData.ItemType.Key:
+                    GameManager.instance.PickUpKey(itemData.itemID);
                     break;
             }
         }
