@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TimerUI : MonoBehaviour
 {
+    bool isBoss = false;
     [SerializeField]
     private Slider slider;
     [SerializeField]
@@ -20,7 +21,11 @@ public class TimerUI : MonoBehaviour
     {
         float time = maxTime - Time.time;
         slider.value = time;
-        if (slider.value == 0)
+        if (slider.value == 0 && !isBoss)
+        {
             Debug.Log("중간보스가 등장했습니다!");
+            isBoss = true;
+        }
+       
     }
 }
