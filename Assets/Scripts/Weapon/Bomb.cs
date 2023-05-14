@@ -30,7 +30,7 @@ public class Bomb : Trap
     void ExplosionOff()
     {
         explosionArea.SetActive(false);
-        Cursor.instance.DeleteTrapPos(gameObject.transform.position);
+        Cursor.cursorInstance.DeleteTrapPos(gameObject.transform.position);
         gameObject.SetActive(false);
     }
 

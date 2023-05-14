@@ -137,9 +137,12 @@ public class PlayerMove : MonoBehaviour
         // Á×À½ ¸ð¼Ç
     }
 
-    public void KnockBack()
+    public void OnOffDamaged(bool _isDamaged)
     {
-        // ³Ë¹é ±â´É ±¸Çö
+        if (_isDamaged)
+            spr.color = new Color(1, 1, 1, 0.4f);
+        else
+            spr.color = new Color(1, 1, 1, 1f);
     }
 
 }

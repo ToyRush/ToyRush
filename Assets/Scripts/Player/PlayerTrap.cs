@@ -42,12 +42,12 @@ public class PlayerTrap : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Cursor.instance.GetMousePos();
+        mousePos = Cursor.cursorInstance.GetMousePos();
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else
             direction = Direction.Right;
-        setTrap = Cursor.instance.CanSetTrap();
+        setTrap = Cursor.cursorInstance.CanSetTrap();
     }
 
     void SetUpTrap() // 총알의 ID를 받아와서 쏜더. 
@@ -55,9 +55,9 @@ public class PlayerTrap : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && setTrap)
         {
             Transform trap = GameManager.instance.poolManager.GetTrap(trapID).transform;
-            trap.transform.position = Cursor.instance.transform.position;
+            trap.transform.position = Cursor.cursorInstance.transform.position;
             GameManager.instance.weaponManager.SetUpTrap();
-            Cursor.instance.AddTrapPos(trap.transform.position);
+            Cursor.cursorInstance.AddTrapPos(trap.transform.position);
         }
     }
 

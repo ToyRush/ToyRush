@@ -12,6 +12,8 @@ public class PlayerStat : MonoBehaviour
     int currentHealth;
     int damage;
     int heal;
+    bool isInvincible=false; // 무적인가?
+    float invincibleTime=2f; // 무적 시간
     void Awake()
     {
         hpUIObject = GameObject.FindGameObjectWithTag("Hp");
@@ -21,18 +23,25 @@ public class PlayerStat : MonoBehaviour
         hpUI.ShowHp(currentHealth);
     }
 
-
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.K))
+            Damaged(1);
+    }
     public void Damaged(int damage)
     {
-        if (currentHealth > 0)
+        if (!isInvincible) // 무적이 아닐때만 호출
         {
-            currentHealth -= damage;
-            GameManager.instance.SetHealth(currentHealth);
+            if (currentHealth > 0)
+            {
+                currentHealth -= damage;
+                GameManager.instance.SetHealth(currentHealth);
+            }
+            else
+                playerMove.Dead();
+            StartCoroutine("Invincible");
+            hpUI.ShowHp(currentHealth);
         }
-        else
-            playerMove.Dead();
-        StartCoroutine("NonTargetState");
-        hpUI.ShowHp(currentHealth); 
     }
 
     public void Heal(int heal)
@@ -45,20 +54,12 @@ public class PlayerStat : MonoBehaviour
         hpUI.ShowHp(currentHealth);
     }
 
-    private void Update()
+    IEnumerator Invincible()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-            Damaged(1);
-        if (Input.GetKeyDown(KeyCode.L))
-            Heal(1);
-    }
-
-    IEnumerator NonTargetState()
-    {
-        gameObject.tag = "NonTarget";
-        playerMove.KnockBack();
-        yield return new WaitForSeconds(2f);
-        gameObject.tag = "Player";
-        yield return 0;
+        isInvincible = true;
+        playerMove.OnOffDamaged(true);
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
+        playerMove.OnOffDamaged(false);
     }
 }

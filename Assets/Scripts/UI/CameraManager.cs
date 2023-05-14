@@ -18,7 +18,11 @@ public class CameraManager : MonoBehaviour
     [SerializeField]
     CameraState cameraState;
     public Transform target;
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+            OnShakeCamera();
+    }
     void FixedUpdate()
     {
         switch (cameraState)
@@ -31,8 +35,6 @@ public class CameraManager : MonoBehaviour
                 StartCoroutine("ReturnState");
                 break;
         }
-        if (Input.GetKeyDown(KeyCode.K))
-            OnShakeCamera();
     }
 
     void OnShakeCamera(float shakeTime = 0.2f, float shakeIntensity=0.2f)
