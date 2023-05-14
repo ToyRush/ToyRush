@@ -110,7 +110,7 @@ public class MonsterPlayer : MonoBehaviour
         if (currentHealth > 0)
         {
             currentHealth -= damage;
-            GameManager.instance.SetHealth(currentHealth);
+            GameManager.instance.SetHealth((int)currentHealth);
         }
         else
             playerMove.Dead();
