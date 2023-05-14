@@ -5,10 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerTrap : MonoBehaviour
 {
-    [SerializeField] GameObject rightTrap;
-    [SerializeField] GameObject leftTrap;
-    
-    bool canTrap;
+    bool canTrap; // 트랩을 들고 있는 경우
+    bool setTrap; // 트랩을 설치 가능한 경우, 커서 UI가 초록색인 경우에만 설치 가능
     Vector3 mousePos;
     Direction direction;
 
@@ -21,7 +19,7 @@ public class PlayerTrap : MonoBehaviour
     void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
-        SetTrap(GameManager.instance.weaponManager.trapID, GameManager.instance.weaponManager.trapCnt);
+        LoadTrap(GameManager.instance.weaponManager.trapID);
         CheckHoldWeapon();
     }
 
@@ -44,20 +42,22 @@ public class PlayerTrap : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Cursor.instance.mousePos;
+        mousePos = Cursor.instance.GetMousePos();
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else
             direction = Direction.Right;
+        setTrap = Cursor.instance.CanSetTrap();
     }
 
     void SetUpTrap() // 총알의 ID를 받아와서 쏜더. 
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && setTrap)
         {
-            Vector2 dir = mousePos - transform.position;
             Transform trap = GameManager.instance.poolManager.GetTrap(trapID).transform;
-            dir = dir.normalized;
+            trap.transform.position = Cursor.instance.transform.position;
+            GameManager.instance.weaponManager.SetUpTrap();
+            Cursor.instance.AddTrapPos(trap.transform.position);
         }
     }
 
@@ -66,36 +66,22 @@ public class PlayerTrap : MonoBehaviour
         switch (direction)
         {
             case Direction.Left:
-                leftTrap.SetActive(true);
-                rightTrap.SetActive(false);
                 spr.flipX = true;
                 break;
             case Direction.Right:
-                leftTrap.SetActive(false);
-                rightTrap.SetActive(true);
                 spr.flipX = false;
                 break;
         }
     }
-    public void SetTrap(int _trapID, int _trapCnt) // WeaponManager에서 현재 들고 있는 총알과 총알의 개수를 받아온다.
-    {
-        trapID = _trapID;
-        trapCnt = _trapCnt;
-    }
 
     public void LoadTrap(int _trapID) // 트랩 아이디를 불러온다.
     {
-        trapID = _trapID;
+        trapID = _trapID-200;
     }
 
     public void ControlTrap(bool _canShoot) // WeaponManager에서 1번,2번키를 누를때마다 쏠 수 있는지 불러온다.
     {
         canTrap = _canShoot;
-        if (!canTrap)
-        {
-            rightTrap.SetActive(canTrap);
-            leftTrap.SetActive(canTrap);
-        }
     }
 
     void CheckHoldWeapon() // 처음에 플레이어가 어떤 무기를 들고있는지 확인한다.
@@ -105,6 +91,4 @@ public class PlayerTrap : MonoBehaviour
         else
             canTrap = true;
     }
-
-
 }

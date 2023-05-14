@@ -7,14 +7,17 @@ public class GameManager : MonoBehaviour
     static public GameManager instance =null;
     public PoolManager poolManager;
     public WeaponManager weaponManager;
-    public PlayerStat playerStat;
+    PlayerStat playerStat;
+    KeyUI keyUI;
+    GameObject player;
+    GameObject key;
     // 저장할 데이터
-    float health;
+    int health=5;
 
     // 스테이지 정보
-    public int stageID;
-    public int[] stageKeyID;
-
+    private int stageID=0;
+    private int[] stageKeyID= new int[] { 400,401,402,403,404,405};
+    
     private void Awake()
     {
         if (instance == null)
@@ -27,15 +30,37 @@ public class GameManager : MonoBehaviour
             if(instance!=this)
                 Destroy(this.gameObject);
         }
-        poolManager = GetComponentInChildren<PoolManager>();
-        weaponManager= GetComponentInChildren<WeaponManager>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        key = GameObject.FindGameObjectWithTag("Key");
+        playerStat = player.GetComponent<PlayerStat>();
+        keyUI = key.GetComponent<KeyUI>();
         //GetComponentInChildren는 자식 오브젝트에 달린 첫번째 컴포넌트를 불러온다.
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
     }
 
+    
+    public int GetStageKeyID()
+    {
+        return stageKeyID[stageID];
+    }
 
-    public void SetHealth(float _health)
+    public void PickUpKey(int _stageKeyID)
+    {
+        keyUI.ChargeGauge(_stageKeyID);
+    }
+
+    public void ChangeStageID(int _stageID)
+    {
+        stageID = _stageID;
+    }
+
+    public void SetHealth(int _health)
     {
         health = _health;
+    }
+
+    public int GetHealth()
+    {
+        return health;
     }
 }

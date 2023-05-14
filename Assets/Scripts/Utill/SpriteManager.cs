@@ -33,14 +33,15 @@ public class SpriteManager : MonoBehaviour
         state = anim.GetInteger("State");
     }
 
-    public void SetState(UnitState state)
+   /* public void SetState(UnitState state)
     {
         if (anim != null)
         {
             anim.SetInteger("State", ((int)state));
             this.state = ((int)state);
         }
-    }
+    }*/
+
     public void SetFlips() // 오류 ! state 에 따라 flip 해야할듯
     {
         if (state != 0)

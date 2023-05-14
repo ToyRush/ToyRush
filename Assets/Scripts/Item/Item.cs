@@ -25,7 +25,10 @@ public class Item : MonoBehaviour
                 case ItemData.ItemType.Trap:
                     GameManager.instance.weaponManager.AddWeapon(itemData);
                     break;
-                case ItemData.ItemType.StatUp:
+                case ItemData.ItemType.Consumer:
+                    break;
+                case ItemData.ItemType.Key:
+                    GameManager.instance.PickUpKey(itemData.itemID);
                     break;
             }
         }

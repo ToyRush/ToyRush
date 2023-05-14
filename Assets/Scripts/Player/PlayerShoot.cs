@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Bullets;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -14,8 +13,12 @@ public class PlayerShoot : MonoBehaviour
     Direction direction;
     int bulletID = 100;
     bool canShoot;
-    SpriteRenderer spr;
 
+    SpriteRenderer spr;
+    
+    WaitForSeconds shootDelay;
+    float loadBullet;
+    
     void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
@@ -44,8 +47,7 @@ public class PlayerShoot : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mousePos.z = 0f;
+        mousePos = Cursor.instance.GetMousePos();
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else

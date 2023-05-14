@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hit
-  m_Shader: {fileID: -6465566751694194690, guid: e2ff3fd8f2d3b7f4680630392306098a,
+  m_Shader: {fileID: -6465566751694194690, guid: f38603475c3dad646b169f510a7c70b7,
     type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
@@ -57,6 +57,7 @@ Material:
     - _ZWriteControl: 0
     m_Colors:
     - _Color: {r: 766.9961, g: 766.9961, b: 766.9961, a: 0}
+    - _offset: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &2593257908450874644
 MonoBehaviour:

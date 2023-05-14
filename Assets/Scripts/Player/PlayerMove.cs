@@ -31,26 +31,26 @@ public class PlayerMove : MonoBehaviour
     WaitForSeconds shootDelay = new WaitForSeconds(0.2f);
     AnimationState animationState;
 
-
     [Header("기획자 변수 : 속도 조절 변수")]
     public float moveSpeed; // 플레이어의 이동 속도
-    public int bulletCnt; // 현재 가진 총알 개수
-    public int bulletMaxCnt; // 총알 최대 개수
-
     bool canMove = true; // 플레이어의 움직임 제어
-    bool isRolling=false; // 구르기 제어
+    bool isMove=false;
+    bool isRolling = false; // 구르기 제어
+    [SerializeField] ParticleSystem moveParticle;
+    [SerializeField] ParticleSystem stopParticle;
+    [SerializeField] ParticleSystem dahsParticle;
+    ParticleSystemRenderer dashRenderer;
 
-    public int bulletNum = 0;
-
-    void Awake()    
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        bulletCnt = bulletMaxCnt;
+        dashRenderer = dahsParticle.GetComponent<ParticleSystemRenderer>();
     }
-    void Start() 
+    void Start()
     {
+
         isRolling = false;
         animationState = AnimationState.Idle;
     }
@@ -80,6 +80,17 @@ public class PlayerMove : MonoBehaviour
     {
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
+        if ((inputVec.x != 0 || inputVec.y != 0) && !isMove)
+        {
+            moveParticle.Play();
+            isMove = true;
+        }
+        else if((inputVec.x == 0 && inputVec.y == 0 )&& isMove)
+        {
+            moveParticle.Stop();
+            stopParticle.Play();
+            isMove = false;
+        }
 
         if (Input.GetMouseButtonDown(1)&&!isRolling)
             StartCoroutine("Roll", inputVec.normalized);
@@ -114,11 +125,21 @@ public class PlayerMove : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isRolling = false;
         rb.velocity = Vector2.zero;
+        if (rollDir.x > 0)
+            dashRenderer.flip = Vector3.right;
+        else
+            dashRenderer.flip = Vector3.zero;
+        dahsParticle.Play();
     }   
 
     public void Dead()
     {
         // 죽음 모션
+    }
+
+    public void KnockBack()
+    {
+        // 넉백 기능 구현
     }
 
 }
