@@ -21,7 +21,7 @@ public class Boss : Monster
         
     }
 
-    public override void BehaviorTree()
+    public new MonsterState BehaviorTree()
     {
         throw new System.NotImplementedException();
     }
@@ -34,5 +34,19 @@ public class Boss : Monster
     public override void Attack()
     {
         throw new System.NotImplementedException();
+    }
+
+    public override void Move()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override bool Event(string eventname)
+    {
+        throw new System.NotImplementedException();
+    }
+    public override void Dead()
+    {
+        Destroy(this.gameObject, 2.0f);
     }
 }

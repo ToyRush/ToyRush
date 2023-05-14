@@ -23,6 +23,7 @@ public class MonsterPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        playerMove = GetComponent<PlayerMove>();
         canMove = true;
         moveSpeed = 5.0f;
     }
@@ -99,5 +100,23 @@ public class MonsterPlayer : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         isRolling = false;
         rb.velocity = Vector2.zero;
+    }
+    PlayerMove playerMove;
+    float maxHealth = 150;
+    float currentHealth;
+    float damage;
+    public void Damaged(float damage)
+    {
+        if (currentHealth > 0)
+        {
+            currentHealth -= damage;
+            GameManager.instance.SetHealth(currentHealth);
+        }
+        else
+            playerMove.Dead();
+    }
+    public void Dead()
+    {
+        // Á×À½ ¸ð¼Ç
     }
 }

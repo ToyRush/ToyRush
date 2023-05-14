@@ -6,61 +6,45 @@ using UnityEngine;
 // 5/1 lee
 public class Soldier : Monster
 {
+    static public int itemcount = 13;
     // Start is called before the first frame update
     void Start()
     {
-        move = gameObject.AddComponent<SoldierMove>();
-        move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
-        move.speed = 5.0f;
-
+        //move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
         monsterInfo.hp = 100.0f;
         monsterInfo.attack = 10.0f;
         monsterInfo.state = MonsterState.Stop;
-        monsterInfo.findDis = 3.0f;
-        monsterInfo.attackDis = 1.0f;
+        monsterInfo.findDis = 10.0f;
+        monsterInfo.attackDis = 10.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 2.0f;
+        monsterInfo.speedIncrease = 3.0f;
+        monsterInfo.speed *= monsterInfo.speedIncrease;
     }
 
     // Update is called once per frame
-    protected void FixedUpdate()
+
+    public new MonsterState BehaviorTree()
     {
-        if (monsterInfo.state == MonsterState.Stop)
-            monsterInfo.currentTime += Time.fixedDeltaTime;
+         return base.BehaviorTree();
     }
-
-    public override void BehaviorTree()
+    public override void Move()
     {
-        if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.findDis)
-        {
-            monsterInfo.state = MonsterState.Move;
-            move.targetPos = player.transform.position;
-            if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.attackDis)
-            {
-                monsterInfo.state = MonsterState.Attack;
-            }
-            animator.SetInteger("State", (int)monsterInfo.state);
-        }
-        else
-        {
-            if (monsterInfo.state == MonsterState.Move)
-            {
-                if (Vector3.Distance(this.transform.position, move.targetPos) <= 0.1f)
-                {
-                    rigid.velocity = Vector2.zero;
-                    monsterInfo.state = MonsterState.Stop;
-                    animator.SetInteger("State", (int)monsterInfo.state);
-                }
-            }
-            else if (monsterInfo.currentTime > monsterInfo.delayTime)
-            {
-                monsterInfo.currentTime = 0;
-                move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
-                monsterInfo.state = MonsterState.Move;
-                animator.SetInteger("State", (int)monsterInfo.state);
+        if (monsterInfo.bMoveable == false)
+            return;
+        Vector3 currentV = rigid.position;
+        Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
+        Vector2 nextDir = currentV +
+            (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
 
-            }
+        if (Vector3.Distance(currentV, monsterInfo.targetPos) <= 0.1f)
+        {
+            monsterInfo.index++;
+            if ( Position.Count <= monsterInfo.index)
+                monsterInfo.index = 0;
+            monsterInfo.targetPos = Position[monsterInfo.index];
         }
+        rigid.MovePosition(nextDir);
     }
 
     public override bool Damaged(float attack)
@@ -72,12 +56,21 @@ public class Soldier : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
+            Destroy(this.gameObject, 1.5f);
         }
         return true;
     }
-
     public override void Attack()
     {
-       
+
+    }
+
+    public override bool Event(string eventname)
+    {
+        throw new System.NotImplementedException();
+    }
+    public override void Dead()
+    {
+
     }
 }
