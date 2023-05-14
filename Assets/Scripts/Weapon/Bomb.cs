@@ -23,7 +23,6 @@ public class Bomb : Trap
     }
 
     void ExplosionOn() {
-        spr.sortingOrder =-11;
         explosionArea.SetActive(true);
         Invoke("ExplosionOff", 0.5f);
     }
@@ -31,12 +30,12 @@ public class Bomb : Trap
     void ExplosionOff()
     {
         explosionArea.SetActive(false);
+        Cursor.cursorInstance.DeleteTrapPos(gameObject.transform.position);
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
         currentTime = 0f;
-        spr.sortingOrder = 0;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    public static Cursor instance;
+    public static Cursor cursorInstance;
     
     public Sprite[] cursorMode; // 커서 이미지, 첫번째는 총알, 두번째는 함정
 
@@ -21,9 +21,8 @@ public class Cursor : MonoBehaviour
     {
         spr = GetComponent<SpriteRenderer>();
         currentKey = GameManager.instance.weaponManager.currentKey;
-        Debug.Log(currentKey);
         spr.sprite = cursorMode[currentKey - 1];
-        instance = this;
+        cursorInstance = this;
         defaultColor = spr.color;
     }
 

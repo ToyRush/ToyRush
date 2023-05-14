@@ -13,7 +13,7 @@ public class PlayerShoot : MonoBehaviour
     Direction direction;
     int bulletID = 100;
     bool canShoot;
-
+    bool isCoolDown = false;
     SpriteRenderer spr;
     
     WaitForSeconds shootDelay;
@@ -47,7 +47,7 @@ public class PlayerShoot : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Cursor.instance.GetMousePos();
+        mousePos = Cursor.cursorInstance.GetMousePos();
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else
@@ -75,7 +75,7 @@ public class PlayerShoot : MonoBehaviour
 
     void ShootBullet() // 총알의 ID를 받아와서 쏜더. 
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isCoolDown)
         {
             Vector3 dir = mousePos - transform.position;
             dir = dir.normalized;
@@ -91,6 +91,8 @@ public class PlayerShoot : MonoBehaviour
             }
             bullet.GetComponent<Bullet>().Init(dir);
             GameManager.instance.weaponManager.ShootGun();
+            isCoolDown = true;
+            Invoke("CoolDown", 0.2f);
         }
     }
 
@@ -128,5 +130,10 @@ public class PlayerShoot : MonoBehaviour
             canShoot = true;
         else
             canShoot = false;
+    }
+
+    void CoolDown()
+    {
+        isCoolDown = false;
     }
 }

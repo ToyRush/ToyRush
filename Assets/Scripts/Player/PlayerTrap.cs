@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class PlayerTrap : MonoBehaviour
 {
-    [SerializeField] GameObject rightTrap;
-    [SerializeField] GameObject leftTrap;
-    
     bool canTrap; // 트랩을 들고 있는 경우
     bool setTrap; // 트랩을 설치 가능한 경우, 커서 UI가 초록색인 경우에만 설치 가능
     Vector3 mousePos;
@@ -45,12 +42,12 @@ public class PlayerTrap : MonoBehaviour
 
     void CheckMousePos() // 현재 마우스의 위치를 받아온다.
     {
-        mousePos = Cursor.instance.GetMousePos();
+        mousePos = Cursor.cursorInstance.GetMousePos();
         if (gameObject.transform.position.x > mousePos.x)
             direction = Direction.Left;
         else
             direction = Direction.Right;
-        setTrap = Cursor.instance.CanSetTrap();
+        setTrap = Cursor.cursorInstance.CanSetTrap();
     }
 
     void SetUpTrap() // 총알의 ID를 받아와서 쏜더. 
@@ -58,9 +55,9 @@ public class PlayerTrap : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && setTrap)
         {
             Transform trap = GameManager.instance.poolManager.GetTrap(trapID).transform;
-            trap.transform.position = Cursor.instance.transform.position;
+            trap.transform.position = Cursor.cursorInstance.transform.position;
             GameManager.instance.weaponManager.SetUpTrap();
-            Cursor.instance.AddTrapPos(trap.transform.position);
+            Cursor.cursorInstance.AddTrapPos(trap.transform.position);
         }
     }
 
@@ -69,13 +66,9 @@ public class PlayerTrap : MonoBehaviour
         switch (direction)
         {
             case Direction.Left:
-                leftTrap.SetActive(true);
-                rightTrap.SetActive(false);
                 spr.flipX = true;
                 break;
             case Direction.Right:
-                leftTrap.SetActive(false);
-                rightTrap.SetActive(true);
                 spr.flipX = false;
                 break;
         }
@@ -89,11 +82,6 @@ public class PlayerTrap : MonoBehaviour
     public void ControlTrap(bool _canShoot) // WeaponManager에서 1번,2번키를 누를때마다 쏠 수 있는지 불러온다.
     {
         canTrap = _canShoot;
-        if (!canTrap)
-        {
-            rightTrap.SetActive(canTrap);
-            leftTrap.SetActive(canTrap);
-        }
     }
 
     void CheckHoldWeapon() // 처음에 플레이어가 어떤 무기를 들고있는지 확인한다.
@@ -103,6 +91,4 @@ public class PlayerTrap : MonoBehaviour
         else
             canTrap = true;
     }
-
-
 }
