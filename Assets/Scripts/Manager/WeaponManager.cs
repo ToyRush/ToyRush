@@ -38,7 +38,7 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha1) && currentKey!=1)
         {
             currentKey = 1;
-            Cursor.instance.ChangeCursorState(currentKey);
+            Cursor.cursorInstance.ChangeCursorState(currentKey);
             SetUILayer(2,1);
             playerShoot.ControlGun(true);
             playerTrap.ControlTrap(false);
@@ -46,7 +46,7 @@ public class WeaponManager : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey !=2 && canSelectTrap)
         {
             currentKey = 2;
-            Cursor.instance.ChangeCursorState(currentKey);
+            Cursor.cursorInstance.ChangeCursorState(currentKey);
             SetUILayer(1,2);
             playerShoot.ControlGun(false);
             playerTrap.ControlTrap(true);
@@ -138,7 +138,7 @@ public class WeaponManager : MonoBehaviour
         if (trapCnt <= 0)
         {
             currentKey = 1;
-            Cursor.instance.ChangeCursorState(currentKey);
+            Cursor.cursorInstance.ChangeCursorState(currentKey);
             DeleteWeapon(trapID);
             SetDefaultTrap();
         }
@@ -149,8 +149,13 @@ public class WeaponManager : MonoBehaviour
         trapID = 200;
         canSelectTrap = false;
         SetUILayer(2, 1);
-        playerShoot.ControlGun(true);
         playerTrap.ControlTrap(false);
+        Invoke("CoolDown", 0.1f);
+    }
+
+    void CoolDown()
+    {
+        playerShoot.ControlGun(true);
     }
 
 }

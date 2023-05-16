@@ -18,6 +18,13 @@ public enum Direction
     Middle
 }
 
+public enum RushBearAnimation
+{
+    Idle=0,
+    Run=1,
+    Dead=2
+}
+
 public class PlayerMove : MonoBehaviour
 {
     // 컴포넌트
@@ -30,6 +37,7 @@ public class PlayerMove : MonoBehaviour
     [Header("개발자 변수")]
     WaitForSeconds shootDelay = new WaitForSeconds(0.2f);
     AnimationState animationState;
+    RushBearAnimation rushBearAnimation;
 
     [Header("기획자 변수 : 속도 조절 변수")]
     public float moveSpeed; // 플레이어의 이동 속도
@@ -57,22 +65,16 @@ public class PlayerMove : MonoBehaviour
 
     void SetAnimation()
     {
-        switch (animationState)
+        switch (rushBearAnimation)
         {
-            case AnimationState.Idle:
-                anim.SetInteger("PlayerState", 0);
+            case RushBearAnimation.Idle:
+                anim.SetInteger("RushBearState", 0);
                 break;
-            case AnimationState.Walk:
-                anim.SetInteger("PlayerState", 1);
+            case RushBearAnimation.Run:
+                anim.SetInteger("RushBearState", 1);
                 break;
-            case AnimationState.Roll:
-                anim.SetInteger("PlayerState", 2);
-                break;
-            case AnimationState.Hit:
-                anim.SetInteger("PlayerState", 3);
-                break;
-            case AnimationState.Dead:
-                anim.SetInteger("PlayerState", 4);
+            case RushBearAnimation.Dead:
+                anim.SetInteger("RushBearState", 2);
                 break;
         }
     }
@@ -95,11 +97,10 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetMouseButtonDown(1)&&!isRolling)
             StartCoroutine("Roll", inputVec.normalized);
         if(inputVec.x==0 && inputVec.y==0)
-            animationState = AnimationState.Idle;
+            rushBearAnimation = RushBearAnimation.Idle;
         else
-            animationState = AnimationState.Walk;
-        if (Input.GetMouseButtonDown(1))
-            animationState = AnimationState.Roll;
+            rushBearAnimation = RushBearAnimation.Run;
+        SetAnimation();
     }
     void FixedUpdate()
     {
@@ -113,10 +114,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void LateUpdate()
-    {
-        SetAnimation();
-    }
 
     IEnumerator Roll(Vector2 rollDir)
     {
@@ -137,9 +134,12 @@ public class PlayerMove : MonoBehaviour
         // 죽음 모션
     }
 
-    public void KnockBack()
+    public void OnOffDamaged(bool _isDamaged)
     {
-        // 넉백 기능 구현
+        if (_isDamaged)
+            spr.color = new Color(1, 1, 1, 0.4f);
+        else
+            spr.color = new Color(1, 1, 1, 1f);
     }
 
 }
