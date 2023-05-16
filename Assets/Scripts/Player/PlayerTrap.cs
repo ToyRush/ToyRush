@@ -66,10 +66,10 @@ public class PlayerTrap : MonoBehaviour
         switch (direction)
         {
             case Direction.Left:
-                spr.flipX = true;
+                spr.flipX = false;
                 break;
             case Direction.Right:
-                spr.flipX = false;
+                spr.flipX = true;
                 break;
         }
     }
