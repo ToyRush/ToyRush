@@ -71,7 +71,6 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected void Update()
     {
         BehaviorTree();
-     
     }
 
     public void SetState(MonsterState state)

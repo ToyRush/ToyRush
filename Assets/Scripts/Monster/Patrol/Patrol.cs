@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// 스폰 함수 구현
+// 기절 논의
+//  
+
 public class Patrol : Monster
 {
     public float radius = 1.0f;
@@ -83,7 +87,8 @@ public class Patrol : Monster
 
     public override void Attack()
     {
-        player.GetComponent<MonsterPlayer>().Damaged(monsterInfo.attack);
+        if (player.GetComponent<MonsterPlayer>() != null)
+            player.GetComponent<MonsterPlayer>().Damaged(monsterInfo.attack);
         monsterInfo.state = MonsterState.Dead;
         animator.SetInteger("State", (int)monsterInfo.state);
     }

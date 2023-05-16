@@ -943,7 +943,6 @@ GameObject:
   - component: {fileID: 404021490}
   - component: {fileID: 404021488}
   - component: {fileID: 404021494}
-  - component: {fileID: 404021495}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1099,22 +1098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
---- !u!114 &404021495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404021485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 719240666992d644a804b40a29df97d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  bulletCnt: 0
-  bulletMaxCnt: 0
-  bulletNum: 0
 --- !u!1 &486917137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1169,7 +1152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1446026014}
-  - component: {fileID: 1446026013}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1177,23 +1159,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1446026013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446026012}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6817a7b52a615694585b05a29b54f5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  poolManager: {fileID: 0}
-  weaponManager: {fileID: 0}
-  playerStat: {fileID: 0}
-  stageID: 0
-  stageKeyID: 2d0100002e0100002f010000
 --- !u!4 &1446026014
 Transform:
   m_ObjectHideFlags: 0
