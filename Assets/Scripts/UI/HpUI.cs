@@ -26,11 +26,9 @@ public class HpUI : MonoBehaviour
         {
             hpCompartments[i].color= defaultColor;
         }
-        for(int i=maxHp-_currentHp; i>0; i--)
+        for (int i = maxHp - _currentHp; i > 0; i--)
         {
             hpCompartments[i].color = transparentColor;
         }
-        Debug.Log(hpCompartments.Length);
-        
     }
 }

@@ -11,24 +11,33 @@ public enum AnimationState
     Dead=4
 }
 
-public enum Direction
+public enum Direction // 마우스 방향
 {
     Left,
     Right,
     Middle
 }
 
+public enum PlayerDirection // 방향키로 움직이는 방향
+{
+    Left,
+    Right,
+    Up,
+    Down
+}
+
 public enum RushBearAnimation
 {
     Idle=0,
     Run=1,
-    Dead=2
+    Dead=2,
 }
 
 public class PlayerMove : MonoBehaviour
 {
     // 컴포넌트
     Animator anim;
+    Animator dashAnim;
     Rigidbody2D rb;
     SpriteRenderer spr;
 
@@ -36,31 +45,34 @@ public class PlayerMove : MonoBehaviour
 
     [Header("개발자 변수")]
     WaitForSeconds shootDelay = new WaitForSeconds(0.2f);
-    AnimationState animationState;
     RushBearAnimation rushBearAnimation;
+    PlayerDirection playerDirection;
 
     [Header("기획자 변수 : 속도 조절 변수")]
     public float moveSpeed; // 플레이어의 이동 속도
     bool canMove = true; // 플레이어의 움직임 제어
     bool isMove=false;
-    bool isRolling = false; // 구르기 제어
+    bool isDash = false; // 구르기 제어
+    [SerializeField] GameObject dashObject;
     [SerializeField] ParticleSystem moveParticle;
     [SerializeField] ParticleSystem stopParticle;
-    [SerializeField] ParticleSystem dahsParticle;
-    ParticleSystemRenderer dashRenderer;
+
+    Vector3 leftVec = new Vector3(0, 0, 90);
+    Vector3 rightVec = new Vector3(0, 0, 270);
+    Vector3 downVec= new Vector3(0, 0, 180);
+    Vector3 upVec = new Vector3(0, 0, 0);
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        dashRenderer = dahsParticle.GetComponent<ParticleSystemRenderer>();
     }
     void Start()
     {
-
-        isRolling = false;
-        animationState = AnimationState.Idle;
+        isDash = false;
+        rushBearAnimation = RushBearAnimation.Idle;
+        dashAnim = dashObject.GetComponent<Animator>();
     }
 
     void SetAnimation()
@@ -93,9 +105,10 @@ public class PlayerMove : MonoBehaviour
             stopParticle.Play();
             isMove = false;
         }
+        CheckMoveDir();
 
-        if (Input.GetMouseButtonDown(1)&&!isRolling)
-            StartCoroutine("Roll", inputVec.normalized);
+        if (Input.GetMouseButtonDown(1)&&!isDash)
+            StartCoroutine("Dash", inputVec.normalized);
         if(inputVec.x==0 && inputVec.y==0)
             rushBearAnimation = RushBearAnimation.Idle;
         else
@@ -106,7 +119,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (canMove)
         {
-            if (!isRolling)
+            if (!isDash)
             {
                 Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
                 rb.MovePosition(rb.position + nextVec);
@@ -115,18 +128,29 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    IEnumerator Roll(Vector2 rollDir)
+    IEnumerator Dash(Vector2 dashDir)
     {
-        isRolling = true;
-        rb.velocity = rollDir *3* moveSpeed;
+        isDash = true;
+        rb.velocity = dashDir * 3* moveSpeed;
         yield return new WaitForSeconds(0.2f);
-        isRolling = false;
+        isDash = false;
         rb.velocity = Vector2.zero;
-        if (rollDir.x > 0)
-            dashRenderer.flip = Vector3.right;
-        else
-            dashRenderer.flip = Vector3.zero;
-        dahsParticle.Play();
+        dashAnim.SetTrigger("Dash");
+        switch (playerDirection)
+        {
+            case PlayerDirection.Left:
+                dashObject.transform.rotation = Quaternion.Euler(leftVec);
+                break;
+            case PlayerDirection.Right:
+                dashObject.transform.rotation = Quaternion.Euler(rightVec);
+                break;
+            case PlayerDirection.Up:
+                dashObject.transform.rotation = Quaternion.Euler(upVec);
+                break;
+            case PlayerDirection.Down:
+                dashObject.transform.rotation = Quaternion.Euler(downVec);
+                break;
+        }
     }   
 
     public void Dead()
@@ -142,4 +166,23 @@ public class PlayerMove : MonoBehaviour
             spr.color = new Color(1, 1, 1, 1f);
     }
 
+
+    void CheckMoveDir()
+    {
+        if (inputVec.x > 0 && inputVec.y==0)
+        {
+            playerDirection = PlayerDirection.Right;
+        }
+        else if (inputVec.x<0 && inputVec.y == 0)
+        {
+            playerDirection = PlayerDirection.Left;
+        }
+        else if (inputVec.y > 0)
+        {
+            playerDirection = PlayerDirection.Up;
+        }
+        else if(inputVec.y < 0) {
+            playerDirection = PlayerDirection.Down;
+        }
+    }
 }
