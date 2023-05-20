@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 5
+  speed: 10
   loadBullet: 1
 --- !u!50 &7489139936511372574
 Rigidbody2D:

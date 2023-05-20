@@ -26,11 +26,22 @@ public class Item : MonoBehaviour
                     GameManager.instance.weaponManager.AddWeapon(itemData);
                     break;
                 case ItemData.ItemType.Consumer:
+                    DeliveryItem();
                     break;
                 case ItemData.ItemType.Key:
                     GameManager.instance.PickUpKey(itemData.itemID);
                     break;
             }
+            gameObject.SetActive(false);
         }
+    }
+
+    void DeliveryItem()
+    {
+        GameObject player;
+        player = GameObject.FindGameObjectWithTag("Player");
+        PlayerStat playerStat;
+        playerStat = player.GetComponent<PlayerStat>();
+        playerStat.GetConsumerItem(itemData);
     }
 }

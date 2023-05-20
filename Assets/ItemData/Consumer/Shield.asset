@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2fed6d6c47d31634380e93b1a95425ad, type: 3}
-  m_Name: 1FKey
+  m_Name: Shield
   m_EditorClassIdentifier: 
-  itemType: 3
-  itemIcon: {fileID: 1777749549, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  itemID: 400
-  ItemName: 
+  itemType: 2
+  itemIcon: {fileID: 21300000, guid: 3777742ba0e121e439562b4dee5f9639, type: 3}
+  itemID: 300
+  ItemName: "\uBC29\uD328\uB9C9"
   itemCnt: 0
-  healFigure: 0
-  speedFigure: 0
-  keyID: 400
+  figure: 2
+  consumerType: 2
+  keyID: 0

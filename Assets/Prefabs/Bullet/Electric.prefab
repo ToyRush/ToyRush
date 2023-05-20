@@ -75,7 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  speed: 7
+  speed: 15
   loadBullet: 5
   damageArea: {fileID: 8374138477803018432}
   bulletParticle: {fileID: 7629800611366633456}

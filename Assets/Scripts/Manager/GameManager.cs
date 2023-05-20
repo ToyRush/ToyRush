@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     GameObject key;
     // 저장할 데이터
     int health=5;
+    int shiledCnt=0;
 
     // 스테이지 정보
     private int stageID=0;
@@ -59,8 +60,19 @@ public class GameManager : MonoBehaviour
         health = _health;
     }
 
+    public void SetShield(int _shieldCnt)
+    {
+        shiledCnt = _shieldCnt;
+    }
+
     public int GetHealth()
     {
         return health;
     }
+
+    public int GetShield()
+    {
+        return shiledCnt;
+    }
+    
 }

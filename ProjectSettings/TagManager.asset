@@ -9,7 +9,7 @@ TagManager:
   - Wall
   - Key
   - Hp
-  - NonTarget
+  - Trap
   layers:
   - Default
   - TransparentFX
