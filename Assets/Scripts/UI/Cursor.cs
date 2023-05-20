@@ -13,11 +13,11 @@ public class Cursor : MonoBehaviour
     Vector3 mousePos; // 마우스 위치
     List<Vector3> trapPos = new List<Vector3>();
 
-    int currentKey;
+    int currentKey=0;
     bool setTrap;
    
    
-    private void Awake()
+    private void Start()
     {
         spr = GetComponent<SpriteRenderer>();
         currentKey = GameManager.instance.weaponManager.currentKey;

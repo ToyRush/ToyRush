@@ -21,7 +21,7 @@ public class PlayerShoot : MonoBehaviour
     WaitForSeconds shootDelay;
     float loadBullet;
     
-    void Awake()
+    void Start()
     {
         spr = GetComponent<SpriteRenderer>();
         LoadBullet(GameManager.instance.weaponManager.bulletID);

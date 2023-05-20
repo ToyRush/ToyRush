@@ -16,7 +16,7 @@ public class PlayerTrap : MonoBehaviour
     int trapID;
     int trapCnt;
 
-    void Awake()
+    void Start()
     {
         spr = GetComponent<SpriteRenderer>();
         LoadTrap(GameManager.instance.weaponManager.trapID);

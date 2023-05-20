@@ -18,7 +18,7 @@ public class PlayerStat : MonoBehaviour
     float invincibleTime=2f; // 무적 시간
     int shieldCnt = 0;
 
-    void Awake()
+    void Start()
     {
         hpUIObject = GameObject.FindGameObjectWithTag("Hp");
         hpUI = hpUIObject.GetComponent<HpUI>();
