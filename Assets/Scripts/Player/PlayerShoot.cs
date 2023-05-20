@@ -20,10 +20,11 @@ public class PlayerShoot : MonoBehaviour
     
     WaitForSeconds shootDelay;
     float loadBullet;
-    
+
     void Start()
     {
         spr = GetComponent<SpriteRenderer>();
+        GameManager.instance.weaponManager.RegisterShoot(this);
         LoadBullet(GameManager.instance.weaponManager.bulletID);
         CheckHoldWeapon();
     }

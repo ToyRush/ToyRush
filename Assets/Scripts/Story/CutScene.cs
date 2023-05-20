@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class CutScene : MonoBehaviour
 {
     private int storyID;
@@ -31,6 +32,10 @@ public class CutScene : MonoBehaviour
         {
             canNext = false;
             StartCoroutine("FadeFlow");
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha0)) 
+        {
+            SceneManager.LoadScene("Tutorial");
         }
     }
     IEnumerator TypingEffect()

@@ -158,4 +158,13 @@ public class WeaponManager : MonoBehaviour
         playerShoot.ControlGun(true);
     }
 
+    public void RegisterTrap(PlayerTrap _playerTrap)
+    {
+        playerTrap = _playerTrap;
+    }
+
+    public void RegisterShoot(PlayerShoot _playerShoot)
+    {
+        playerShoot = _playerShoot;
+    }
 }
