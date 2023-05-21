@@ -33,6 +33,13 @@ public enum RushBearAnimation
     Dead=2,
 }
 
+public enum ConsumerType
+{
+    Heal,
+    SpeedUp,
+    Shield
+}
+
 public class PlayerMove : MonoBehaviour
 {
     // ÄÄÆ÷³ÍÆ®

@@ -17,9 +17,6 @@ public class ItemData : ScriptableObject
     public int itemCnt;
 
     [Header("º“∫Ò¿Á")]
-    public int healFigure;
-    public int speedFigure;
-
-    [Header("ø≠ºË")]
-    public int keyID;
+    public int figure;
+    public ConsumerType consumerType;
 }

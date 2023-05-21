@@ -16,11 +16,13 @@ public class PlayerTrap : MonoBehaviour
     int trapID;
     int trapCnt;
 
-    void Awake()
+    void Start()
     {
         spr = GetComponent<SpriteRenderer>();
+        GameManager.instance.weaponManager.RegisterTrap(this);
         LoadTrap(GameManager.instance.weaponManager.trapID);
         CheckHoldWeapon();
+
     }
 
     void Update() // 마우스의 입력과 총알을 쏜다.

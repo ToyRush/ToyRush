@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SungJun/StoryScene.unity
     guid: 3465387bf78dcfb449d0fe93898235c1
   - enabled: 1
-    path: Assets/Scenes/SungJun/Test.unity
-    guid: b50a327c9c491c94aa6368d10eab5530
+    path: Assets/Scenes/SungJun/Tutorial.unity
+    guid: afb2a41ab6158494e9cf10eabae0629f
+  - enabled: 1
+    path: Assets/Scenes/SungJun/FirstFloor.unity
+    guid: 1c0716ed1e07cb54db4ceabf0678e7dc
   m_configObjects: {}

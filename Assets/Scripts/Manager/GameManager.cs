@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance =null;
@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     GameObject key;
     // 저장할 데이터
     int health=5;
+    int shiledCnt=0;
 
     // 스테이지 정보
     private int stageID=0;
@@ -38,7 +39,15 @@ public class GameManager : MonoBehaviour
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
     }
 
-    
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            SceneManager.LoadScene("FirstFloor");
+        }
+    }
+
+
     public int GetStageKeyID()
     {
         return stageKeyID[stageID];
@@ -59,8 +68,19 @@ public class GameManager : MonoBehaviour
         health = _health;
     }
 
+    public void SetShield(int _shieldCnt)
+    {
+        shiledCnt = _shieldCnt;
+    }
+
     public int GetHealth()
     {
         return health;
     }
+
+    public int GetShield()
+    {
+        return shiledCnt;
+    }
+    
 }

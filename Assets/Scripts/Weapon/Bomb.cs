@@ -7,7 +7,7 @@ public class Bomb : Trap
     float timeLimit=3f;
     float currentTime = 0f;
     public GameObject explosionArea;
-    
+    [SerializeField] int damage;
     private void Update()
     {
         currentTime += Time.deltaTime;
@@ -15,11 +15,6 @@ public class Bomb : Trap
         {
             ExplosionOn();
         }
-    }
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Enemy"))
-            ExplosionOn();
     }
 
     void ExplosionOn() {

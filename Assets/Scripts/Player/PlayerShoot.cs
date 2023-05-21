@@ -7,6 +7,8 @@ public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] GameObject rightGun;
     [SerializeField] GameObject leftGun;
+    [SerializeField] GameObject rightPos;
+    [SerializeField] GameObject leftPos;
 
     float gunAngle;
     Vector3 mousePos;
@@ -18,10 +20,11 @@ public class PlayerShoot : MonoBehaviour
     
     WaitForSeconds shootDelay;
     float loadBullet;
-    
-    void Awake()
+
+    void Start()
     {
         spr = GetComponent<SpriteRenderer>();
+        GameManager.instance.weaponManager.RegisterShoot(this);
         LoadBullet(GameManager.instance.weaponManager.bulletID);
         CheckHoldWeapon();
     }
@@ -83,10 +86,10 @@ public class PlayerShoot : MonoBehaviour
             switch (direction)
             {
                 case Direction.Left:
-                    bullet.position = leftGun.transform.position;
+                    bullet.position = leftPos.transform.position;
                     break;
                 case Direction.Right:
-                    bullet.position = rightGun.transform.position;
+                    bullet.position = rightPos.transform.position;
                     break;
             }
             bullet.GetComponent<Bullet>().Init(dir);
