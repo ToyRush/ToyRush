@@ -10,6 +10,7 @@ TagManager:
   - Key
   - Hp
   - Trap
+  - Monster
   layers:
   - Default
   - TransparentFX
@@ -55,4 +56,7 @@ TagManager:
     locked: 0
   - name: Layer 3
     uniqueID: 4189426099
+    locked: 0
+  - name: New Layer 4
+    uniqueID: 1421896491
     locked: 0

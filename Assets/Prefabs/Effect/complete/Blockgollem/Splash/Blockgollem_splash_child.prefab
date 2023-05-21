@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8708455528615296355}
   - component: {fileID: 8708455528615296352}
   m_Layer: 0
-  m_Name: Blockgollem_splash
+  m_Name: Blockgollem_splash_child
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

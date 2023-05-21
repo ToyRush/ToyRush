@@ -4880,7 +4880,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7574608168921501944}
   m_Layer: 0
-  m_Name: Blockgollem_warning_final
+  m_Name: Blockgollem_warning_3s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
