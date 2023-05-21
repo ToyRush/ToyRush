@@ -38,19 +38,19 @@ public class MonsterPlayer : MonoBehaviour
         switch (animationState)
         {
             case AnimationState.Idle:
-                anim.SetInteger("PlayerState", 0);
+                anim.SetInteger("RushBearState", 0);
                 break;
             case AnimationState.Walk:
-                anim.SetInteger("PlayerState", 1);
+                anim.SetInteger("RushBearState", 1);
                 break;
             case AnimationState.Roll:
-                anim.SetInteger("PlayerState", 2);
+                anim.SetInteger("RushBearState", 2);
                 break;
             case AnimationState.Hit:
-                anim.SetInteger("PlayerState", 3);
+                anim.SetInteger("RushBearState", 3);
                 break;
             case AnimationState.Dead:
-                anim.SetInteger("PlayerState", 4);
+                anim.SetInteger("RushBearState", 4);
                 break;
         }
     }

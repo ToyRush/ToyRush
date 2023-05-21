@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f2cfa0ec64906f41a834d466b16c539
+guid: 2db848c6aeed1c0449a85c9594cc0146
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -69,7 +69,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -124,29 +124,278 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerSheet_0
+      name: ToySoldierSheet_0
       rect:
         serializedVersion: 2
-        x: 4
+        x: 7
+        y: 120
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e44772e213c0d44a19df9dbdc62756
+      internalID: 717365637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_1
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 120
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 11.5}
+        - {x: -6, y: 6.5}
+        - {x: -6, y: -11.5}
+        - {x: 6, y: -11.5}
+        - {x: 6, y: 11.5}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f14a6ee32610c84d8a7ca493661ec66
+      internalID: -1315319508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_2
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 120
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61630c6644182d646b0da6194d30b3b3
+      internalID: -499548197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_3
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 120
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e394bd0858a4fb840a47afbc03d3aaa5
+      internalID: 122243903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_4
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 96
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3421439e3d71af74db56bbd94e6646a3
+      internalID: -458588448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_5
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 96
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -6, y: 23}
+        - {x: -6, y: -23}
+        - {x: 6, y: -23}
+        - {x: 6, y: 23}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82ca99abf82fb6b43bc7f1483113e599
+      internalID: 529577343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_6
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 96
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d2e5b9302e8944b8de890a3b3454c1
+      internalID: -159924958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_7
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 96
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf578cc931a5ec47a099f1bf7314042
+      internalID: -1213335387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 72
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7081cc2df31fc46a9742d8cb815377
+      internalID: 406475284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_9
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 72
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 886e31841782ad540aea9ec49ec300ad
+      internalID: -1273307018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_10
+      rect:
+        serializedVersion: 2
+        x: 55
+        y: 72
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24406672e40b44646b59e3962e717b55
+      internalID: -763505905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_11
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 72
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 325d4d5a5b1ef5742b2487d13dca63c0
+      internalID: -395645351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_12
+      rect:
+        serializedVersion: 2
+        x: 7
         y: 48
-        width: 17
-        height: 22
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,20 +403,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99551d6a9ca6da44ebd60bbc39bb6dba
-      internalID: -1131376471
+      spriteID: 36c893ea811682f4b9eee5479d4c03ad
+      internalID: -1631998758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_1
+      name: ToySoldierSheet_13
       rect:
         serializedVersion: 2
-        x: 28
+        x: 31
         y: 48
-        width: 17
-        height: 21
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,20 +424,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d120c555b3ae194ab5142b5d3a7753a
-      internalID: 1068881137
+      spriteID: 7d918915885702644a885303cdc43418
+      internalID: -1649786385
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_2
+      name: ToySoldierSheet_14
       rect:
         serializedVersion: 2
-        x: 4
+        x: 55
+        y: 48
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59e19999a47725749a26cf2762f03170
+      internalID: 1427334047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_15
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 48
+        width: 12
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a2c3b2a17677d64f9cd4be23476cacf
+      internalID: -1861178167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToySoldierSheet_16
+      rect:
+        serializedVersion: 2
+        x: 7
         y: 24
-        width: 17
-        height: 22
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,62 +487,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 00a1198229a4b8f4e944921ce0491236
-      internalID: 640013418
+      spriteID: 6f8647ee0b90a6c4f87194a326f070af
+      internalID: -1942722088
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_3
+      name: ToySoldierSheet_17
       rect:
         serializedVersion: 2
-        x: 28
-        y: 25
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 690dec5aa8ebf2f448e4f6a334c3b58c
-      internalID: -535072317
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_4
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 25
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f71cf1f0e5b908e439177a4509cd7940
-      internalID: -1801938558
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_6
-      rect:
-        serializedVersion: 2
-        x: 76
+        x: 31
         y: 24
-        width: 17
-        height: 23
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -259,20 +508,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d2da1ab90bbe3b4ba86d375ba0c51b4
-      internalID: 364551222
+      spriteID: 3dae8a729df6799458de712d29fff570
+      internalID: 2141808448
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_8
+      name: ToySoldierSheet_18
       rect:
         serializedVersion: 2
-        x: 100
+        x: 55
         y: 24
-        width: 17
-        height: 22
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -280,83 +529,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4f69c122e014b684bbb35ceb0d5ce400
-      internalID: -186679467
+      spriteID: 7489fee1e1d9ff14c91997351051287f
+      internalID: 1833659910
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_9
+      name: ToySoldierSheet_19
       rect:
         serializedVersion: 2
-        x: 124
-        y: 25
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3f53678c982a2e64496fe7acbae9dc37
-      internalID: -273792127
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_10
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 25
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d33636daa6ef5164baf211e11b79dec7
-      internalID: 1036931069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_12
-      rect:
-        serializedVersion: 2
-        x: 172
-        y: 23
-        width: 17
-        height: 23
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 25362078a23c1974e9190e5d32bf9639
-      internalID: 1099578917
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_14
-      rect:
-        serializedVersion: 2
-        x: 196
+        x: 78
         y: 24
-        width: 17
-        height: 22
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -364,20 +550,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: adc8187389285c547b90b7cd254e53f8
-      internalID: -1522641949
+      spriteID: 06eb4b04d999dc7429bdca4a14a5d160
+      internalID: -387558694
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_15
+      name: ToySoldierSheet_20
       rect:
         serializedVersion: 2
-        x: 4
+        x: 7
         y: 0
-        width: 17
-        height: 22
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -385,20 +571,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2cd1ebfbcd932c04aba311e09fc11e18
-      internalID: 1544741277
+      spriteID: 910188e2bdc18194bb7d351ff4ce4ed1
+      internalID: 890248529
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_16
+      name: ToySoldierSheet_21
       rect:
         serializedVersion: 2
-        x: 28
+        x: 31
         y: 0
-        width: 17
-        height: 21
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -406,20 +592,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8dd03197dd765b45a04ab9b64207ce2
-      internalID: 757742626
+      spriteID: 1b5729e85253e9044bec00ed86ddf78f
+      internalID: -1764320804
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_17
+      name: ToySoldierSheet_22
       rect:
         serializedVersion: 2
-        x: 52
+        x: 55
         y: 0
-        width: 17
-        height: 21
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,20 +613,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8bc2ed35ad69fe4d8620b2f99f4f69b
-      internalID: -2123978146
+      spriteID: d1bc3440f2a619940957e68e5dae6a03
+      internalID: -1917166813
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerSheet_18
+      name: ToySoldierSheet_23
       rect:
         serializedVersion: 2
-        x: 76
+        x: 79
         y: 0
-        width: 17
-        height: 21
+        width: 12
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -448,71 +634,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 111ea3a49195733499cafdfb9ef633f4
-      internalID: 638515552
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_19
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 0
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a77210235b54fca42b623037010a7683
-      internalID: -1925372603
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_20
-      rect:
-        serializedVersion: 2
-        x: 124
-        y: 0
-        width: 17
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 826d18265f92c4042974a02fef9cada0
-      internalID: 695986481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerSheet_21
-      rect:
-        serializedVersion: 2
-        x: 148
-        y: 0
-        width: 17
-        height: 22
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94f04fba4726a2f44a5a0aed9a79761f
-      internalID: 1308379772
+      spriteID: 62a867604fc7f0c4b82e56cf776bd91b
+      internalID: -1609571086
       vertices: []
       indices: 
       edges: []
@@ -528,28 +651,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerSheet_12: 1099578917
-      PlayerSheet_1: 1068881137
-      PlayerSheet_8: -186679467
-      PlayerSheet_6: 364551222
-      PlayerSheet_17: -2123978146
-      PlayerSheet_19: -1925372603
-      PlayerSheet_21: 1308379772
-      PlayerSheet_15: 1544741277
-      PlayerSheet_7: -386731991
-      PlayerSheet_9: -273792127
-      PlayerSheet_4: -1801938558
-      PlayerSheet_5: 813900557
-      PlayerSheet_0: -1131376471
-      PlayerSheet_10: 1036931069
-      PlayerSheet_14: -1522641949
-      PlayerSheet_2: 640013418
-      PlayerSheet_13: 1848132542
-      PlayerSheet_3: -535072317
-      PlayerSheet_16: 757742626
-      PlayerSheet_18: 638515552
-      PlayerSheet_11: 130180348
-      PlayerSheet_20: 695986481
+      ToySoldierSheet_21: -1764320804
+      ToySoldierSheet_18: 1833659910
+      ToySoldierSheet_20: 890248529
+      ToySoldierSheet_11: -395645351
+      ToySoldierSheet_5: 529577343
+      ToySoldierSheet_6: -159924958
+      ToySoldierSheet_15: -1861178167
+      ToySoldierSheet_19: -387558694
+      ToySoldierSheet_7: -1213335387
+      ToySoldierSheet_22: -1917166813
+      ToySoldierSheet_2: -499548197
+      ToySoldierSheet_13: -1649786385
+      ToySoldierSheet_0: 717365637
+      ToySoldierSheet_16: -1942722088
+      ToySoldierSheet_17: 2141808448
+      ToySoldierSheet_24: 137524931
+      ToySoldierSheet_10: -763505905
+      ToySoldierSheet_4: -458588448
+      ToySoldierSheet_8: 406475284
+      ToySoldierSheet_3: 122243903
+      ToySoldierSheet_14: 1427334047
+      ToySoldierSheet_12: -1631998758
+      ToySoldierSheet_9: -1273307018
+      ToySoldierSheet_23: -1609571086
+      ToySoldierSheet_1: -1315319508
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
