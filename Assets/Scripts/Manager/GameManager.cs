@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     int shiledCnt=0;
 
     // 스테이지 정보
-    private int stageID=0;
+    private int stageID=1;
     private int[] stageKeyCnt = new int[] { 10, 15, 20, 25, 30,35,40};
     private int[] stageKeyID= new int[] {400,401,402,403,404,405};
     
@@ -39,16 +39,6 @@ public class GameManager : MonoBehaviour
         //GetComponentInChildren는 자식 오브젝트에 달린 첫번째 컴포넌트를 불러온다.
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            NextStage(1);
-            //SceneManager.LoadScene(1);
-            SceneManager.LoadScene("FirstFloor");
-        }
-    }
     
     // 스테이지 정보 관련 함수
     public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
@@ -65,11 +55,16 @@ public class GameManager : MonoBehaviour
     {
         return stageKeyCnt[stageID];
     }
+    public int GetStageID()
+    {
+        return stageID;
+    }
 
     public void PickUpKey(int _stageKeyID) // 습득한 키를 전달한다.
     {
         keyUI.ChargeGauge(_stageKeyID);
     }
+
 
     // HP 정보 관련
     public void SetHealth(int _health) // 현재 HP 정보를 받아온다.
