@@ -401,25 +401,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 236420761754987381, guid: 9de82ff59f92bc14886ace1f13ed3c37,
-        type: 3}
-      propertyPath: m_SortingFudge
-      value: 9.74
-      objectReference: {fileID: 0}
     - target: {fileID: 685421142414036367, guid: 9de82ff59f92bc14886ace1f13ed3c37,
         type: 3}
       propertyPath: m_Name
       value: Dust_move
-      objectReference: {fileID: 0}
-    - target: {fileID: 685421142414036367, guid: 9de82ff59f92bc14886ace1f13ed3c37,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3044267281480066807, guid: 9de82ff59f92bc14886ace1f13ed3c37,
-        type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4939246937160337763, guid: 9de82ff59f92bc14886ace1f13ed3c37,
         type: 3}
@@ -559,6 +544,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2458400219515840949, guid: 454150d642e45bb43802952f05404034,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3885322877229989947, guid: 454150d642e45bb43802952f05404034,
         type: 3}
       propertyPath: m_RootOrder
@@ -618,6 +608,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blockgolem_splash_complete (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5680247932078441388, guid: 454150d642e45bb43802952f05404034,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995503984515731292, guid: 454150d642e45bb43802952f05404034,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454150d642e45bb43802952f05404034, type: 3}
@@ -865,6 +865,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7574608168184079898, guid: c45817943cacd8543b80df9247c12db8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7574608168921501944, guid: c45817943cacd8543b80df9247c12db8,
         type: 3}
       propertyPath: m_RootOrder
@@ -924,6 +929,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Blockgollem_warning_3s (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574608168921501945, guid: c45817943cacd8543b80df9247c12db8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7574608169242868730, guid: c45817943cacd8543b80df9247c12db8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c45817943cacd8543b80df9247c12db8, type: 3}
