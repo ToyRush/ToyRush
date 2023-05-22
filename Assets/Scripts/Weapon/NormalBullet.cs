@@ -8,4 +8,5 @@ public class NormalBullet : Bullet
     {
         shootDelay = new WaitForSeconds(0.1f);
     }
+
 }
