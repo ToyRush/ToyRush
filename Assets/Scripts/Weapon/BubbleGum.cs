@@ -6,7 +6,6 @@ public class BubbleGum : Trap
 {
     Animator bubbleAnim;
     BoxCollider2D bubbleCollider;
-    [SerializeField] float debuffFigure;
     [SerializeField] ParticleSystem popParticle;
     private void Awake()
     {
@@ -15,15 +14,16 @@ public class BubbleGum : Trap
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Monster"))
         {
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            monster.Event("Slow");
             SlowDown();
         }
     }
  
     void SlowDown()
     {
-        Debug.Log(debuffFigure);
         bubbleAnim.SetBool("isPop", false);
         bubbleCollider.enabled = false;
         gameObject.SetActive(false);

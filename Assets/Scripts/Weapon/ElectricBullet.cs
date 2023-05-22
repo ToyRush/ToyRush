@@ -6,10 +6,9 @@ public class ElectricBullet : Bullet
 {
     public GameObject damageArea;
     public GameObject bulletParticle;
-
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall")|| collision.gameObject.CompareTag("Monster"))
             BombBullet();
     }
 

@@ -7,7 +7,6 @@ public class Bomb : Trap
     float timeLimit=3f;
     float currentTime = 0f;
     public GameObject explosionArea;
-    [SerializeField] int damage;
     private void Update()
     {
         currentTime += Time.deltaTime;

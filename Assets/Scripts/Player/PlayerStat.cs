@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerStat : MonoBehaviour
 {
     [SerializeField] GameObject shiledObject;
+    CameraManager cameraManager;
     GameObject hpUIObject;
     PlayerMove playerMove;
     ItemData itemData;
@@ -20,6 +21,10 @@ public class PlayerStat : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.RegisterPlayerStat(this);
+        GameObject mainCamera;
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+        cameraManager = mainCamera.GetComponent<CameraManager>();
         hpUIObject = GameObject.FindGameObjectWithTag("Hp");
         hpUI = hpUIObject.GetComponent<HpUI>();
         playerMove = GetComponent<PlayerMove>();
@@ -51,6 +56,7 @@ public class PlayerStat : MonoBehaviour
             {
                 currentHealth -= damage;
                 GameManager.instance.SetHealth(currentHealth);
+                cameraManager.OnShakeCamera();
             }
             else
                 playerMove.Dead();
