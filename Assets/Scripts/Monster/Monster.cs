@@ -40,7 +40,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected Animator animator;
     protected GameObject weapon;
 
-    public BoxCollider2D boxCollider2D;
+    public CapsuleCollider2D boxCollider2D;
     public Rigidbody2D rigid;
 
     public MonsterInfo monsterInfo;
@@ -55,7 +55,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
-        boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
+        boxCollider2D = gameObject.GetComponent<CapsuleCollider2D>();
         rigid = gameObject.GetComponent <Rigidbody2D>();
         monsterInfo = new MonsterInfo();
         player = GameObject.FindWithTag("Player");

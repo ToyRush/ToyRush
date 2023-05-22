@@ -10,13 +10,14 @@ using UnityEditor;
 public class Patrol : Monster
 {
     public float radius = 1.0f;
+    public Vector3 initVec;
     float distance;
     void Start()
     {
         monsterInfo.speedIncrease = 2.5f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         distance = rigid.transform.localScale.x * 2;
-
+        initVec = rigid.transform.position;
         monsterInfo.hp = 100.0f;
         monsterInfo.attack = 10.0f;
         monsterInfo.state = MonsterState.Stop;
@@ -87,10 +88,10 @@ public class Patrol : Monster
 
     public override void Attack()
     {
-        if (player.GetComponent<MonsterPlayer>() != null)
-            player.GetComponent<MonsterPlayer>().Damaged(monsterInfo.attack);
-        monsterInfo.state = MonsterState.Dead;
-        animator.SetInteger("State", (int)monsterInfo.state);
+        //if (player.GetComponent<MonsterPlayer>() != null)
+        //    player.GetComponent<MonsterPlayer>().Damaged(monsterInfo.attack);
+        //monsterInfo.state = MonsterState.Dead;
+        //animator.SetInteger("State", (int)monsterInfo.state);
     }
 
     public override void Move()
@@ -119,21 +120,25 @@ public class Patrol : Monster
 
     public float angleRange = 30f;
 
-    private void OnDrawGizmos() // 게임 화면에서도 그려지도록..
-    {
-        Handles.color = new Color(1f, 0f, 0f, 0.2f);
-        // DrawSolidArc(시작점, 노멀벡터(법선벡터), 그려줄 방향 벡터, 각도, 반지름)
-        if (rigid != null)
-        {
-            Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), angleRange / 2, radius);
-            Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), -angleRange / 2, radius);
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
+    //private void OnDrawGizmos() // 게임 화면에서도 그려지도록..
+    //{
+    //    Handles.color = new Color(1f, 0f, 0f, 0.2f);
+    //    // DrawSolidArc(시작점, 노멀벡터(법선벡터), 그려줄 방향 벡터, 각도, 반지름)
+    //    if (rigid != null)
+    //    {
+    //        Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), angleRange / 2, radius);
+    //        Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), -angleRange / 2, radius);
+    //    }
+    //}
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+
+    //}
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
-            monsterInfo.targetPos = rigid.position;
+            monsterInfo.targetPos = initVec;
         }
     }
     public override void Dead()
