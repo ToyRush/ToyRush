@@ -47,6 +47,7 @@ public class PlayerMove : MonoBehaviour
     Animator dashAnim;
     Rigidbody2D rb;
     SpriteRenderer spr;
+    DashUI dashUI;
 
     Vector2 inputVec; // 플레이어의 이동 방향
 
@@ -60,6 +61,7 @@ public class PlayerMove : MonoBehaviour
     bool canMove = true; // 플레이어의 움직임 제어
     bool isMove=false;
     bool isDash = false; // 구르기 제어
+    bool canDash = true;
     [SerializeField] GameObject dashObject;
     [SerializeField] ParticleSystem moveParticle;
     [SerializeField] ParticleSystem stopParticle;
@@ -74,6 +76,7 @@ public class PlayerMove : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        dashUI = GetComponentInChildren<DashUI>();
     }
     void Start()
     {
@@ -114,7 +117,7 @@ public class PlayerMove : MonoBehaviour
         }
         CheckMoveDir();
 
-        if (Input.GetMouseButtonDown(1)&&!isDash)
+        if (Input.GetMouseButtonDown(1)&&!isDash && canDash)
             StartCoroutine("Dash", inputVec.normalized);
         if(inputVec.x==0 && inputVec.y==0)
             rushBearAnimation = RushBearAnimation.Idle;
@@ -137,6 +140,7 @@ public class PlayerMove : MonoBehaviour
 
     IEnumerator Dash(Vector2 dashDir)
     {
+        dashUI.UseDash();
         isDash = true;
         rb.velocity = dashDir * 3* moveSpeed;
         yield return new WaitForSeconds(0.2f);
@@ -173,6 +177,10 @@ public class PlayerMove : MonoBehaviour
             spr.color = new Color(1, 1, 1, 1f);
     }
 
+    public void CanDash(bool _canDash)
+    {
+        canDash = _canDash;
+    }
 
     void CheckMoveDir()
     {

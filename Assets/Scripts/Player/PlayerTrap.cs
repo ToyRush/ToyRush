@@ -10,7 +10,6 @@ public class PlayerTrap : MonoBehaviour
     Vector3 mousePos;
     Direction direction;
 
-    [SerializeField] Text currentTrapText;
     SpriteRenderer spr;
 
     int trapID;
