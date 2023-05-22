@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7271614800778887198}
   - component: {fileID: 956762783582085164}
-  - component: {fileID: 2755192370100628151}
+  - component: {fileID: 7082867485460899222}
   m_Layer: 0
   m_Name: ExplosionArea
   m_TagString: Untagged
@@ -98,7 +98,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2755192370100628151
+--- !u!114 &7082867485460899222
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,9 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4929145277555861787}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89319f1d96fc76645901238ff87fd8be, type: 3}
+  m_Script: {fileID: 11500000, guid: 42b431c1f23fa034283c27195658bc9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
 --- !u!1001 &4480990738639277378
 PrefabInstance:
   m_ObjectHideFlags: 0

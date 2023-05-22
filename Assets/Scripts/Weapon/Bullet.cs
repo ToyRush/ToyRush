@@ -30,7 +30,11 @@ using UnityEngine;
         if (collision.gameObject.CompareTag("Wall"))
         {
             gameObject.SetActive(false);
-        
+        }
+        if (collision.gameObject.CompareTag("Monster"))
+        {
+            Monster monster = collision.gameObject.GetComponent<Monster>();
+            monster.Damaged(damage);
         }
     }
 
