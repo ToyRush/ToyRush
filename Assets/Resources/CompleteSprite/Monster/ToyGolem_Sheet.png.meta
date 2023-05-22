@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -558,7 +558,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ToyGolem_Sheet_3: -184703834
+      ToyGolem_Sheet_6: 1287082138
       ToyGolem_Sheet_14: -1243068227
       ToyGolem_Sheet_1: -1031757121
       ToyGolem_Sheet_16: 1294372712
@@ -581,8 +581,8 @@ TextureImporter:
       ToyGolem_Sheet_2: 2072945684
       ToyGolem_Sheet_15: -1372050155
       ToyGolem_Sheet_24: 1834915972
-      ToyGolem_Sheet_6: 1287082138
       ToyGolem_Sheet_21: 1705001743
+      ToyGolem_Sheet_3: -184703834
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

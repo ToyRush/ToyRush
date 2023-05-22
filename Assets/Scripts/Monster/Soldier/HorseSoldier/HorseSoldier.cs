@@ -5,51 +5,29 @@ using UnityEngine;
 public class HorseSoldier : Monster
 {
     static public int itemcount = 10;
-    public Monster soldier;
-    protected Monster horse;
+    public GameObject Bullet = null;
     void Start()
     {
-        soldier = gameObject.GetComponentInChildren<Soldier>();
-        horse = gameObject.GetComponentInChildren<Horse>();
 
         monsterInfo.speedIncrease = 5.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 10.0f;
+        monsterInfo.attack = 5.0f;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 10.0f;
         monsterInfo.attackDis = 10.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 2.0f;
-        soldier.Position = this.Position;
-        horse.Position = this.Position;
-        soldier.rigid = this.rigid;
-        horse.rigid = this.rigid;
-        soldier.SetMonsterInfo(ref monsterInfo);
-        horse.SetMonsterInfo(ref monsterInfo);
     }
 
     protected new void  FixedUpdate()
     {
-        if (monsterInfo.state == MonsterState.Stop)
-            monsterInfo.currentTime += Time.fixedDeltaTime;
+        base.FixedUpdate();
     }
 
     public new MonsterState BehaviorTree()
     {
-        base.BehaviorTree();
-
-        if (soldier.monsterInfo.state != MonsterState.Dead)
-        {
-            MonsterState state =    soldier.BehaviorTree();
-            monsterInfo.state = state;
-            horse.SetState(monsterInfo.state);
-            return state;
-        }
-        else if (horse.monsterInfo.state != MonsterState.Dead)
-            return horse.BehaviorTree();
-
-        return MonsterState.Dead;
+        return base.BehaviorTree();
     }
     public new void Update()
     {
@@ -62,50 +40,81 @@ public class HorseSoldier : Monster
 
     public override bool Damaged(float attack)
     {
-        if (monsterInfo.hp >= 0.01f)
-        {
-            monsterInfo.hp -= attack;
-            attack = 0;
-            if (monsterInfo.hp < 0)
-                attack = monsterInfo.hp * -1;
-        }
-
-        soldier.Damaged(attack);
-        if (soldier.monsterInfo.state != MonsterState.Dead)
-            return true;
-        else
-            ChangeMonster();
-
-        if (horse.monsterInfo.state == MonsterState.Dead)
+        if (monsterInfo.state == MonsterState.Dead)
             return false;
 
-        horse.Damaged(attack);
+        monsterInfo.hp -= attack;
+        if (monsterInfo.hp < 0.0f)
+        {
+            monsterInfo.state = MonsterState.Dead;
+            Destroy(this.gameObject, 1.5f);
+        }
         return true;
     }
 
     public override void Attack()
     {
-        if (soldier.monsterInfo.state != MonsterState.Dead)
-            soldier.Attack();
+        if (monsterInfo.state != MonsterState.Attack || Bullet == null)
+            return;
+        GameObject bullet = Instantiate(Bullet);
+        Vector3 direction = (monsterInfo.targetPos - rigid.transform.position).normalized;
+        Vector3 pos = rigid.transform.position;
+        pos.y += 0.05f;
+        if (direction.x < 0)
+        {
+            spriteRenderer.flipX = false;
+            weapon.GetComponent<SpriteRenderer>().flipX = true;
+            pos.x -= 0.65f;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+            weapon.GetComponent<SpriteRenderer>().flipX = false;
+            pos.x += 0.65f;
+        }
+        bullet.transform.position = pos;
+        if (bullet.GetComponent<MonsterBullet>() == null)
+            bullet.AddComponent<MonsterBullet>();
+        bullet.GetComponent<MonsterBullet>().FireBullet(direction, monsterInfo.attack);
     }
 
     public void ChangeMonster()
     {
-        soldier.gameObject.transform.SetParent(null);
-        soldier.Damaged(1000);
+        gameObject.transform.SetParent(null);
+        Damaged(1000);
 
-        ((Horse)horse).SetDead();
+        //((Horse)horse).SetDead();
 
         //Destroy(this.gameObject, 1.5f);
     }
 
     public override void Move()
     {
-        if (soldier.monsterInfo.state != MonsterState.Dead)
-            soldier.Move();
+        if (monsterInfo.bMoveable == false)
+            return;
+        Vector3 currentV = rigid.position;
+        Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
+        if (direction.x < 0)
+        {
+            spriteRenderer.flipX = false;
+            weapon.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            spriteRenderer.flipX = true;
+            weapon.GetComponent<SpriteRenderer>().flipX = false;
+        }
+        Vector2 nextDir = currentV +
+        (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
 
-        else if (horse.monsterInfo.state != MonsterState.Dead)
-            horse.Move();
+        if (Vector3.Distance(currentV, monsterInfo.targetPos) <= 0.1f)
+        {
+            monsterInfo.index++;
+            if (Position.Count <= monsterInfo.index)
+                monsterInfo.index = 0;
+            monsterInfo.targetPos = Position[monsterInfo.index];
+        }
+        rigid.MovePosition(nextDir);
     }
 
     public override bool Event(string eventname)

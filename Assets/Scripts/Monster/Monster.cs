@@ -38,6 +38,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
 {
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
+    protected GameObject weapon;
 
     public BoxCollider2D boxCollider2D;
     public Rigidbody2D rigid;
@@ -45,10 +46,13 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     public MonsterInfo monsterInfo;
 
     protected GameObject player;
-    public List<Vector2> Position;
+    public List<Vector3> Position;
 
     protected void Awake()
     {
+        if (this.transform.GetChild(0) != null)
+            weapon = this.transform.GetChild(0).gameObject;
+
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
         boxCollider2D = gameObject.GetComponent<BoxCollider2D>();
@@ -62,15 +66,19 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     }
     protected void FixedUpdate()
     {
-        if (monsterInfo.state == MonsterState.Stop)
-            monsterInfo.currentTime += Time.fixedDeltaTime;
+        BehaviorTree();
         if (monsterInfo.state == MonsterState.Move)
             Move();
     }
 
     protected void Update()
     {
-        BehaviorTree();
+        rigid.velocity = Vector3.zero;
+        rigid.angularVelocity = 0;
+    }
+    private void OnDrawGizmos()
+    {
+        
     }
 
     public void SetState(MonsterState state)
@@ -93,9 +101,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
             monsterInfo.state = MonsterState.Move;
             monsterInfo.targetPos = player.transform.position;
             if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.attackDis)
-            {
                 monsterInfo.state = MonsterState.Attack;
-            }
         }
         else
         {
@@ -110,14 +116,21 @@ public abstract class Monster : MonoBehaviour , MonsterAction
                 if (Vector3.Distance(this.transform.position, monsterInfo.targetPos) <= 0.1f)
                 {
                     rigid.velocity = Vector2.zero;
+                    monsterInfo.currentTime = 0;
+                    monsterInfo.state = MonsterState.Stop;
                 }
             }
-            else if (monsterInfo.currentTime > monsterInfo.delayTime)
+        }
+        if (monsterInfo.state == MonsterState.Stop)
+        {
+            if (monsterInfo.currentTime >= monsterInfo.delayTime)
             {
                 monsterInfo.currentTime = 0;
                 // move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
                 monsterInfo.state = MonsterState.Move;
             }
+            else
+                monsterInfo.currentTime += Time.deltaTime;
         }
         if (monsterInfo.bMoveable == false)
             monsterInfo.state = MonsterState.Stop;

@@ -59,6 +59,10 @@ public class Horse : Monster
             return;
         Vector3 currentV = rigid.position;
         Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
+        if (direction.x < 0)
+            spriteRenderer.flipX = false;
+        else
+            spriteRenderer.flipX = true;
         Vector2 nextDir = currentV +
             (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
 
