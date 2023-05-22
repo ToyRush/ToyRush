@@ -20,6 +20,7 @@ public class PlayerStat : MonoBehaviour
 
     void Start()
     {
+        GameManager.instance.RegisterPlayerStat(this);
         hpUIObject = GameObject.FindGameObjectWithTag("Hp");
         hpUI = hpUIObject.GetComponent<HpUI>();
         playerMove = GetComponent<PlayerMove>();

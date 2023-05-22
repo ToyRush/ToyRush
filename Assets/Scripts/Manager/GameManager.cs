@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 
     // 스테이지 정보
     private int stageID=0;
-    private int[] stageKeyID= new int[] { 400,401,402,403,404,405};
+    private int[] stageKeyCnt = new int[] { 10, 15, 20, 25, 30,35,40};
+    private int[] stageKeyID= new int[] {400,401,402,403,404,405};
     
     private void Awake()
     {
@@ -32,8 +33,8 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
         }
         player = GameObject.FindGameObjectWithTag("Player");
-        key = GameObject.FindGameObjectWithTag("Key");
         playerStat = player.GetComponent<PlayerStat>();
+        key = GameObject.FindGameObjectWithTag("Key");
         keyUI = key.GetComponent<KeyUI>();
         //GetComponentInChildren는 자식 오브젝트에 달린 첫번째 컴포넌트를 불러온다.
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
@@ -43,44 +44,57 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
+            NextStage(1);
+            //SceneManager.LoadScene(1);
             SceneManager.LoadScene("FirstFloor");
         }
     }
-
-
-    public int GetStageKeyID()
+    
+    // 스테이지 정보 관련 함수
+    public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
+    {
+        stageID = _stageID;
+        keyUI.ChangeKeyInfo();
+    }
+    public int GetStageKeyID() // 키 아이디 반환한다.
     {
         return stageKeyID[stageID];
     }
 
-    public void PickUpKey(int _stageKeyID)
+    public int GetStageKeyCnt() // 필요한 키의 개수 반환한다.
+    {
+        return stageKeyCnt[stageID];
+    }
+
+    public void PickUpKey(int _stageKeyID) // 습득한 키를 전달한다.
     {
         keyUI.ChargeGauge(_stageKeyID);
     }
 
-    public void ChangeStageID(int _stageID)
-    {
-        stageID = _stageID;
-    }
-
-    public void SetHealth(int _health)
+    // HP 정보 관련
+    public void SetHealth(int _health) // 현재 HP 정보를 받아온다.
     {
         health = _health;
     }
 
-    public void SetShield(int _shieldCnt)
-    {
-        shiledCnt = _shieldCnt;
-    }
-
-    public int GetHealth()
+    public int GetHealth() // 현재 HP 정보를 반환한다.
     {
         return health;
     }
 
-    public int GetShield()
+    // 쉴드 정보 관련
+    public void SetShield(int _shieldCnt) // 현재 쉴드의 개수를 받아온다.
+    {
+        shiledCnt = _shieldCnt;
+    }
+
+    public int GetShield() // 현재 쉴드의 개수를 반환한다.
     {
         return shiledCnt;
     }
-    
+
+    public void RegisterPlayerStat(PlayerStat _playerStat) // 플레이어의 스탯 스크립트를 받아온다.
+    {
+        playerStat = _playerStat;
+    }
 }

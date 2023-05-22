@@ -15,9 +15,7 @@ public class KeyUI : MonoBehaviour
 
     private void Start()
     {
-        slider.maxValue = maxTime;
-        slider.value = 0f;
-        stageKeyID = GameManager.instance.GetStageKeyID();
+        ChangeKeyInfo();
     }
 
     public void ChargeGauge(int _stageKeyID)
@@ -30,5 +28,12 @@ public class KeyUI : MonoBehaviour
                 Debug.Log("다음층으로 가는 조건이 활성화되었습니다!");
             }
         }
+    }
+
+    public void ChangeKeyInfo()
+    {
+        slider.value = 0f;
+        slider.maxValue = GameManager.instance.GetStageKeyCnt();
+        stageKeyID = GameManager.instance.GetStageKeyID();
     }
 }
