@@ -5,90 +5,82 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class CutScene : MonoBehaviour
 {
-    private int storyID;
-    private bool canNext;
-    public Text text;
-    public string[] storyText;
-    public Image[] storyImage;
-    public Image fadeImage;
-    float time = 0f;
-    float fadeTime = 1f;
-
-    public Image textBox;
-    public GameObject textBoxObj;
+    Image image;
+    Color color;
+    float timer = 0f;
+    float typingTimer = 0f;
+    float effectTimer = 3f;
+    int storyFlow=0;
+    bool canSkip = false;
+    [SerializeField] Text storyText;
+    [SerializeField] Sprite[] storyImages;
+    [SerializeField] string[] storyTexts;
+    WaitForSeconds changeImageTime = new WaitForSeconds(1f);
     void Awake()
     {
-        storyID = 0;
-        canNext = false;
-        storyImage[storyID].gameObject.SetActive(true);
-        textBoxObj.SetActive(false);
-        StartCoroutine("TypingEffect");
+        image = GetComponent<Image>();
+        color = image.color;
+        StartCoroutine("TypingText");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(canNext && Input.GetKeyDown(KeyCode.Space))
-        {
-            canNext = false;
-            StartCoroutine("FadeFlow");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) 
-        {
-            SceneManager.LoadScene("Tutorial");
-        }
-    }
-    IEnumerator TypingEffect()
-    {
-        for(int i=0; i<=storyText[storyID].Length; i++)
-        {
-            text.text = storyText[storyID].Substring(0, i);
-            Debug.Log(i);
-            yield return new WaitForSeconds(0.05f);
-        }
-        canNext = true;
+        if (Input.GetKeyDown(KeyCode.Q) && canSkip)
+            StartCoroutine("CameraEffect");
     }
 
-    IEnumerator FadeFlow()
+    IEnumerator TypingText()
     {
-        time = 0f;
-        Color alpha = fadeImage.color;
-        Color textAlpha = textBox.color;
-        while (alpha.a < 1f)
+        storyText.text = "";
+        typingTimer = effectTimer / storyTexts[storyFlow].Length;
+        foreach (char word in storyTexts[storyFlow])
         {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(0, 1, time);
-            textAlpha.a= Mathf.Lerp(1, 0, time);
-            fadeImage.color=alpha;
-            textBox.color = textAlpha;
-            yield return null;
+            storyText.text += word;
+            yield return new WaitForSeconds(typingTimer);
         }
-
-
-        time = 0f;
-        storyImage[storyID].gameObject.SetActive(false);
-        storyID += 1;
-        if (storyID == storyImage.Length-1 )
-            textBoxObj.SetActive(false);
-        else
-            text.text = " ";
-        storyImage[storyID].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-
-
-        while (alpha.a > 0f)
-        {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(1, 0, time);
-            textAlpha.a = Mathf.Lerp(0, 1, time);
-            fadeImage.color = alpha;
-            textBox.color = textAlpha;
-            yield return null;
-        }
-        text.text = storyText[storyID];
-
-        if(storyID!= storyImage.Length - 1)
-            StartCoroutine("TypingEffect");
+        canSkip = true;
         yield return null;
+    }
+
+    IEnumerator CameraEffect()
+    {
+        canSkip = false;
+        timer = effectTimer;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            color.a = timer / effectTimer;
+            image.color = color;
+            yield return null;
+        }
+        yield return changeImageTime;
+        ChangeImage();
+        timer = 0f;
+        while (timer < effectTimer)
+        {
+            timer += Time.deltaTime;
+            color.a = timer / effectTimer;
+            image.color = color;
+            yield return null;
+        }
+        StartCoroutine("TypingText");
+    }
+
+    void ChangeImage()
+    {
+        storyFlow += 1;
+        if (storyFlow>=storyImages.Length)
+            return;
+        image.sprite = storyImages[storyFlow];
+    }
+
+    public void StartGame()
+    {
+        Debug.Log("게임을 시작합니다.");
+    }
+
+    public void EndGame()
+    {
+        Application.Quit();
     }
 }

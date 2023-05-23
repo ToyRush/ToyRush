@@ -5,17 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    SpriteRenderer spr;
+    [SerializeField] Sprite openDoor;
     bool isOpen=false;
     public int stageID;
 
     private void Start()
     {
+        spr = GetComponent<SpriteRenderer>();
         stageID = GameManager.instance.GetStageID();
         OpenDoor();
     }
     public void OpenDoor()
     {
         isOpen = true;
+        spr.sprite = openDoor;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,5 +30,10 @@ public class Door : MonoBehaviour
             GameManager.instance.NextStage(stageID);
             SceneManager.LoadScene(stageID);
         }
+    }
+
+    public bool GetDoorState() // 문이 열린 상태라면 열쇠를 잃어버리지 않는다.
+    {
+        return isOpen;
     }
 }
