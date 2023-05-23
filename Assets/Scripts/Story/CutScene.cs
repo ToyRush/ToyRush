@@ -7,15 +7,24 @@ public class CutScene : MonoBehaviour
 {
     Image image;
     Color color;
+
     float timer = 0f;
     float typingTimer = 0f;
-    float effectTimer = 3f;
     int storyFlow=0;
     bool canSkip = false;
+
     [SerializeField] Text storyText;
     [SerializeField] Sprite[] storyImages;
     [SerializeField] string[] storyTexts;
+
+    [SerializeField] float fadeTimer = 2f;
+    [SerializeField] float typeEffectTimer = 2f;
     WaitForSeconds changeImageTime = new WaitForSeconds(1f);
+
+    [SerializeField] GameObject textUI;
+    [SerializeField] GameObject startPage;
+
+
     void Awake()
     {
         image = GetComponent<Image>();
@@ -32,7 +41,7 @@ public class CutScene : MonoBehaviour
     IEnumerator TypingText()
     {
         storyText.text = "";
-        typingTimer = effectTimer / storyTexts[storyFlow].Length;
+        typingTimer = typeEffectTimer / storyTexts[storyFlow].Length;
         foreach (char word in storyTexts[storyFlow])
         {
             storyText.text += word;
@@ -45,42 +54,61 @@ public class CutScene : MonoBehaviour
     IEnumerator CameraEffect()
     {
         canSkip = false;
-        timer = effectTimer;
+        timer = fadeTimer;
         while (timer > 0)
         {
             timer -= Time.deltaTime;
-            color.a = timer / effectTimer;
+            color.a = timer / fadeTimer;
             image.color = color;
             yield return null;
         }
+        TextUIOff();
         yield return changeImageTime;
+        TextUIOn();
         ChangeImage();
         timer = 0f;
-        while (timer < effectTimer)
+        while (timer < fadeTimer)
         {
             timer += Time.deltaTime;
-            color.a = timer / effectTimer;
+            color.a = timer / fadeTimer;
             image.color = color;
             yield return null;
         }
         StartCoroutine("TypingText");
     }
 
+    void TextUIOff()
+    {
+        storyText.text = "";
+        textUI.SetActive(false);
+    }
+
+    void TextUIOn()
+    {
+        textUI.SetActive(true);
+    }
+
     void ChangeImage()
     {
         storyFlow += 1;
-        if (storyFlow>=storyImages.Length)
+        if (storyFlow >= storyImages.Length)
+        {
+            StopAllCoroutines();
+            startPage.SetActive(true);
+            canSkip = false;
             return;
+        }
         image.sprite = storyImages[storyFlow];
     }
 
     public void StartGame()
     {
-        Debug.Log("게임을 시작합니다.");
+        SceneManager.LoadScene(1); // 1번씬은 튜토리얼씬
     }
 
     public void EndGame()
     {
         Application.Quit();
+        Debug.Log("게임 종료");
     }
 }

@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SungJun/GameScene/ThirdFloor.unity
     guid: bbccfbdf83f09c442911a9b523d269ff
+  - enabled: 1
+    path: Assets/Scenes/SungJun/GameScene/LastFloor.unity
+    guid: a6c1ae5275f1a9541addfa9555200784
   m_configObjects: {}

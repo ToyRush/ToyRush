@@ -5,27 +5,41 @@ using UnityEngine.UI;
 
 public class TimerUI : MonoBehaviour
 {
-    bool isBoss = false;
     [SerializeField]
     private Slider slider;
     [SerializeField]
     private float maxTime=30f;
-
-    private void Start()
-    {
-        slider.maxValue = maxTime;
-        slider.value = maxTime;
-    }
+    private float[] remainTime = new float[] { 0, 0, 300, 400, 500, 600, 0 };
+    bool isCount = false;
     // Update is called once per frame
     void Update()
     {
-        float time = maxTime - Time.time;
-        slider.value = time;
-        if (slider.value == 0 && !isBoss)
+        if (isCount)
         {
-            Debug.Log("중간보스가 등장했습니다!");
-            isBoss = true;
+            float time = maxTime - Time.time;
+            slider.value = time;
+
+            if (slider.value == 0)
+            {
+                Debug.Log("시간 초과!!! 패널티 발생!!!");
+                GameManager.instance.TimeOver();
+            }
+        } 
+    }
+
+    public void ResetTimer(int _stageID)
+    {
+        maxTime = remainTime[_stageID];
+        switch (_stageID)
+        {
+            case 0:
+            case 1:
+            case 7:
+                isCount = false;
+                break;
+            default:
+                isCount = true;
+                break;
         }
-       
     }
 }

@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public WeaponManager weaponManager;
     PlayerStat playerStat;
     KeyUI keyUI;
+    Door door;
+    TimerUI timerUI;
     GameObject player;
     GameObject key;
     // 저장할 데이터
@@ -17,8 +19,8 @@ public class GameManager : MonoBehaviour
 
     // 스테이지 정보
     private int stageID=1;
-    private int[] stageKeyCnt = new int[] { 10, 15, 20, 25, 30,35,40};
-    private int[] stageKeyID= new int[] {400,401,402,403,404,405};
+    private int[] stageKeyCnt = new int[] {1, 1, 10, 10, 1,10,1};
+    private int[] stageKeyID= new int[] {0,0,400,401,0,402,0};
     
     private void Awake()
     {
@@ -36,10 +38,16 @@ public class GameManager : MonoBehaviour
         playerStat = player.GetComponent<PlayerStat>();
         key = GameObject.FindGameObjectWithTag("Key");
         keyUI = key.GetComponent<KeyUI>();
+        timerUI = GetComponentInChildren<TimerUI>();
         //GetComponentInChildren는 자식 오브젝트에 달린 첫번째 컴포넌트를 불러온다.
         //GetComponentsInChildren는 자식 오브젝트에 달린 해당되는 모든 컴포넌트들을 배열로 불러온다.
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+            door.Open();
+    }
     // 스테이지 정보 관련 함수
     public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
     {
@@ -88,8 +96,29 @@ public class GameManager : MonoBehaviour
         return shiledCnt;
     }
 
+    public void OpenDoor()
+    {
+        door.Open();
+    }
+
     public void RegisterPlayerStat(PlayerStat _playerStat) // 플레이어의 스탯 스크립트를 받아온다.
     {
+        RegisterTimer();
         playerStat = _playerStat;
+    }
+    public void RegisterDoorState(Door _door)
+    {
+        door = _door;
+    }
+
+    public void RegisterTimer()
+    {
+        timerUI.ResetTimer(stageID);
+    }
+
+    public void TimeOver()
+    {
+        if (!GameManager.instance.door.CheckDoor())
+            keyUI.LostGauge();
     }
 }

@@ -12,11 +12,12 @@ public class Door : MonoBehaviour
 
     private void Start()
     {
+        GameManager.instance.RegisterDoorState(this);
         spr = GetComponent<SpriteRenderer>();
         stageID = GameManager.instance.GetStageID();
-        OpenDoor();
     }
-    public void OpenDoor()
+
+    public void Open()
     {
         isOpen = true;
         spr.sprite = openDoor;
@@ -32,7 +33,7 @@ public class Door : MonoBehaviour
         }
     }
 
-    public bool GetDoorState() // 문이 열린 상태라면 열쇠를 잃어버리지 않는다.
+    public bool CheckDoor() // 문이 열려있으면 열쇠를 잃어버리지 않는 방식으로 채택
     {
         return isOpen;
     }
