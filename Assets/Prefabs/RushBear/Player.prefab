@@ -752,9 +752,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 15
+  jumpPower: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 512
   dashObject: {fileID: 5525072348495232733}
   moveParticle: {fileID: 6796166989713047928}
   stopParticle: {fileID: 8430597758118753714}
+  bossStage: 0
 --- !u!61 &8390132612242615469
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -779,7 +784,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.375, y: 1.25}
+  m_Size: {x: 1, y: 0.9}
   m_EdgeRadius: 0
 --- !u!114 &8390132612242615470
 MonoBehaviour:

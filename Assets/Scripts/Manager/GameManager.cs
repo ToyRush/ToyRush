@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     // 저장할 데이터
     int health=5;
     int shiledCnt=0;
+    [SerializeField] GameObject uiObjects;
+    [SerializeField] GameObject gameoverUI;
 
     // 스테이지 정보
     private int stageID=1;
@@ -34,8 +36,6 @@ public class GameManager : MonoBehaviour
             if(instance!=this)
                 Destroy(this.gameObject);
         }
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerStat = player.GetComponent<PlayerStat>();
         key = GameObject.FindGameObjectWithTag("Key");
         keyUI = key.GetComponent<KeyUI>();
         timerUI = GetComponentInChildren<TimerUI>();
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
-            door.Open();
+            OpenDoor();
     }
     // 스테이지 정보 관련 함수
     public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
@@ -105,6 +105,14 @@ public class GameManager : MonoBehaviour
     {
         RegisterTimer();
         playerStat = _playerStat;
+        if (stageID == 6) // 마지막 스테이지면 플래포머 형식으로 변경
+        {
+            PlayerMove playerMove;
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            playerMove = player.GetComponent<PlayerMove>();
+            playerMove.bossStage = true;
+            playerMove.SetGravity();
+        }
     }
     public void RegisterDoorState(Door _door)
     {
@@ -121,4 +129,18 @@ public class GameManager : MonoBehaviour
         if (!GameManager.instance.door.CheckDoor())
             keyUI.LostGauge();
     }
+
+    public void GameOver()
+    {
+        gameoverUI.SetActive(true);
+        uiObjects.SetActive(false);
+    }
+
+    public void ReStart()
+    {
+        Destroy(this.gameObject);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
 }

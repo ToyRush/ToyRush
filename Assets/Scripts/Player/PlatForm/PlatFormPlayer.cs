@@ -12,12 +12,12 @@ public class PlatFormPlayer : MonoBehaviour
     float jumpPower;
 
     bool isGround;
-
     Vector2 inputVec=Vector2.zero;
 
     Rigidbody2D rb;
     SpriteRenderer spr;
     Animator anim;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

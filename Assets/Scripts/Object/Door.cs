@@ -7,7 +7,7 @@ public class Door : MonoBehaviour
 {
     SpriteRenderer spr;
     [SerializeField] Sprite openDoor;
-    bool isOpen=false;
+    public bool isOpen=false;
     public int stageID;
 
     private void Start()
@@ -15,6 +15,8 @@ public class Door : MonoBehaviour
         GameManager.instance.RegisterDoorState(this);
         spr = GetComponent<SpriteRenderer>();
         stageID = GameManager.instance.GetStageID();
+        if (isOpen)
+            Open();
     }
 
     public void Open()

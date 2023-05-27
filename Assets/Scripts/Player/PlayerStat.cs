@@ -51,14 +51,11 @@ public class PlayerStat : MonoBehaviour
             {
                 shieldCnt -= 1;
                 return;
-            }   
-            if (currentHealth > 0)
-            {
-                currentHealth -= damage;
-                GameManager.instance.SetHealth(currentHealth);
-                cameraManager.OnShakeCamera();
             }
-            else
+            currentHealth -= damage;
+            GameManager.instance.SetHealth(currentHealth);
+            cameraManager.OnShakeCamera();
+            if (currentHealth ==0 )
                 playerMove.Dead();
             StartCoroutine("Invincible");
             hpUI.ShowHp(currentHealth);
@@ -73,6 +70,13 @@ public class PlayerStat : MonoBehaviour
             currentHealth += heal;
         GameManager.instance.SetHealth(currentHealth);
         hpUI.ShowHp(currentHealth);
+    }
+
+    IEnumerator DashInvincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(0.2f);
+        isInvincible = false;
     }
 
     IEnumerator Invincible()
