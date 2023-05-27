@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance =null;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     private int stageID=1;
     private int[] stageKeyCnt = new int[] {1, 1, 10, 10, 1,10,1};
     private int[] stageKeyID= new int[] {0,0,400,401,0,402,0};
+    bool isGameOver = false;
     
     private void Awake()
     {
@@ -47,6 +49,9 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.L))
             OpenDoor();
+        if (isGameOver)
+            if (Input.anyKeyDown)
+                ReStart();
     }
     // 스테이지 정보 관련 함수
     public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
@@ -96,10 +101,6 @@ public class GameManager : MonoBehaviour
         return shiledCnt;
     }
 
-    public void OpenDoor()
-    {
-        door.Open();
-    }
 
     public void RegisterPlayerStat(PlayerStat _playerStat) // 플레이어의 스탯 스크립트를 받아온다.
     {
@@ -124,6 +125,11 @@ public class GameManager : MonoBehaviour
         timerUI.ResetTimer(stageID);
     }
 
+    public void OpenDoor()
+    {
+        door.Open();
+    }
+
     public void TimeOver()
     {
         if (!GameManager.instance.door.CheckDoor())
@@ -134,6 +140,7 @@ public class GameManager : MonoBehaviour
     {
         gameoverUI.SetActive(true);
         uiObjects.SetActive(false);
+        isGameOver = true;
     }
 
     public void ReStart()
@@ -142,5 +149,4 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
-
 }

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerStat : MonoBehaviour
 {
     [SerializeField] GameObject shiledObject;
+    [SerializeField] ParticleSystem healEffect;
+    [SerializeField] GameObject dashUIObject;
     CameraManager cameraManager;
     GameObject hpUIObject;
     PlayerMove playerMove;
@@ -55,10 +57,15 @@ public class PlayerStat : MonoBehaviour
             currentHealth -= damage;
             GameManager.instance.SetHealth(currentHealth);
             cameraManager.OnShakeCamera();
-            if (currentHealth ==0 )
-                playerMove.Dead();
-            StartCoroutine("Invincible");
             hpUI.ShowHp(currentHealth);
+            if (currentHealth ==0)
+            {
+                playerMove.Dead();
+                dashUIObject.SetActive(false);
+                isInvincible = true;
+                return;
+            }
+            StartCoroutine("Invincible");
         }
     }
 
@@ -70,6 +77,7 @@ public class PlayerStat : MonoBehaviour
             currentHealth += heal;
         GameManager.instance.SetHealth(currentHealth);
         hpUI.ShowHp(currentHealth);
+        healEffect.Play();
     }
 
     IEnumerator DashInvincible()

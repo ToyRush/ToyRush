@@ -44,7 +44,6 @@ public class KeyUI : MonoBehaviour
         {
             slider.maxValue = 1f;
             slider.value = 1f;
-            GameManager.instance.OpenDoor();
         }
         else
         {
