@@ -5,90 +5,116 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class CutScene : MonoBehaviour
 {
-    private int storyID;
-    private bool canNext;
-    public Text text;
-    public string[] storyText;
-    public Image[] storyImage;
-    public Image fadeImage;
-    float time = 0f;
-    float fadeTime = 1f;
+    Image image;
+    Color color;
 
-    public Image textBox;
-    public GameObject textBoxObj;
+    float timer = 0f;
+    float typingTimer = 0f;
+    int storyFlow=0;
+    bool canSkip = false;
+
+    [SerializeField] Text storyText;
+    [SerializeField] Sprite[] storyImages;
+    [SerializeField] string[] storyTexts;
+
+    [SerializeField] float fadeTimer = 2f;
+    [SerializeField] float typeEffectTimer = 2f;
+    WaitForSeconds changeImageTime = new WaitForSeconds(1f);
+
+    [SerializeField] GameObject textUI;
+    [SerializeField] GameObject startPage;
+
+
     void Awake()
     {
-        storyID = 0;
-        canNext = false;
-        storyImage[storyID].gameObject.SetActive(true);
-        textBoxObj.SetActive(false);
-        StartCoroutine("TypingEffect");
+        image = GetComponent<Image>();
+        color = image.color;
+        StartCoroutine("TypingText");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(canNext && Input.GetKeyDown(KeyCode.Space))
-        {
-            canNext = false;
-            StartCoroutine("FadeFlow");
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0)) 
-        {
-            SceneManager.LoadScene("Tutorial");
-        }
-    }
-    IEnumerator TypingEffect()
-    {
-        for(int i=0; i<=storyText[storyID].Length; i++)
-        {
-            text.text = storyText[storyID].Substring(0, i);
-            Debug.Log(i);
-            yield return new WaitForSeconds(0.05f);
-        }
-        canNext = true;
+        if (Input.GetKeyDown(KeyCode.Q) && canSkip)
+            StartCoroutine("CameraEffect");
     }
 
-    IEnumerator FadeFlow()
+    IEnumerator TypingText()
     {
-        time = 0f;
-        Color alpha = fadeImage.color;
-        Color textAlpha = textBox.color;
-        while (alpha.a < 1f)
+        storyText.text = "";
+        typingTimer = typeEffectTimer / storyTexts[storyFlow].Length;
+        foreach (char word in storyTexts[storyFlow])
         {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(0, 1, time);
-            textAlpha.a= Mathf.Lerp(1, 0, time);
-            fadeImage.color=alpha;
-            textBox.color = textAlpha;
-            yield return null;
+            storyText.text += word;
+            yield return new WaitForSeconds(typingTimer);
         }
-
-
-        time = 0f;
-        storyImage[storyID].gameObject.SetActive(false);
-        storyID += 1;
-        if (storyID == storyImage.Length-1 )
-            textBoxObj.SetActive(false);
-        else
-            text.text = " ";
-        storyImage[storyID].gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-
-
-        while (alpha.a > 0f)
-        {
-            time += Time.deltaTime / fadeTime;
-            alpha.a = Mathf.Lerp(1, 0, time);
-            textAlpha.a = Mathf.Lerp(0, 1, time);
-            fadeImage.color = alpha;
-            textBox.color = textAlpha;
-            yield return null;
-        }
-        text.text = storyText[storyID];
-
-        if(storyID!= storyImage.Length - 1)
-            StartCoroutine("TypingEffect");
+        canSkip = true;
         yield return null;
+    }
+
+    IEnumerator CameraEffect()
+    {
+        canSkip = false;
+        timer = fadeTimer;
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            color.a = timer / fadeTimer;
+            image.color = color;
+            yield return null;
+        }
+        TextUIOff();
+        yield return changeImageTime;
+        TextUIOn();
+        ChangeImage();
+        timer = 0f;
+        while (timer < fadeTimer)
+        {
+            timer += Time.deltaTime;
+            color.a = timer / fadeTimer;
+            image.color = color;
+            yield return null;
+        }
+        StartCoroutine("TypingText");
+    }
+
+    void TextUIOff()
+    {
+        storyText.text = "";
+        textUI.SetActive(false);
+    }
+
+    void TextUIOn()
+    {
+        textUI.SetActive(true);
+    }
+
+    void ChangeImage()
+    {
+        storyFlow += 1;
+        if (storyFlow >= storyImages.Length)
+        {
+            StopAllCoroutines();
+            startPage.SetActive(true);
+            canSkip = false;
+            return;
+        }
+        image.sprite = storyImages[storyFlow];
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene(1); // 1¹ø¾ÀÀº Æ©Åä¸®¾ó¾À
+    }
+
+    public void EndGame()
+    {
+        Application.Quit();
+        Debug.Log("°ÔÀÓ Á¾·á");
+    }
+
+    public void SkiptBtn()
+    {
+        storyFlow = storyImages.Length - 1;
+        StartCoroutine("CameraEffect");
     }
 }

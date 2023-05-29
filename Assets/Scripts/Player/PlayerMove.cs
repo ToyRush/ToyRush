@@ -48,6 +48,8 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer spr;
     DashUI dashUI;
+    PlayerStat playerStat;
+
 
     Vector2 inputVec; // 플레이어의 이동 방향
 
@@ -58,10 +60,14 @@ public class PlayerMove : MonoBehaviour
 
     [Header("기획자 변수 : 속도 조절 변수")]
     public float moveSpeed; // 플레이어의 이동 속도
+    public float jumpPower; // 점프 강도
     bool canMove = true; // 플레이어의 움직임 제어
     bool isMove=false;
     bool isDash = false; // 구르기 제어
     bool canDash = true;
+    bool canJmup = true;
+    float gravity = 2f;
+    [SerializeField] LayerMask groundLayer;
     [SerializeField] GameObject dashObject;
     [SerializeField] ParticleSystem moveParticle;
     [SerializeField] ParticleSystem stopParticle;
@@ -71,12 +77,15 @@ public class PlayerMove : MonoBehaviour
     Vector3 downVec= new Vector3(0, 0, 180);
     Vector3 upVec = new Vector3(0, 0, 0);
 
+    public bool bossStage=false;
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         dashUI = GetComponentInChildren<DashUI>();
+        playerStat = GetComponent<PlayerStat>();
     }
     void Start()
     {
@@ -103,43 +112,81 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
-        if ((inputVec.x != 0 || inputVec.y != 0) && !isMove)
+        if (!bossStage)
         {
-            moveParticle.Play();
-            isMove = true;
-        }
-        else if((inputVec.x == 0 && inputVec.y == 0 )&& isMove)
-        {
-            moveParticle.Stop();
-            stopParticle.Play();
-            isMove = false;
-        }
-        CheckMoveDir();
+            inputVec.y = Input.GetAxisRaw("Vertical");
+            if ((inputVec.x != 0 || inputVec.y != 0) && !isMove)
+            {
+                moveParticle.Play();
+                isMove = true;
+            }
+            else if ((inputVec.x == 0 && inputVec.y == 0) && isMove)
+            {
+                moveParticle.Stop();
+                stopParticle.Play();
+                isMove = false;
+            }
+            CheckMoveDir();
 
-        if (Input.GetMouseButtonDown(1)&&!isDash && canDash)
-            StartCoroutine("Dash", inputVec.normalized);
-        if(inputVec.x==0 && inputVec.y==0)
-            rushBearAnimation = RushBearAnimation.Idle;
+            if (Input.GetMouseButtonDown(1) && !isDash && canDash)
+                StartCoroutine("Dash", inputVec.normalized);
+            if (inputVec.x == 0 && inputVec.y == 0)
+                rushBearAnimation = RushBearAnimation.Idle;
+            else
+                rushBearAnimation = RushBearAnimation.Run;
+            SetAnimation();
+        }
         else
-            rushBearAnimation = RushBearAnimation.Run;
-        SetAnimation();
+        {
+            if (Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayer))
+                canJmup = true;
+            else
+                canJmup = false;
+            if (Input.GetMouseButtonDown(1) && canJmup) // 점프
+            {
+                rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
+                canJmup = false;
+            }
+        }
     }
     void FixedUpdate()
     {
-        if (canMove)
+        if (!bossStage)
         {
-            if (!isDash)
+            if (canMove)
             {
-                Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
-                rb.MovePosition(rb.position + nextVec);
+                if (!isDash)
+                {
+                    Vector2 nextVec = inputVec.normalized * moveSpeed * Time.fixedDeltaTime;
+                    rb.MovePosition(rb.position + nextVec);
+                }
+            }
+        }
+        else
+        {
+            PlatformMove();
+        }
+    }
+
+    void PlatformMove()
+    {
+        rb.velocity = new Vector2(inputVec.x * moveSpeed, rb.velocity.y);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (bossStage)
+        {
+            if (collision.gameObject.CompareTag("Wall"))
+            {
+                canJmup = true;
             }
         }
     }
 
-
     IEnumerator Dash(Vector2 dashDir)
     {
+        playerStat.StartCoroutine("DashInvincible");
         dashUI.UseDash();
         isDash = true;
         rb.velocity = dashDir * 3* moveSpeed;
@@ -167,6 +214,14 @@ public class PlayerMove : MonoBehaviour
     public void Dead()
     {
         // 죽음 모션
+        anim.SetTrigger("Dead");
+        Invoke("GameOver", 1f);
+    }
+
+    void GameOver()
+    {
+        Time.timeScale = 0;
+        GameManager.instance.GameOver();
     }
 
     public void OnOffDamaged(bool _isDamaged)
@@ -182,6 +237,10 @@ public class PlayerMove : MonoBehaviour
         canDash = _canDash;
     }
 
+    public void SetGravity()
+    {
+        rb.gravityScale = gravity;
+    }
     void CheckMoveDir()
     {
         if (inputVec.x > 0 && inputVec.y==0)
@@ -199,5 +258,11 @@ public class PlayerMove : MonoBehaviour
         else if(inputVec.y < 0) {
             playerDirection = PlayerDirection.Down;
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * 0.5f);
     }
 }

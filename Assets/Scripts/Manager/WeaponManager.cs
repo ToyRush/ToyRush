@@ -27,6 +27,10 @@ public class WeaponManager : MonoBehaviour
     // 아이템 데이터
     [SerializeField] ItemData normalBullet;
     Dictionary<int, ItemData> holdWeapon = new Dictionary<int, ItemData>();
+
+    // 보스 스테이지 제어
+    bool isBoss = false;
+    bool canPressKey = true;
     private void Awake()
     {
         SetDefaultBullet(); // 초기엔 보통 총알로 초기화
@@ -35,21 +39,36 @@ public class WeaponManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && currentKey!=1)
+        if (!isBoss)
         {
-            currentKey = 1;
-            Cursor.cursorInstance.ChangeCursorState(currentKey);
-            SetUILayer(2,1);
-            playerShoot.ControlGun(true);
-            playerTrap.ControlTrap(false);
+            if (Input.GetKeyDown(KeyCode.Alpha1) && currentKey != 1)
+            {
+                currentKey = 1;
+                Cursor.cursorInstance.ChangeCursorState(currentKey);
+                SetUILayer(2, 1);
+                playerShoot.ControlGun(true);
+                playerTrap.ControlTrap(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey != 2 && canSelectTrap)
+            {
+                currentKey = 2;
+                Cursor.cursorInstance.ChangeCursorState(currentKey);
+                SetUILayer(1, 2);
+                playerShoot.ControlGun(false);
+                playerTrap.ControlTrap(true);
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && currentKey !=2 && canSelectTrap)
+        else
         {
-            currentKey = 2;
-            Cursor.cursorInstance.ChangeCursorState(currentKey);
-            SetUILayer(1,2);
-            playerShoot.ControlGun(false);
-            playerTrap.ControlTrap(true);
+            if(canPressKey)
+            {
+                currentKey = 1;
+                Cursor.cursorInstance.ChangeCursorState(currentKey);
+                SetUILayer(2, 1);
+                playerShoot.ControlGun(true);
+                playerTrap.ControlTrap(false);
+                canPressKey = false;
+            }
         }
     }
 
@@ -166,5 +185,10 @@ public class WeaponManager : MonoBehaviour
     public void RegisterShoot(PlayerShoot _playerShoot)
     {
         playerShoot = _playerShoot;
+    }
+
+    public void BossStage()
+    {
+        isBoss = true;
     }
 }

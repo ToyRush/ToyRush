@@ -27,15 +27,13 @@ using UnityEngine;
 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Wall"))
-        {
-            gameObject.SetActive(false);
-        }
         if (collision.gameObject.CompareTag("Monster"))
         {
             Monster monster = collision.gameObject.GetComponent<Monster>();
             monster.Damaged((int)damage);
         }
+        else
+            gameObject.SetActive(false);
     }
 
     public abstract void SetBulletDelay();
