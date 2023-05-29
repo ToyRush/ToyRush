@@ -111,4 +111,10 @@ public class CutScene : MonoBehaviour
         Application.Quit();
         Debug.Log("게임 종료");
     }
+
+    public void SkiptBtn()
+    {
+        storyFlow = storyImages.Length - 1;
+        StartCoroutine("CameraEffect");
+    }
 }

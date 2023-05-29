@@ -113,6 +113,7 @@ public class GameManager : MonoBehaviour
             playerMove = player.GetComponent<PlayerMove>();
             playerMove.bossStage = true;
             playerMove.SetGravity();
+            weaponManager.BossStage();
         }
     }
     public void RegisterDoorState(Door _door)
