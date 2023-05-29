@@ -11,7 +11,7 @@ public class Golem : Monster
     {
         //move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
         monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 10.0f;
+        monsterInfo.attack = 10;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 5.0f;
         monsterInfo.attackDis = 2.0f;
@@ -58,7 +58,7 @@ public class Golem : Monster
         rigid.MovePosition(nextDir);
     }
 
-    public override bool Damaged(float attack)
+    public override bool Damaged(int attack)
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;

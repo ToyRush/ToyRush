@@ -31,7 +31,7 @@ public class Horse : Monster
         return monsterInfo.state;
     }
 
-    public override bool Damaged(float attack)
+    public override bool Damaged(int attack)
     {
         return false;
     }

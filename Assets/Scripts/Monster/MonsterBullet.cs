@@ -12,7 +12,7 @@ public class MonsterBullet : MonoBehaviour
     public float speed;
     public float currentTime;
     public float shotTime;
-    protected float attack;
+    protected int attack;
     protected Vector3 direction;
     // Start is called before the first frame update
     private void Awake()
@@ -22,14 +22,14 @@ public class MonsterBullet : MonoBehaviour
         rigid = gameObject.GetComponent<Rigidbody2D>();
         speed = 5;
         shotTime = 2.0f;
-        attack = 10.0f;
+        attack = 10;
         currentTime = 0;
         direction = new Vector3();
         direction = Vector3.zero;
         direction.x = 1;
     }
 
-    public void FireBullet(Vector3 dir, float damege)
+    public void FireBullet(Vector3 dir, int damege)
     {
         this.attack = damege;
         this.direction = dir;

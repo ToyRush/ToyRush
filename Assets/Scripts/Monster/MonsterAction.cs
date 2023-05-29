@@ -16,7 +16,7 @@ public interface MonsterAttack
 }
 public interface MonsterDamaged
 {
-    public abstract bool Damaged(float attack);
+    public abstract bool Damaged(int attack);
 }
 public interface MonsterEvent
 {

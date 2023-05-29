@@ -14,7 +14,7 @@ public enum MonsterState
 public struct MonsterInfo
 {
     public float hp;
-    public float attack;
+    public int attack;
     public float findDis;
     public float attackDis;
     public float currentTime;
@@ -139,7 +139,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
         animator.SetInteger("State", (int)monsterInfo.state);
         return monsterInfo.state;
     }
-    public abstract bool Damaged(float attack);
+    public abstract bool Damaged(int attack);
     public abstract void Attack();
     public abstract void Move();
     public abstract void Dead();
