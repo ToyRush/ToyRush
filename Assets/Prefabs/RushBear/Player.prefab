@@ -614,13 +614,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8390132612242615464}
   - component: {fileID: 8390132612242615465}
-  - component: {fileID: 8390132612242615466}
   - component: {fileID: 8390132612242615467}
   - component: {fileID: 8390132612242615468}
   - component: {fileID: 8390132612242615469}
   - component: {fileID: 8390132612242615470}
   - component: {fileID: 8390132612242615471}
   - component: {fileID: 8390132612242615456}
+  - component: {fileID: 3349985282837680448}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -699,26 +699,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &8390132612242615466
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390132612242615457}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7395b103df2cbbd4fa0fb8119ae6990a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &8390132612242615467
 Rigidbody2D:
   serializedVersion: 4
@@ -830,6 +810,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 567667b36aae8054f849996b96cd2645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3349985282837680448
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390132612242615457}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7395b103df2cbbd4fa0fb8119ae6990a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &7542752070034182417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -842,10 +842,25 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2252899786011720989, guid: 1bdd40b10200dc542831f08a60db17bf,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3617475530097866726, guid: 1bdd40b10200dc542831f08a60db17bf,
         type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617475530097866726, guid: 1bdd40b10200dc542831f08a60db17bf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3617475530097866726, guid: 1bdd40b10200dc542831f08a60db17bf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3617475530097866726, guid: 1bdd40b10200dc542831f08a60db17bf,
         type: 3}

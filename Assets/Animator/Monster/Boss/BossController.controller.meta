@@ -1,8 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Animator/Monster/Boss/BossController.controller.meta
 guid: 637b43188303d374c9fa60cb44ed5a8d
+========
+guid: 399b72e95c8f51e418b6a41ac4334206
+>>>>>>>> 7bb8f689febb526c59aab6339935e71f91eb0d92:Assets/Animator/Effect/Laser.anim.meta
 NativeFormatImporter:
   externalObjects: {}
-  mainObjectFileID: 9100000
+  mainObjectFileID: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

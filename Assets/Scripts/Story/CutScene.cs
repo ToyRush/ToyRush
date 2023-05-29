@@ -34,7 +34,7 @@ public class CutScene : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Q) && canSkip)
+        if (Input.GetKeyDown(KeyCode.Space) && canSkip)
             StartCoroutine("CameraEffect");
     }
 

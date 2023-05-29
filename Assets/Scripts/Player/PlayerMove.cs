@@ -30,7 +30,8 @@ public enum RushBearAnimation
 {
     Idle=0,
     Run=1,
-    Dead=2,
+    Jump=2,
+    Fall=3
 }
 
 public enum ConsumerType
@@ -94,6 +95,22 @@ public class PlayerMove : MonoBehaviour
         dashAnim = dashObject.GetComponent<Animator>();
     }
 
+    void RunAnimation()
+    {
+        if (inputVec.x == 0 && inputVec.y == 0)
+            rushBearAnimation = RushBearAnimation.Idle;
+        else
+            rushBearAnimation = RushBearAnimation.Run;
+    }
+
+    void JumpAnimation()
+    {
+        if (rb.velocity.y > 0.1f)
+            rushBearAnimation = RushBearAnimation.Jump;
+        else if (rb.velocity.y < -0.1f)
+            rushBearAnimation = RushBearAnimation.Fall;
+    }
+
     void SetAnimation()
     {
         switch (rushBearAnimation)
@@ -104,15 +121,34 @@ public class PlayerMove : MonoBehaviour
             case RushBearAnimation.Run:
                 anim.SetInteger("RushBearState", 1);
                 break;
-            case RushBearAnimation.Dead:
-                anim.SetInteger("RushBearState", 2);
+            default:
                 break;
         }
     }
+
+    void SetPlatFormAnimation()
+    {
+        switch (rushBearAnimation)
+        {
+            case RushBearAnimation.Idle:
+                anim.SetInteger("RushBearState", 0);
+                break;
+            case RushBearAnimation.Run:
+                anim.SetInteger("RushBearState", 1);
+                break;
+            case RushBearAnimation.Jump:
+                anim.SetInteger("RushBearState", 2);
+                break;
+            case RushBearAnimation.Fall:
+                anim.SetInteger("RushBearState", 3);
+                break;
+        }
+    }
+
     void Update()
     {
         inputVec.x = Input.GetAxisRaw("Horizontal");
-        if (!bossStage)
+        if (!bossStage) // 보스 스테이지 전
         {
             inputVec.y = Input.GetAxisRaw("Vertical");
             if ((inputVec.x != 0 || inputVec.y != 0) && !isMove)
@@ -130,13 +166,10 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetMouseButtonDown(1) && !isDash && canDash)
                 StartCoroutine("Dash", inputVec.normalized);
-            if (inputVec.x == 0 && inputVec.y == 0)
-                rushBearAnimation = RushBearAnimation.Idle;
-            else
-                rushBearAnimation = RushBearAnimation.Run;
+            RunAnimation();
             SetAnimation();
         }
-        else
+        else // 보스 스테이지
         {
             if (Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayer))
                 canJmup = true;
@@ -147,6 +180,9 @@ public class PlayerMove : MonoBehaviour
                 rb.AddForce(Vector3.up * jumpPower, ForceMode2D.Impulse);
                 canJmup = false;
             }
+            RunAnimation();
+            JumpAnimation();
+            SetPlatFormAnimation();
         }
     }
     void FixedUpdate()
