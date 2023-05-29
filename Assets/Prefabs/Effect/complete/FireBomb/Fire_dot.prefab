@@ -4822,7 +4822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8802095172707681362}
   m_Layer: 0
-  m_Name: Fire_dot
+  m_Name: Fire_Dot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
