@@ -14,52 +14,50 @@ public class Laser : MonoBehaviour
     protected Animator anim;
     public Vector3 target;
     public Vector3 initPos;
+    public Vector3 initScale;
+    public Quaternion initRotate;
+    public Vector3 RotatePos;
     private void Start()
     {
         rigid = gameObject.GetComponent<Rigidbody2D>();
         initPos = transform.position ;
-        target = rigid.transform.position;
-        target.x -= 8;
+        initRotate = transform.rotation;
+        initScale = transform.localScale;
         anim = gameObject.GetComponentInChildren<Animator>();
-        InitAngle = 0;
         CurrentAngle = InitAngle;
-        EndAngle = -120;
         CurrentTime = 0;
-        speed = 20;
         Active = false;
-        transform.localScale = new Vector2(1, 5);
     }
     private void FixedUpdate()
     {
         if (Active == false)
             return;
 
-        CurrentTime += Time.fixedDeltaTime * speed;
-        CurrentAngle =  Mathf.Lerp(InitAngle, EndAngle, CurrentTime);
+        CurrentAngle += Time.fixedDeltaTime * speed;
         rigid = GetComponent<Rigidbody2D>();
         //rigid.rotation = CurrentAngle;
-        transform.RotateAround(target, new Vector3(0, 0, 1), Time.fixedDeltaTime * speed);
+        transform.RotateAround(target, RotatePos, Time.fixedDeltaTime * speed);
 
-        if (CurrentTime >= 100.0f) // Mathf.Abs(CurrentAngle - EndAngle) < 0.1f)
+        if (Mathf.Abs(CurrentAngle - EndAngle) <= Mathf.Abs(Time.fixedDeltaTime * speed)) // Mathf.Abs(CurrentAngle - EndAngle) < 0.1f)
         {
             CurrentAngle = InitAngle;
             Active = false;
             CurrentTime = 0;
             anim.SetBool("Active", false);
             transform.position = initPos;
-            transform.rotation = Quaternion.identity;
+            transform.rotation = initRotate;
             return;
         }
-        RaycastHit2D hit = Physics2D.Raycast(rigid.transform.position, Vector2.down, 5);
-        Debug.DrawRay(target, transform.right * 20,Color.red,  2);
+        RaycastHit2D hit = Physics2D.Raycast(rigid.transform.position, rigid.transform.right, 50);
+        Debug.DrawRay(rigid.transform.position, rigid.transform.right * 50,Color.red,  2);
 
-        if (hit)
+        if (hit && hit.transform.name !="Boss")
         {
             float size = hit.distance;
             if (hit.distance != 0)
             {
-                Vector3 temp = transform.localScale;
-                temp.x = size;
+                Vector3 temp = initScale;
+                temp.x *= size/3;
                 transform.localScale = temp;
             }
         }
