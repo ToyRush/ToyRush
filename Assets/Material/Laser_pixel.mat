@@ -73,7 +73,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _EnableExternalAlpha: 0
-    - _Pixel: 512
+    - _Pixel: 256
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5

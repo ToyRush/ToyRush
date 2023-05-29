@@ -5708,7 +5708,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 68.24
+      value: 64.34
       mode: 0
       spread: 0
       speed:
