@@ -32,6 +32,7 @@ public class Door : MonoBehaviour
             stageID += 1;
             GameManager.instance.NextStage(stageID);
             SceneManager.LoadScene(stageID);
+            GameManager.instance.poolManager.AllSetActiveFalse();
         }
     }
 

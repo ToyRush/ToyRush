@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
     {
         stageID = _stageID;
         keyUI.ChangeKeyInfo();
+        SoundManager.Instance.CheckStage(stageID);
     }
     public int GetStageKeyID() // 키 아이디 반환한다.
     {
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
             playerMove = player.GetComponent<PlayerMove>();
             playerMove.bossStage = true;
             playerMove.SetGravity();
+            weaponManager.BossStage();
         }
     }
     public void RegisterDoorState(Door _door)
@@ -148,5 +150,6 @@ public class GameManager : MonoBehaviour
         Destroy(this.gameObject);
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
+        SoundManager.Instance.PlaySound(0);
     }
 }

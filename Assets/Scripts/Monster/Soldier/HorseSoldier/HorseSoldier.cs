@@ -12,7 +12,7 @@ public class HorseSoldier : Monster
         monsterInfo.speedIncrease = 5.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 5.0f;
+        monsterInfo.attack = 5;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 10.0f;
         monsterInfo.attackDis = 10.0f;
@@ -38,7 +38,7 @@ public class HorseSoldier : Monster
         }
     }
 
-    public override bool Damaged(float attack)
+    public override bool Damaged(int attack)
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;

@@ -73,3 +73,6 @@ crashlytics-build.properties
 ProjectSettings/ShaderGraphSettings.asset
 ProjectSettings/ShaderGraphSettings.asset
 *.asset
+ProjectSettings/ShaderGraphSettings.asset
+ProjectSettings/ShaderGraphSettings.asset
+*.asset

@@ -64,4 +64,22 @@ public class PoolManager : MonoBehaviour
         }
         return select;
     }
+
+    public void AllSetActiveFalse()
+    {
+        for(int i=0; i<trapPrefabs.Length; i++)
+        {
+            foreach (GameObject obj in trapPools[i])
+            {
+                obj.SetActive(false);
+            }
+        }
+        for (int i = 0; i < bulletPrefabs.Length; i++)
+        {
+            foreach (GameObject obj in bulletPools[i])
+            {
+                obj.SetActive(false);
+            }
+        }
+    }
 }

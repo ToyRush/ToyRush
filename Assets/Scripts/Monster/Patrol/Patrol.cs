@@ -19,7 +19,7 @@ public class Patrol : Monster
         distance = rigid.transform.localScale.x * 2;
         initVec = rigid.transform.position;
         monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 10.0f;
+        monsterInfo.attack = 10;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 10;
         monsterInfo.attackDis = 1.0f;
@@ -73,7 +73,7 @@ public class Patrol : Monster
         return monsterInfo.state;
     }
 
-    public override bool Damaged(float attack)
+    public override bool Damaged(int attack)
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;
