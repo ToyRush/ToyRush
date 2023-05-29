@@ -12,6 +12,7 @@ TagManager:
   - Trap
   - Monster
   - Door
+  - ItemBox
   layers:
   - Default
   - TransparentFX
