@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Portion
   m_EditorClassIdentifier: 
   itemType: 2
-  itemIcon: {fileID: 21300000, guid: 9957d1c078f33334790e39130a183f5a, type: 3}
+  itemIcon: {fileID: -1186457889, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 301
   ItemName: "\uC19C\uBB49\uCE58"
   itemCnt: 0
   figure: 1
   consumerType: 0
-  keyID: 0

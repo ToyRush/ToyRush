@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Bomb
   m_EditorClassIdentifier: 
   itemType: 1
-  itemIcon: {fileID: -1191985199, guid: 38420753a273a934488ba712255c656d, type: 3}
+  itemIcon: {fileID: -780053892, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 200
   ItemName: "\uD3ED\uD0C4"
   itemCnt: 1
-  healFigure: 0
-  speedFigure: 0
-  keyID: 0
+  figure: 0
+  consumerType: 0

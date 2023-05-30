@@ -5,11 +5,8 @@ using UnityEngine.UI;
 
 public class TimerUI : MonoBehaviour
 {
-    [SerializeField]
-    private Slider slider;
-    [SerializeField]
     public float maxTime=0f;
-    private float[] remainTime = new float[] { 0, 0, 10, 20, 30, 40, 50, 60};
+    private float[] remainTime = new float[] { 0, 0, 90, 90, 90, 90, 0};
     bool isCount = false;
     [SerializeField]Text timerText;
     int min;
@@ -20,20 +17,18 @@ public class TimerUI : MonoBehaviour
         if (isCount)
         {
             float time = maxTime - Time.timeSinceLevelLoad;
-            slider.value = time;
             min = (int)time / 60;
             sec = (int)time % 60;
-            timerText.text = min.ToString() + " : " + sec.ToString();
-            if (slider.value == 0)
+            timerText.text = min.ToString() + "  " + sec.ToString();
+            if (time<=0)
             {
-                Debug.Log("시간 초과!!! 패널티 발생!!!");
                 GameManager.instance.TimeOver();
                 isCount = false;
             }
         }
         else
         {
-            timerText.text = "0 : 00";
+            timerText.text = "00  00";
         }
     }
 
@@ -46,13 +41,9 @@ public class TimerUI : MonoBehaviour
             case 1:
             case 4:
             case 7:
-                slider.maxValue = 1f;
-                slider.value = 1f;
                 isCount = false;
                 break;
             default:
-                slider.maxValue = maxTime;
-                slider.value = maxTime;
                 isCount = true;
                 break;
         }

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: BubbleGum
   m_EditorClassIdentifier: 
   itemType: 1
-  itemIcon: {fileID: 21300000, guid: 0bef940902123344a9f320ea5710c819, type: 3}
+  itemIcon: {fileID: 590594650, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 201
   ItemName: "\uD48D\uC120\uAECC"
   itemCnt: 1
-  healFigure: 0
-  speedFigure: 0
-  keyID: 0
+  figure: 0
+  consumerType: 0
