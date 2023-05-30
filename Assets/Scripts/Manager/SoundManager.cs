@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
             case 6: // 보스 스테이지
                 PlaySound(3);
                 break;
-            case 7:
+            case 7: // 엔딩화면
                 PlaySound(4);
                 break;
             default: // 튜토리얼, 2층, 3층은 그대로...
