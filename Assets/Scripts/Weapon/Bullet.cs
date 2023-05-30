@@ -4,6 +4,8 @@ using UnityEngine;
 
  public abstract class Bullet : MonoBehaviour
  {
+    [SerializeField] AudioClip shootSound;
+    protected AudioSource audioSource;
     protected Rigidbody2D rb;
     public float damage;
     public int speed;
@@ -13,11 +15,13 @@ using UnityEngine;
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
         SetBulletDelay();
     }
 
     public virtual void Init(Vector3 dir)
     {
+        audioSource.PlayOneShot(shootSound, 0.3f);
         dir = dir.normalized;
         transform.rotation = Quaternion.FromToRotation(Vector3.up, dir);
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

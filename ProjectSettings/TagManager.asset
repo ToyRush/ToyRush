@@ -12,6 +12,8 @@ TagManager:
   - Trap
   - Monster
   - Door
+  - ItemBox
+  - BrokenTile
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - UI
   - Bullet
   - postprocess
-  - 
+  - BrokenTile
   - 
   - 
   - 

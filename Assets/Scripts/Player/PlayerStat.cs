@@ -8,7 +8,11 @@ public class PlayerStat : MonoBehaviour
     [SerializeField] GameObject shiledObject;
     [SerializeField] ParticleSystem healEffect;
     [SerializeField] GameObject dashUIObject;
+    [SerializeField] AudioClip hitSound;
+    [SerializeField] AudioClip healSound;
+
     CameraManager cameraManager;
+    AudioSource audioSource;
     GameObject hpUIObject;
     PlayerMove playerMove;
     ItemData itemData;
@@ -27,6 +31,7 @@ public class PlayerStat : MonoBehaviour
         GameObject mainCamera;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         cameraManager = mainCamera.GetComponent<CameraManager>();
+        audioSource = GetComponent<AudioSource>();
         hpUIObject = GameObject.FindGameObjectWithTag("Hp");
         hpUI = hpUIObject.GetComponent<HpUI>();
         playerMove = GetComponent<PlayerMove>();
@@ -47,8 +52,10 @@ public class PlayerStat : MonoBehaviour
     }
     public void Damaged(int damage)
     {
+        audioSource.PlayOneShot(hitSound,1f);
         if (!isInvincible) // 무적이 아닐때만 호출
         {
+            audioSource.Play();
             if (shieldCnt > 0)
             {
                 shieldCnt -= 1;
@@ -71,6 +78,7 @@ public class PlayerStat : MonoBehaviour
 
     public void Heal(int heal)
     {
+        audioSource.PlayOneShot(healSound, 1f);
         if (heal + currentHealth > maxHealth)
             currentHealth = maxHealth;
         else

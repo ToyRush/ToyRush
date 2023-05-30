@@ -5,8 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class CutScene : MonoBehaviour
 {
-    Image image;
     Color color;
+    Image image;
+    AudioSource audioSource;
 
     float timer = 0f;
     float typingTimer = 0f;
@@ -23,11 +24,13 @@ public class CutScene : MonoBehaviour
 
     [SerializeField] GameObject textUI;
     [SerializeField] GameObject startPage;
+    [SerializeField] AudioClip nextSound;
 
 
     void Awake()
     {
         image = GetComponent<Image>();
+        audioSource = GetComponent<AudioSource>();
         color = image.color;
         StartCoroutine("TypingText");
     }
@@ -53,6 +56,7 @@ public class CutScene : MonoBehaviour
 
     IEnumerator CameraEffect()
     {
+        audioSource.PlayOneShot(nextSound, 0.3f);
         canSkip = false;
         timer = fadeTimer;
         while (timer > 0)
@@ -103,11 +107,13 @@ public class CutScene : MonoBehaviour
 
     public void StartGame()
     {
+        audioSource.PlayOneShot(nextSound, 0.3f);
         SceneManager.LoadScene(1); // 1¹ø¾ÀÀº Æ©Åä¸®¾ó¾À
     }
 
     public void EndGame()
     {
+        audioSource.PlayOneShot(nextSound, 0.3f);
         Application.Quit();
         Debug.Log("°ÔÀÓ Á¾·á");
     }
