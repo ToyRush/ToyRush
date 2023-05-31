@@ -7,7 +7,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip[] BGMs;
     [SerializeField] AudioClip winBGM;
     [SerializeField] AudioClip loseBGM;
-    private float musicVolume=1f;
+    private float musicVolume=0.5f;
     private AudioSource audioSource;
     private static SoundManager instance = null;
     public static SoundManager Instance
@@ -37,6 +37,7 @@ public class SoundManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
+        audioSource.volume = musicVolume;
     }
 
     public void CheckStage(int _stageID)
@@ -66,7 +67,8 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(int _idx)
     {
         audioSource.Stop();
-        audioSource.PlayOneShot(BGMs[_idx], musicVolume);
+        audioSource.clip = BGMs[_idx];
+        audioSource.Play();
         audioSource.loop = true;
     }
 
