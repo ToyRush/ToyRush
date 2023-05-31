@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2FKey
   m_EditorClassIdentifier: 
   itemType: 3
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 984753097, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 401
   ItemName: "2\uCE35 \uC5F4\uC1E0"
   itemCnt: 0

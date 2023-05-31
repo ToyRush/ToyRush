@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: 1FKey
   m_EditorClassIdentifier: 
   itemType: 3
-  itemIcon: {fileID: 1777749549, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  itemIcon: {fileID: 984753097, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 400
   ItemName: "1\uCE35 \uC5F4\uC1E0"
   itemCnt: 0
   figure: 0
   consumerType: 0
-  keyID: 400

@@ -22,8 +22,8 @@ public class KeyUI : MonoBehaviour
     {
         if (stageKeyID == _stageKeyID)
         {
-            slider.value += 1f;
-            if (slider.value == slider.maxValue)
+            slider.value -= 1f;
+            if (slider.value == 0)
             {
                 GameManager.instance.OpenDoor();
             }
@@ -32,10 +32,10 @@ public class KeyUI : MonoBehaviour
 
     public void LostGauge()
     {
-        int var = (int)slider.value / 2;
-        int maxvar = (int)slider.maxValue;
-        slider.value -= (float)var;
-        Debug.Log(maxvar - var+"만큼 몬스터가 출현합니다!");
+        int var = (int)(slider.maxValue - slider.value); // 현재개수
+        int needVar = (int)slider.maxValue - var; 
+        slider.value += (float)needVar;
+        Debug.Log( needVar*2+"만큼 몬스터가 출현합니다!");
     }
 
     public void ChangeKeyInfo()
@@ -43,12 +43,12 @@ public class KeyUI : MonoBehaviour
         if (GameManager.instance.GetStageKeyCnt() == 1)
         {
             slider.maxValue = 1f;
-            slider.value = 1f;
+            slider.value = 0f;
         }
         else
         {
-            slider.value = 0f;
             slider.maxValue = GameManager.instance.GetStageKeyCnt();
+            slider.value = slider.maxValue;
         }
         stageKeyID = GameManager.instance.GetStageKeyID();
     }
