@@ -12,7 +12,9 @@ public class CutScene : MonoBehaviour
     float timer = 0f;
     float typingTimer = 0f;
     int storyFlow=0;
+    int textFlow = 0;
     bool canSkip = false;
+    bool endText = false;
 
     [SerializeField] Text storyText;
     [SerializeField] Sprite[] storyImages;
@@ -38,19 +40,33 @@ public class CutScene : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) && canSkip)
-            StartCoroutine("CameraEffect");
+        {
+            if (endText)
+                StartCoroutine("CameraEffect");
+            else
+                StartCoroutine("TypingText");
+        }
+
     }
 
-    IEnumerator TypingText()
+    IEnumerator TypingText()  
     {
+        canSkip = false;
         storyText.text = "";
-        typingTimer = typeEffectTimer / storyTexts[storyFlow].Length;
-        foreach (char word in storyTexts[storyFlow])
+        typingTimer = typeEffectTimer / storyTexts[textFlow].Length;
+        foreach (char word in storyTexts[textFlow])
         {
             storyText.text += word;
             yield return new WaitForSeconds(typingTimer);
         }
+        textFlow += 1;
         canSkip = true;
+        if (textFlow >= 17 && textFlow < 20)
+            endText = false;
+        else if (textFlow % 2 == 0 && textFlow <= 16)
+            endText = true;
+        else if (textFlow == 20)
+            endText = true;
         yield return null;
     }
 
@@ -58,6 +74,7 @@ public class CutScene : MonoBehaviour
     {
         audioSource.PlayOneShot(nextSound, 0.3f);
         canSkip = false;
+        endText = false;
         timer = fadeTimer;
         while (timer > 0)
         {

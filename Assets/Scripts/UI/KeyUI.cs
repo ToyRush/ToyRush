@@ -10,7 +10,6 @@ public class KeyUI : MonoBehaviour
     private Slider slider;
     [SerializeField]
     private float maxTime;
-
     private int stageKeyID=400;
 
     private void Start()
@@ -30,12 +29,13 @@ public class KeyUI : MonoBehaviour
         }
     }
 
-    public void LostGauge()
+    public void LostGauge() // needVar*2 만큼 몬스터 생성시키면 됨
     {
         int var = (int)(slider.maxValue - slider.value); // 현재개수
         int needVar = (int)slider.maxValue - var; 
         slider.value += (float)needVar;
         Debug.Log( needVar*2+"만큼 몬스터가 출현합니다!");
+
     }
 
     public void ChangeKeyInfo()

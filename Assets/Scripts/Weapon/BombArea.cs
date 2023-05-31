@@ -12,6 +12,7 @@ public class BombArea : MonoBehaviour
         {
             Monster monster = collision.gameObject.GetComponent<Monster>();
             monster.Damaged(damage);
+            monster.Event("Stun");
         }
     }
 }

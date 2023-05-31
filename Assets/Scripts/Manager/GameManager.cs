@@ -156,10 +156,11 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.PlaySound(0);
     }
 
-    public void ClearBoss()
+    public void ClearBoss() // 보스 클리어 시 선언
     {
         SoundManager.Instance.CheckStage(7);
         SceneManager.LoadScene(7);
+        //GameManager.instance.ClearBoss();
     }
 
     // 메뉴에서 게임 이어할지 나갈지 선택하는 함수들

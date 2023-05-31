@@ -50,7 +50,7 @@ public class PlayerStat : MonoBehaviour
         else
             OffShieldEffect();
     }
-    public void Damaged(int damage)
+    public void Damaged(int damage=1)
     {
         audioSource.PlayOneShot(hitSound,1f);
         if (!isInvincible) // 무적이 아닐때만 호출
