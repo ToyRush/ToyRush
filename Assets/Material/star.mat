@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Beam01 4
+  m_Name: star
   m_Shader: {fileID: -6465566751694194690, guid: f38603475c3dad646b169f510a7c70b7,
     type: 3}
   m_ValidKeywords:
