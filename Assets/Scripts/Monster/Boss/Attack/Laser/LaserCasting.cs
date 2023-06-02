@@ -9,23 +9,24 @@ public class LaserCasting : MonoBehaviour
 
     float totalDuration;
     float currentTime;
-    float initX;
 
-    public bool bRight;
-    public bool bPlayBlackHole;
+    public bool bPlay;
     public bool isPlaying;
     // public bool castingEnd;
     private void Awake()
     {
         Head1 = transform.GetChild(0).GetComponent<ParticleSystem>();
         Head2 = transform.GetChild(1).GetComponent<ParticleSystem>();
+      
+    }
+    private void Start()
+    {
         totalDuration = Head1.main.duration + Head1.startLifetime;
-        initX = transform.position.x;
-        StopPartical(); 
+        StopPartical();
     }
     private void FixedUpdate()
     {
-        if (bPlayBlackHole)
+        if (bPlay)
         {
             if (isPlaying == false)
                 PlayPartical();
@@ -36,14 +37,8 @@ public class LaserCasting : MonoBehaviour
     }
     public void PlayPartical() //외부에서 호출 해주면 실행 
     {
-        Vector3 temp = transform.position;
-        if (bRight == true)
-            temp.x = initX;
-        else
-            temp.x = -initX;
-        transform.position = temp;
         isPlaying = true;
-        bPlayBlackHole = true;
+        bPlay = true;
         currentTime = 0;
         Head1.Play();
         Head2.Play();
@@ -51,7 +46,7 @@ public class LaserCasting : MonoBehaviour
     public void StopPartical()
     {
         isPlaying = false;
-        bPlayBlackHole = false;
+        bPlay = false;
         Head1.Stop();
         Head2.Stop();
     }

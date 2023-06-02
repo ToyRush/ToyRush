@@ -18,6 +18,11 @@ public class Blackhole : MonoBehaviour
         Head1 = transform.GetChild(1).GetComponent<ParticleSystem>();
         Head2 = transform.GetChild(2).GetComponent<ParticleSystem>();
         center = transform.GetChild(3).gameObject;
+        
+    }
+
+    private void Start()
+    {
         StopPartical();
     }
 

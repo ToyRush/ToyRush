@@ -8,77 +8,60 @@ public class Laser : MonoBehaviour
     public float CurrentAngle;
     public float EndAngle;
     public float speed;
-    public bool Active;
     protected float CurrentTime;
-    protected Rigidbody2D rigid;
-    protected Animator anim;
-    public Vector3 target;
-    public Vector3 initPos;
-    public Vector3 initScale;
-    public Quaternion initRotate;
-    public Vector3 RotatePos;
+    public SpriteRenderer sprite;
+
+    public bool bActive;
+    public float multi;
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
     private void Start()
     {
-        rigid = gameObject.GetComponent<Rigidbody2D>();
-        initPos = transform.position ;
-        initRotate = transform.rotation;
-        initScale = transform.localScale;
-        anim = gameObject.GetComponentInChildren<Animator>();
-        CurrentAngle = InitAngle;
-        CurrentTime = 0;
-        Active = false;
+        transform.localScale = new Vector2(1000 * multi, transform.localScale.y);
+        bActive = false;
     }
-    private void FixedUpdate()
+    public Vector2 PlayLaser()
     {
-        if (Active == false)
-            return;
+        Vector2 point = Vector2.zero;
+        if (bActive == false)
+            return point;
 
         CurrentAngle += Time.fixedDeltaTime * speed;
-        rigid = GetComponent<Rigidbody2D>();
-        //rigid.rotation = CurrentAngle;
-        transform.RotateAround(target, RotatePos, Time.fixedDeltaTime * speed);
+        transform.Rotate(Vector3.forward, Time.fixedDeltaTime * speed);
 
-        //if (Mathf.Abs(CurrentAngle - EndAngle) <= Mathf.Abs(Time.fixedDeltaTime * speed)) // Mathf.Abs(CurrentAngle - EndAngle) < 0.1f)
-        //{
-        //    CurrentAngle = InitAngle;
-        //    Active = false;
-        //    CurrentTime = 0;
-        //    anim.SetBool("Active", false);
-        //    transform.position = initPos;
-        //    transform.rotation = initRotate;
-        //    return;
-        //}
-        RaycastHit2D hit = Physics2D.Raycast(rigid.transform.position, rigid.transform.right, 50);
-        Debug.DrawRay(rigid.transform.position, rigid.transform.right *5, Color.red, 2);
-       // Debug.dot
-        if (hit && hit.transform.name != "Boss")
+        if (CurrentAngle > EndAngle)
         {
-            float size = hit.distance;
-            if (hit.distance != 0)
+            bActive = false;
+            CurrentAngle = InitAngle;
+            transform.rotation = new Quaternion(0,0,0,0);
+            transform.localScale = new Vector2(1000 * multi, transform.localScale.y);
+            return point;
+        }
+
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, transform.right, 50);
+        RaycastHit2D? hitPoint = null;
+        float size = 100;
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit && hit.transform.name != "Boss")
             {
-                Vector3 temp = initScale;
-                temp.x *= size / 3;
-                transform.localScale = temp;
+                if (hit.distance != 0 && hit.distance < size)
+                {
+                    size = hit.distance;
+                    hitPoint = hit;
+                }
             }
         }
 
-    }
-    public void ActiveLazer(bool Left = false)
-    {
-        if (Left == true)
-            EndAngle = 120;
-        else
-            EndAngle = -120;
-        Active = true;
-        anim.SetBool("Active", Active);
-    }
-
-    public void AttackEnd()
-    {
-        //CurrentAngle = InitAngle;
-        //Active = false;
-        //CurrentTime = 0;
-        //anim.SetBool("Active", false);
-        //transform.rotation = Quaternion.identity;
+        if (hitPoint != null)
+        {
+            point = hitPoint.Value.point;
+            //Vector2 temp = transform.position;
+            //size = Vector2.Distance(temp , point);
+        }
+        transform.localScale = new Vector2(size * multi, transform.localScale.y);
+        return point;
     }
 }

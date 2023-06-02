@@ -16,6 +16,9 @@ public class WhiteHole : MonoBehaviour
     {
         Head1 = transform.GetChild(0).GetComponent<ParticleSystem>();
         Head2 = transform.GetChild(1).GetComponent<ParticleSystem>();
+    }
+    private void Start()
+    {
         totalDuration = Head1.main.duration + Head1.startLifetime;
         StopPartical();
     }
