@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &254185407803028019
+--- !u!1 &4302736611724715324
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 254185407803028020}
-  - component: {fileID: 254185407803028022}
-  - component: {fileID: 254185407803028021}
+  - component: {fileID: 4302736611724715323}
+  - component: {fileID: 4302736611724715321}
+  - component: {fileID: 4302736611724715322}
   m_Layer: 0
   m_Name: Beam_collider_end
   m_TagString: Untagged
@@ -18,28 +18,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &254185407803028020
+--- !u!4 &4302736611724715323
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254185407803028019}
+  m_GameObject: {fileID: 4302736611724715324}
   m_LocalRotation: {x: -0.7071068, y: 4.656613e-10, z: -4.656613e-10, w: 0.7071068}
-  m_LocalPosition: {x: 14.15, y: 0.04, z: 0.26}
+  m_LocalPosition: {x: 10.83, y: 0.04, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!198 &254185407803028022
+--- !u!198 &4302736611724715321
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254185407803028019}
+  m_GameObject: {fileID: 4302736611724715324}
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
@@ -4861,14 +4861,14 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!199 &254185407803028021
+--- !u!199 &4302736611724715322
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 254185407803028019}
+  m_GameObject: {fileID: 4302736611724715324}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

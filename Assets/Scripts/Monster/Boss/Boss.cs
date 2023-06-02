@@ -17,7 +17,7 @@ public class Boss : Monster
         monsterInfo.attackDis = 100.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 5.0f;
-        Lazer = this.transform.GetComponentInChildren<GameObject>();
+       // Lazer = this.transform.GetComponentInChildren<GameObject>();
         AttackCase = -1;
         bAttack = false;
     }
