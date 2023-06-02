@@ -38,26 +38,26 @@ public class Laser : MonoBehaviour
         //rigid.rotation = CurrentAngle;
         transform.RotateAround(target, RotatePos, Time.fixedDeltaTime * speed);
 
-        if (Mathf.Abs(CurrentAngle - EndAngle) <= Mathf.Abs(Time.fixedDeltaTime * speed)) // Mathf.Abs(CurrentAngle - EndAngle) < 0.1f)
-        {
-            CurrentAngle = InitAngle;
-            Active = false;
-            CurrentTime = 0;
-            anim.SetBool("Active", false);
-            transform.position = initPos;
-            transform.rotation = initRotate;
-            return;
-        }
+        //if (Mathf.Abs(CurrentAngle - EndAngle) <= Mathf.Abs(Time.fixedDeltaTime * speed)) // Mathf.Abs(CurrentAngle - EndAngle) < 0.1f)
+        //{
+        //    CurrentAngle = InitAngle;
+        //    Active = false;
+        //    CurrentTime = 0;
+        //    anim.SetBool("Active", false);
+        //    transform.position = initPos;
+        //    transform.rotation = initRotate;
+        //    return;
+        //}
         RaycastHit2D hit = Physics2D.Raycast(rigid.transform.position, rigid.transform.right, 50);
-        Debug.DrawRay(rigid.transform.position, rigid.transform.right * 50,Color.red,  2);
-
-        if (hit && hit.transform.name !="Boss")
+        Debug.DrawRay(rigid.transform.position, rigid.transform.right *5, Color.red, 2);
+       // Debug.dot
+        if (hit && hit.transform.name != "Boss")
         {
             float size = hit.distance;
             if (hit.distance != 0)
             {
                 Vector3 temp = initScale;
-                temp.x *= size/3;
+                temp.x *= size / 3;
                 transform.localScale = temp;
             }
         }
