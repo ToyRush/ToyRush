@@ -50,8 +50,6 @@ public abstract class Monster : MonoBehaviour , MonsterAction
 
     protected void Awake()
     {
-        if (this.transform.GetChild(0) != null)
-            weapon = this.transform.GetChild(0).gameObject;
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
@@ -144,4 +142,6 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     public abstract void Move();
     public abstract void Dead();
     public abstract bool Event(string eventname);
+
+
 }

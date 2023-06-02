@@ -11,6 +11,8 @@ public class Soldier : Monster
     // Start is called before the first frame update
     void Start()
     {
+        if (this.transform.GetChild(0) != null)
+            weapon = this.transform.GetChild(0).gameObject;
         //move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
         monsterInfo.hp = 100.0f;
         monsterInfo.attack = 10;

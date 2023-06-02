@@ -8,7 +8,8 @@ public class HorseSoldier : Monster
     public GameObject Bullet = null;
     void Start()
     {
-
+        if (this.transform.GetChild(0) != null)
+            weapon = this.transform.GetChild(0).gameObject;
         monsterInfo.speedIncrease = 5.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.hp = 100.0f;

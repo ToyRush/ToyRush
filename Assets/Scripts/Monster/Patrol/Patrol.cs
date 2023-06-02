@@ -12,6 +12,7 @@ public class Patrol : Monster
     public float radius = 1.0f;
     public Vector3 initVec;
     float distance;
+    public Vector3 direction;
     void Start()
     {
         monsterInfo.speedIncrease = 2.5f;
@@ -100,10 +101,13 @@ public class Patrol : Monster
             return;
 
         Vector3 currentV = rigid.position;
-        Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
+        direction = (monsterInfo.targetPos - currentV).normalized;
         Vector2 nextDir = currentV +
             (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease));
-
+        if (direction.x < 0)
+            spriteRenderer.flipX = false;
+        else
+            spriteRenderer.flipX = true;
         if (Vector3.Distance(currentV, monsterInfo.targetPos) <= 0.1f)
         {
             float angle = Random.Range(0, 360);
@@ -120,25 +124,18 @@ public class Patrol : Monster
 
     public float angleRange = 30f;
 
-    //private void OnDrawGizmos() // 게임 화면에서도 그려지도록..
-    //{
-    //    Handles.color = new Color(1f, 0f, 0f, 0.2f);
-    //    // DrawSolidArc(시작점, 노멀벡터(법선벡터), 그려줄 방향 벡터, 각도, 반지름)
-    //    if (rigid != null)
-    //    {
-    //        Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), angleRange / 2, radius);
-    //        Handles.DrawSolidArc(rigid.position, -Vector3.back, new Vector3(1, 0, 0), -angleRange / 2, radius);
-    //    }
-    //}
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-
-    //}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
         {
-            monsterInfo.targetPos = initVec;
+            Vector3 currentV = rigid.position;
+            Vector2 nextDir = currentV +
+                (direction * -1 * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease));
+            monsterInfo.targetPos = nextDir;
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
         }
     }
     public override void Dead()
