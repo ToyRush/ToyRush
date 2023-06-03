@@ -8,6 +8,7 @@ public class HorseSoldier : Monster
     public GameObject Bullet = null;
     void Start()
     {
+        base.Start();
         if (this.transform.GetChild(0) != null)
             weapon = this.transform.GetChild(0).gameObject;
         monsterInfo.speedIncrease = 5.0f;
@@ -48,7 +49,7 @@ public class HorseSoldier : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Destroy(this.gameObject, 1.5f);
+            Invoke("Dead", 2.0f);
         }
         return true;
     }
@@ -116,14 +117,5 @@ public class HorseSoldier : Monster
             monsterInfo.targetPos = Position[monsterInfo.index];
         }
         rigid.MovePosition(nextDir);
-    }
-
-    public override bool Event(string eventname)
-    {
-        throw new System.NotImplementedException();
-    }
-    public override void Dead()
-    {
-
     }
 }

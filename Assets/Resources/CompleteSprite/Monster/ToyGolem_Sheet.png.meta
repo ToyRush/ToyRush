@@ -128,22 +128,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ToyGolem_Sheet_0
+      name: ToyGolem_Sheet_14
       rect:
         serializedVersion: 2
         x: 3
-        y: 178
+        y: 82
         width: 54
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d122bd0ebcee1947a6edf6d9fb62f40
-      internalID: 1997101191
+      spriteID: 433919856e6b58345826b009c6483db5
+      internalID: -1031757121
       vertices: []
       indices: 
       edges: []
@@ -157,28 +157,7 @@ TextureImporter:
         width: 54
         height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 433919856e6b58345826b009c6483db5
-      internalID: -1031757121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 178
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -191,15 +170,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_3
+      name: ToyGolem_Sheet_16
       rect:
         serializedVersion: 2
-        x: 180
-        y: 178
+        x: 121
+        y: 82
         width: 54
         height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,6 +186,27 @@ TextureImporter:
       bones: []
       spriteID: e8b7eae522f2e884ba43d97d5ce35570
       internalID: -184703834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 178
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 670cffd7a2053e048bc2299a141d6cd4
+      internalID: -1101020403
       vertices: []
       indices: 
       edges: []
@@ -220,35 +220,14 @@ TextureImporter:
         width: 54
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e877e228e4afb954dbd1a24ee670df99
-      internalID: -644918641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_7
-      rect:
-        serializedVersion: 2
-        x: 349
-        y: 178
-        width: 54
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 670cffd7a2053e048bc2299a141d6cd4
-      internalID: -1101020403
+      spriteID: 428cd4c27d8530c46b2fa3e5b2e1aef0
+      internalID: -1471414922
       vertices: []
       indices: 
       edges: []
@@ -262,28 +241,7 @@ TextureImporter:
         width: 54
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 428cd4c27d8530c46b2fa3e5b2e1aef0
-      internalID: -1471414922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_9
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 130
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -296,15 +254,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_10
+      name: ToyGolem_Sheet_20
       rect:
         serializedVersion: 2
-        x: 121
-        y: 130
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 3
+        y: 9
+        width: 53
+        height: 68
+      alignment: 9
+      pivot: {x: 0.44566768, y: 0.36}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -312,111 +270,6 @@ TextureImporter:
       bones: []
       spriteID: 4b2f7dd58d8034d408f68df8dc5bbfec
       internalID: 306621457
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 130
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cdc77a571414203428f0877e826a1d12
-      internalID: 1626178471
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_12
-      rect:
-        serializedVersion: 2
-        x: 239
-        y: 130
-        width: 54
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e3c3b89adfa0e745ad57fa40bcb3c8a
-      internalID: -501796442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_14
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 82
-        width: 54
-        height: 46
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d653e0414cf0b7441906cd5c5a89f35e
-      internalID: -1243068227
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_15
-      rect:
-        serializedVersion: 2
-        x: 62
-        y: 82
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f929564402d48744e879f6760d6727bd
-      internalID: -1372050155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ToyGolem_Sheet_16
-      rect:
-        serializedVersion: 2
-        x: 121
-        y: 81
-        width: 54
-        height: 45
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05236a1e0243af941b749b3652da9f18
-      internalID: 1294372712
       vertices: []
       indices: 
       edges: []
@@ -430,14 +283,35 @@ TextureImporter:
         width: 54
         height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8bf1c31be2e1ec24290b9981035ee184
-      internalID: 770496076
+      spriteID: cdc77a571414203428f0877e826a1d12
+      internalID: 1626178471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 130
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e3c3b89adfa0e745ad57fa40bcb3c8a
+      internalID: -501796442
       vertices: []
       indices: 
       edges: []
@@ -451,7 +325,49 @@ TextureImporter:
         width: 54
         height: 46
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d653e0414cf0b7441906cd5c5a89f35e
+      internalID: -1243068227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 130
+        width: 54
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f929564402d48744e879f6760d6727bd
+      internalID: -1372050155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 349
+        y: 178
+        width: 54
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -464,15 +380,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_20
+      name: ToyGolem_Sheet_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 10
-        width: 53
-        height: 68
+        x: 121
+        y: 178
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -485,15 +401,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_21
+      name: ToyGolem_Sheet_15
       rect:
         serializedVersion: 2
-        x: 84
-        y: 9
-        width: 77
-        height: 71
+        x: 62
+        y: 82
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -506,15 +422,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_23
+      name: ToyGolem_Sheet_21
       rect:
         serializedVersion: 2
-        x: 179
+        x: 84
         y: 9
-        width: 87
-        height: 52
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        width: 77
+        height: 71
+      alignment: 9
+      pivot: {x: 0.6156582, y: 0.35}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -527,15 +443,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ToyGolem_Sheet_24
+      name: ToyGolem_Sheet_3
       rect:
         serializedVersion: 2
-        x: 285
-        y: 9
-        width: 86
-        height: 46
+        x: 180
+        y: 178
+        width: 54
+        height: 45
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -543,6 +459,90 @@ TextureImporter:
       bones: []
       spriteID: af85365e3b0bf1344be4f25e1e648b0c
       internalID: 1834915972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 130
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50fe49b51db36c4479ffd67c04aa7fc7
+      internalID: 1298094683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 130
+        width: 54
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b528f21ff2099814b92c678ab54c770f
+      internalID: -529853644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 9
+        width: 87
+        height: 52
+      alignment: 9
+      pivot: {x: 0.673162, y: 0.5423337}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b614f9bf77db04897d8eac8ef00c84
+      internalID: 1182756428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ToyGolem_Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 285
+        y: 9
+        width: 86
+        height: 46
+      alignment: 9
+      pivot: {x: 0.66651136, y: 0.52223605}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30f3fadb1bfe4814d91e83a338ad156f
+      internalID: 2025738404
       vertices: []
       indices: 
       edges: []
@@ -558,31 +558,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ToyGolem_Sheet_6: 1287082138
-      ToyGolem_Sheet_14: -1243068227
-      ToyGolem_Sheet_1: -1031757121
-      ToyGolem_Sheet_16: 1294372712
-      ToyGolem_Sheet_22: 136113221
-      ToyGolem_Sheet_9: -887110792
-      ToyGolem_Sheet_23: -1097830460
-      ToyGolem_Sheet_0: 1997101191
-      ToyGolem_Sheet_4: -644918641
-      ToyGolem_Sheet_8: -1471414922
-      ToyGolem_Sheet_20: 1813594313
-      ToyGolem_Sheet_17: 770496076
-      ToyGolem_Sheet_11: 1626178471
-      ToyGolem_Sheet_10: 306621457
-      ToyGolem_Sheet_18: 3990387
-      ToyGolem_Sheet_12: -501796442
-      ToyGolem_Sheet_5: -1979274477
-      ToyGolem_Sheet_19: 833642356
-      ToyGolem_Sheet_7: -1101020403
-      ToyGolem_Sheet_13: 1077573383
-      ToyGolem_Sheet_2: 2072945684
-      ToyGolem_Sheet_15: -1372050155
-      ToyGolem_Sheet_24: 1834915972
-      ToyGolem_Sheet_21: 1705001743
-      ToyGolem_Sheet_3: -184703834
+      ToyGolem_Sheet_21: -1097830460
+      ToyGolem_Sheet_14: -1031757121
+      ToyGolem_Sheet_1: 2072945684
+      ToyGolem_Sheet_16: -184703834
+      ToyGolem_Sheet_22: -644918641
+      ToyGolem_Sheet_9: -1979274477
+      ToyGolem_Sheet_23: 1287082138
+      ToyGolem_Sheet_0: -1101020403
+      ToyGolem_Sheet_4: -1471414922
+      ToyGolem_Sheet_8: -887110792
+      ToyGolem_Sheet_20: 306621457
+      ToyGolem_Sheet_17: 1626178471
+      ToyGolem_Sheet_11: -501796442
+      ToyGolem_Sheet_10: 1077573383
+      ToyGolem_Sheet_18: -1243068227
+      ToyGolem_Sheet_12: -1372050155
+      ToyGolem_Sheet_5: 1294372712
+      ToyGolem_Sheet_19: 770496076
+      ToyGolem_Sheet_7: 3990387
+      ToyGolem_Sheet_13: 833642356
+      ToyGolem_Sheet_2: 1813594313
+      ToyGolem_Sheet_15: 1705001743
+      ToyGolem_Sheet_24: 136113221
+      ToyGolem_Sheet_6: 1997101191
+      ToyGolem_Sheet_3: 1834915972
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

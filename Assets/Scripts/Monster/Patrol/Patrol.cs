@@ -15,6 +15,7 @@ public class Patrol : Monster
     public Vector3 direction;
     void Start()
     {
+        base.Start();
         monsterInfo.speedIncrease = 2.5f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         distance = rigid.transform.localScale.x * 2;
@@ -29,7 +30,6 @@ public class Patrol : Monster
 
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
     }
-
     public new MonsterState BehaviorTree()
     {
         if (monsterInfo.state == MonsterState.Dead)
@@ -83,6 +83,7 @@ public class Patrol : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
+            Invoke("Dead", 2.0f);
         }
         return true;
     }
@@ -117,13 +118,6 @@ public class Patrol : Monster
         rigid.MovePosition(nextDir);
     }
 
-    public override bool Event(string eventname)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public float angleRange = 30f;
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Wall")
@@ -136,10 +130,7 @@ public class Patrol : Monster
 
         if (collision.gameObject.tag == "Player")
         {
+            collision.gameObject.GetComponent<PlayerStat>().Damaged(30);
         }
-    }
-    public override void Dead()
-    {
-        Destroy(this.gameObject, 2.0f);
     }
 }

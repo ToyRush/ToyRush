@@ -5,29 +5,107 @@ using UnityEngine;
 public class Golem : Monster
 {
     static public int itemcount = 13;
-    public GameObject Bullet = null;
+    public GameObject SplashObj = null;
+
+    public bool bAttack;
+    public bool bAttacking;
+    public float attackTime;
+    public float attackDelay;
     // Start is called before the first frame update
+    protected void Awake()
+    {
+        base.Awake();
+        SplashObj = transform.GetChild(0).gameObject;
+    }
     void Start()
     {
+        base.Start();
+        bAttack = false;
+        bAttacking = false;
+        attackTime = 0;
         //move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
         monsterInfo.hp = 100.0f;
         monsterInfo.attack = 10;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 5.0f;
-        monsterInfo.attackDis = 2.0f;
+        monsterInfo.attackDis = 3.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 2.0f;
         monsterInfo.speedIncrease = 3.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.index = 0;
 
+        SplashObj.GetComponentInChildren<SplashAnimator>().attack = monsterInfo.attack;
     }
 
     // Update is called once per frame
 
-    public new MonsterState BehaviorTree()
+    public override MonsterState BehaviorTree()
     {
-        return base.BehaviorTree();
+        if (monsterInfo.state == MonsterState.Dead)
+            return monsterInfo.state;
+
+        if (Vector3.Distance(rigid.position, player.transform.position) <= monsterInfo.findDis)
+        {
+            monsterInfo.state = MonsterState.Run;
+            monsterInfo.targetPos = player.transform.position;
+            if (Vector3.Distance(rigid.position, player.transform.position) <= monsterInfo.attackDis )
+            {
+                monsterInfo.state = MonsterState.Attack;
+                attackTime += Time.deltaTime;
+                if (attackTime > attackDelay)
+                {
+                    attackTime = 0;
+                    bAttack = false;
+                    bAttacking = false;
+                }
+                if (bAttack == false && bAttacking == false)
+                {
+                    bAttacking = true;
+                    bAttack = true;
+                   
+                }
+                else if (bAttack == true && bAttacking == false)
+                {
+                    monsterInfo.state = MonsterState.warning;
+                }
+            }
+        }
+        else
+        {
+            if (monsterInfo.state == MonsterState.Attack)
+            {
+                monsterInfo.targetPos = rigid.position;
+                monsterInfo.state = MonsterState.Stop;
+            }
+
+            if (monsterInfo.state == MonsterState.Move)
+            {
+                if (Vector3.Distance(transform.position, monsterInfo.targetPos) <= 0.1f)
+                {
+                    rigid.velocity = Vector2.zero;
+                    monsterInfo.currentTime = 0;
+                    monsterInfo.state = MonsterState.Stop;
+                }
+            }
+        }
+        if (monsterInfo.state == MonsterState.Stop)
+        {
+            if (monsterInfo.currentTime >= monsterInfo.delayTime)
+            {
+                monsterInfo.currentTime = 0;
+                // move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
+                monsterInfo.state = MonsterState.Move;
+            }
+            else
+                monsterInfo.currentTime += Time.deltaTime;
+        }
+        if (monsterInfo.bMoveable == false)
+            monsterInfo.state = MonsterState.Stop;
+
+        if (animator != null)
+            animator.SetInteger("State", (int)monsterInfo.state);
+        return monsterInfo.state;
     }
     public override void Move()
     {
@@ -36,15 +114,9 @@ public class Golem : Monster
         Vector3 currentV = rigid.position;
         Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
         if (direction.x < 0)
-        {
             spriteRenderer.flipX = false;
-            weapon.GetComponent<SpriteRenderer>().flipX = true;
-        }
         else
-        {
             spriteRenderer.flipX = true;
-            weapon.GetComponent<SpriteRenderer>().flipX = false;
-        }
         Vector2 nextDir = currentV +
         (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
 
@@ -67,38 +139,36 @@ public class Golem : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Destroy(this.gameObject, 1.5f);
+            Invoke("Dead", 2.0f);
         }
         return true;
     }
     public override void Attack()
     {
-        if (monsterInfo.state != MonsterState.Attack || Bullet == null)
+        if (monsterInfo.state != MonsterState.Attack)
             return;
-        GameObject temp = Instantiate(Bullet);
+    }
+    public void Splash()
+    {
         Vector3 direction = (monsterInfo.targetPos - rigid.transform.position).normalized;
+        Vector3 pos = SplashObj.transform.localPosition;
         if (direction.x < 0)
         {
             spriteRenderer.flipX = false;
-            weapon.GetComponent<SpriteRenderer>().flipX = true;
+            pos.x = -2f;
         }
         else
         {
             spriteRenderer.flipX = true;
-            weapon.GetComponent<SpriteRenderer>().flipX = false;
+            pos.x = 2f;
         }
-        temp.transform.position = rigid.transform.position;
-        if (temp.GetComponent<MonsterBullet>() == null)
-            temp.AddComponent<MonsterBullet>();
-        temp.GetComponent<MonsterBullet>().FireBullet(direction, monsterInfo.attack);
+        SplashObj.transform.localPosition = pos;
+        SplashObj.GetComponent<GolemSplash>().bPlay = true;
+        //block1.GetComponent<Meteor>().bPlay = true;
+        //block2.GetComponent<Meteor>().bPlay = true; // 같이 딸려서 돌아다니네 ㄷㄷ  manager로 분리하자 위치, 공격력
     }
-
-    public override bool Event(string eventname)
+    public void AttackEnd()
     {
-        throw new System.NotImplementedException();
-    }
-    public override void Dead()
-    {
-
+        bAttacking = false;
     }
 }

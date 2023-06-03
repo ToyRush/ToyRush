@@ -10,6 +10,7 @@ public class Horse : Monster
 
     private void Start()
     {
+        base.Start();
         DeadTime = 0.0f;
         isDead = false;
         monsterInfo.speedIncrease = 15.0f;
@@ -45,12 +46,6 @@ public class Horse : Monster
     public void SetDead()
     {
         isDead = true;
-        //gameObject.AddComponent<Rigidbody2D>();
-        //gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        //gameObject.GetComponent<Rigidbody2D>().gravityScale = 0;
-        //gameObject.AddComponent<BoxCollider2D>();
-        //gameObject.GetComponent<BoxCollider2D>().enabled = false;
-        //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     public override void Move()
@@ -74,10 +69,7 @@ public class Horse : Monster
         rigid.MovePosition(nextDir);
     }
 
-    public override bool Event(string eventname)
-    {
-        throw new System.NotImplementedException();
-    }
+   
     public override void Dead()
     {
 
