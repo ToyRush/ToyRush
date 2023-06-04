@@ -11,8 +11,11 @@ public class Laser : MonoBehaviour
     protected float CurrentTime;
     public SpriteRenderer sprite;
 
+
+    public int attack;
     public bool bActive;
     public float multi;
+    public bool bHit;
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
@@ -21,6 +24,7 @@ public class Laser : MonoBehaviour
     {
         transform.localScale = new Vector2(1000 * multi, transform.localScale.y);
         bActive = false;
+        bHit = false;
     }
     public Vector2 PlayLaser()
     {
@@ -37,6 +41,7 @@ public class Laser : MonoBehaviour
             CurrentAngle = InitAngle;
             transform.rotation = new Quaternion(0,0,0,0);
             transform.localScale = new Vector2(1000 * multi, transform.localScale.y);
+            bHit = false;
             return point;
         }
 
@@ -52,6 +57,11 @@ public class Laser : MonoBehaviour
                     size = hit.distance;
                     hitPoint = hit;
                 }
+                if (bHit == false && hit.transform.tag == "Player")
+                {
+                    bHit = true;
+                    hit.transform.gameObject.GetComponent<PlayerStat>().Damaged(attack);
+                }    
             }
         }
 

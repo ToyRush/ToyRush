@@ -47,7 +47,17 @@ public class Golem : Monster
     {
         if (monsterInfo.state == MonsterState.Dead)
             return monsterInfo.state;
-
+        if (monsterInfo.state == MonsterState.Stun)
+        {
+            monsterInfo.currentTime += Time.deltaTime;
+            if (monsterInfo.currentTime >= monsterInfo.delayTime)
+            {
+                monsterInfo.currentTime = 0;
+                monsterInfo.state = MonsterState.Stop;
+            }
+            else
+                return monsterInfo.state;
+        }
         if (Vector3.Distance(rigid.position, player.transform.position) <= monsterInfo.findDis)
         {
             monsterInfo.state = MonsterState.Run;

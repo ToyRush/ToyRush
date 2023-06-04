@@ -25,7 +25,7 @@ public class Patrol : Monster
         distance = rigid.transform.localScale.x * 2;
         initVec = rigid.transform.position;
         monsterInfo.hp = 2.5f;
-        monsterInfo.attack = 3;
+        monsterInfo.attack = 2;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 4;
         monsterInfo.attackDis = 1.0f;
@@ -38,7 +38,17 @@ public class Patrol : Monster
     {
         if (monsterInfo.state == MonsterState.Dead)
             return monsterInfo.state;
-
+        if (monsterInfo.state == MonsterState.Stun)
+        {
+            monsterInfo.currentTime += Time.deltaTime;
+            if (monsterInfo.currentTime >= monsterInfo.delayTime)
+            {
+                monsterInfo.currentTime = 0;
+                monsterInfo.state = MonsterState.Stop;
+            }
+            else
+                return monsterInfo.state;
+        }
         if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.findDis)
         {
             monsterInfo.state = MonsterState.Move;
@@ -95,7 +105,7 @@ public class Patrol : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Invoke("Dead", 1.0f);
+            Dead();
         }
         return true;
     }
@@ -140,7 +150,7 @@ public class Patrol : Monster
         if (collision.gameObject.tag == "Player")
         {
             Damaged(1000);
-            collision.gameObject.GetComponent<PlayerStat>().Damaged(30);
+            collision.gameObject.GetComponent<PlayerStat>().Damaged(monsterInfo.attack);
         }
     }
 }

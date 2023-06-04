@@ -10,6 +10,7 @@ public class BossLaser : MonoBehaviour
     LaserCasting laserCasting;
 
     public float speed;
+    public int attack;
     public Vector3 initPos;
     private bool bPlaying;
     public bool bActive;
@@ -52,8 +53,9 @@ public class BossLaser : MonoBehaviour
                 transform.position = initPos;
                 transform.rotation = rotate;
                 bPlaying = true;
-                laser.speed = 0;
+                laser.speed = 0; // 일정 시간 정지 후 출발
                 laser.bActive = true;
+                laser.attack = attack;
                 laserCasting.PlayPartical();
                 laserEnd.PlayPartical();
                 laserStart.PlayPartical();

@@ -20,8 +20,8 @@ public class Boss : Monster
    new void  Start()
     {
         base.Start();
-        monsterInfo.hp = 20.0f;
-        monsterInfo.attack = 10;
+        monsterInfo.hp = 50.0f;
+        monsterInfo.attack = 2;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 100.0f;
         monsterInfo.attackDis = 100.0f;
@@ -31,6 +31,7 @@ public class Boss : Monster
         AttackCase = -1;
         bAttack = false;
         bAttacking = false;
+        Laser.GetComponent<BossLaser>().attack = monsterInfo.attack;
     }
 
     private new void FixedUpdate()

@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: whiteHole.Array.data[5]
       value: 
       objectReference: {fileID: 321678774}
+    - target: {fileID: 1190898669653282868, guid: 408926a8bd1ab764b84ccf449e88edf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 3878712076192979105, guid: 408926a8bd1ab764b84ccf449e88edf4,
         type: 3}
       propertyPath: blckHoleSpeed
@@ -203,6 +208,11 @@ PrefabInstance:
       propertyPath: bPlayBlackHole
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8569874496956174760, guid: 408926a8bd1ab764b84ccf449e88edf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8569874497474369050, guid: 408926a8bd1ab764b84ccf449e88edf4,
         type: 3}
       propertyPath: m_Radius
@@ -212,6 +222,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossBlackHole
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569874497474369052, guid: 408926a8bd1ab764b84ccf449e88edf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8569874497474369052, guid: 408926a8bd1ab764b84ccf449e88edf4,
         type: 3}
@@ -272,6 +287,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569874497574633289, guid: 408926a8bd1ab764b84ccf449e88edf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8569874497694072182, guid: 408926a8bd1ab764b84ccf449e88edf4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 408926a8bd1ab764b84ccf449e88edf4, type: 3}
@@ -1119,7 +1144,7 @@ GameObject:
   - component: {fileID: 1079914209}
   - component: {fileID: 1079914208}
   - component: {fileID: 1079914207}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Beam_collider_start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6066,7 +6091,7 @@ GameObject:
   - component: {fileID: 1146279972}
   - component: {fileID: 1146279971}
   - component: {fileID: 1146279970}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Beam_collider_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26125,7 +26150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1533309585}
   - component: {fileID: 1533309586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BossLaser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26162,6 +26187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 200
+  attack: 0
   initPos: {x: 0, y: 0, z: 0}
   bActive: 0
   bRight: 0
@@ -26512,6 +26538,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 587624875875114090, guid: 43492a6c90114c34f9dc618d3acc80ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 587624876315820241, guid: 43492a6c90114c34f9dc618d3acc80ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -26527,10 +26558,20 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 587624876315820242, guid: 43492a6c90114c34f9dc618d3acc80ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 6281528697316709867, guid: 43492a6c90114c34f9dc618d3acc80ab,
         type: 3}
       propertyPath: m_Name
       value: Laser_cast
+      objectReference: {fileID: 0}
+    - target: {fileID: 6281528697316709867, guid: 43492a6c90114c34f9dc618d3acc80ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6281528697316709867, guid: 43492a6c90114c34f9dc618d3acc80ab,
         type: 3}
@@ -26603,7 +26644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878429308}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26641,9 +26682,9 @@ GameObject:
   - component: {fileID: 1929097109}
   - component: {fileID: 1929097108}
   - component: {fileID: 1929097107}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Boss
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -26660,6 +26701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3bb6b434d17cdd4288ad78263734f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StunObj: {fileID: 0}
   capsuleCollider2D: {fileID: 0}
   rigid: {fileID: 0}
   monsterInfo:
@@ -26693,7 +26735,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.2}
@@ -26811,7 +26853,7 @@ GameObject:
   - component: {fileID: 2020511428}
   - component: {fileID: 2020511427}
   - component: {fileID: 2020511426}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26871,8 +26913,10 @@ MonoBehaviour:
   EndAngle: 120
   speed: 10
   sprite: {fileID: 0}
+  attack: 0
   bActive: 0
   multi: 0.025
+  bHit: 0
 --- !u!95 &2020511428
 Animator:
   serializedVersion: 4

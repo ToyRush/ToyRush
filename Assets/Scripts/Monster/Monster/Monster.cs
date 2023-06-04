@@ -10,6 +10,7 @@ public enum MonsterState
     Dead = 4,
     Run = 5,
     warning = 6,
+    Stun = 7,
 };
 
 [System.Serializable]
@@ -41,6 +42,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected SpriteRenderer spriteRenderer;
     protected Animator animator;
     protected GameObject weapon;
+    public GameObject StunObj;
 
     public CapsuleCollider2D capsuleCollider2D;
     public Rigidbody2D rigid;
@@ -94,7 +96,17 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     {
         if (monsterInfo.state == MonsterState.Dead)
             return monsterInfo.state;
-
+        if (monsterInfo.state == MonsterState.Stun)
+        {
+            monsterInfo.currentTime += Time.deltaTime;
+            if (monsterInfo.currentTime >= monsterInfo.delayTime)
+            {
+                monsterInfo.currentTime = 0;
+                monsterInfo.state = MonsterState.Stop;
+            }
+            else
+                return monsterInfo.state;
+        }
         if (Vector3.Distance(rigid.position, player.transform.position) <= monsterInfo.findDis)
         {
             monsterInfo.state = MonsterState.Move;
@@ -125,7 +137,6 @@ public abstract class Monster : MonoBehaviour , MonsterAction
             if (monsterInfo.currentTime >= monsterInfo.delayTime)
             {
                 monsterInfo.currentTime = 0;
-                // move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
                 monsterInfo.state = MonsterState.Move;
             }
             else
@@ -134,6 +145,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
         if (monsterInfo.bMoveable == false)
             monsterInfo.state = MonsterState.Stop;
 
+       
         if (animator != null)
         animator.SetInteger("State", (int)monsterInfo.state);
         return monsterInfo.state;
@@ -149,11 +161,15 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     {
         if (eventname == "Stun")
         {
-
+            StunObj.SetActive(true);
+            StunObj.GetComponent<MonsterStun>().PlayPartical();
+            StunObj.GetComponent<MonsterStun>().totalDuration = monsterInfo.delayTime;
+            monsterInfo.state = MonsterState.Stun;
+            monsterInfo.currentTime = 0;
         }
         if (eventname == "Slow")
         {
-            monsterInfo.speedDecrease = 50;
+            monsterInfo.speedDecrease = 80;
         }
         return false;
     }
