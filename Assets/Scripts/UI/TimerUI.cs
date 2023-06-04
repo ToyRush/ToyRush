@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerUI : MonoBehaviour
 {
     public float maxTime=0f;
-    private float[] remainTime = new float[] { 0, 0, 90, 90, 90, 90, 0};
+    private float[] remainTime = new float[] { 0, 0, 90, 90, 90, 90, 0, 0};
     bool isCount = false;
     [SerializeField]Text timerText;
     int min;
@@ -39,7 +39,7 @@ public class TimerUI : MonoBehaviour
         {
             case 0:
             case 1:
-            case 4:
+            case 6:
             case 7:
                 isCount = false;
                 break;

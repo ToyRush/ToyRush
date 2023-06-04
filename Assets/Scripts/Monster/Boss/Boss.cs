@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Boss : Monster
 {
+    public BossText bossText; // 성준
+
     public int AttackCase;
     public GameObject BlackHole;
     public GameObject Laser;
@@ -79,7 +81,7 @@ public class Boss : Monster
         {
             monsterInfo.state = MonsterState.Dead;
             Dead();
-            GameManager.instance.ClearBoss();
+            bossText.BossEndText(); // 성준
         }
         return true;
     }
