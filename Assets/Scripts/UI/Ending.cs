@@ -11,6 +11,7 @@ public class Ending : MonoBehaviour
     [SerializeField]float speed = 20f;
     bool isEnd = false;
     bool fadeEnd = false;
+    bool gameExit = false;
     [SerializeField]Sprite endingImg;
     [SerializeField] float timer = 0f;
     [SerializeField] float fadeTimer = 2f;
@@ -27,6 +28,11 @@ public class Ending : MonoBehaviour
             ImageEffect();
         else
             EndEffect();
+        if (Input.anyKeyDown && gameExit)
+        {
+            Application.Quit();
+            Debug.Log("Á¾·á");
+        }
     }
 
     void ImageEffect()
@@ -47,6 +53,9 @@ public class Ending : MonoBehaviour
             image.color = color;
         }
         if (timer <= 0)
+        {
             fadeEnd = true;
+            gameExit = true;
+        }
     }
 }
