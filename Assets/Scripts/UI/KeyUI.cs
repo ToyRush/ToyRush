@@ -10,6 +10,7 @@ public class KeyUI : MonoBehaviour
     private Slider slider;
     [SerializeField]
     private float maxTime;
+    [SerializeField] Image bgImage;
     private int stageKeyID=400;
 
     private void Start()
@@ -51,5 +52,22 @@ public class KeyUI : MonoBehaviour
             slider.value = slider.maxValue;
         }
         stageKeyID = GameManager.instance.GetStageKeyID();
+        SetKeyColor();
+    }
+
+    void SetKeyColor()
+    {
+        switch (stageKeyID)
+        {
+            case 400:
+                bgImage.color = Color.red;
+                break;
+            case 401:
+                bgImage.color = Color.green;
+                break;
+            default:
+                bgImage.color = Color.white;
+                break;
+        }
     }
 }

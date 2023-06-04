@@ -22,7 +22,7 @@ public class Boss : Monster
    new void  Start()
     {
         base.Start();
-        monsterInfo.hp = 50.0f;
+        monsterInfo.hp = 30.0f;
         monsterInfo.attack = 2;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 100.0f;
