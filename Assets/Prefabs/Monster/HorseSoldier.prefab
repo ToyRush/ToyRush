@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7247880180707840990}
   - component: {fileID: 1916970140086399599}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 7612979028819064198}
   - component: {fileID: 7612979028819064199}
   - component: {fileID: 7612979028819064195}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Horse
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 5378830202171820193}
   - component: {fileID: 292015906929409944}
   - component: {fileID: 7612979029195292172}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: HorseSoldier
   m_TagString: Monster
   m_Icon: {fileID: 0}

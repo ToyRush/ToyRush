@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2827493713503734103}
   - component: {fileID: 3867194251047220270}
   - component: {fileID: 5433781712907783728}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MonsterBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

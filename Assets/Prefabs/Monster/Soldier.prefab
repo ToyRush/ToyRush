@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6488507886406206586}
   - component: {fileID: 6488507886406206587}
   - component: {fileID: 6488507886406206584}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Soldier
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f14018ab56a9efb4abcfbdbc73bde590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider2D: {fileID: 0}
+  capsuleCollider2D: {fileID: 0}
   rigid: {fileID: 0}
   monsterInfo:
     hp: 0
@@ -187,7 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6702568712555655033}
   - component: {fileID: 3266409465791103350}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

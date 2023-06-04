@@ -13,7 +13,7 @@ public class PlayerShoot : MonoBehaviour
     float gunAngle;
     Vector3 mousePos;
     Direction direction;
-    int bulletID = 100;
+    int bulletID = 0;
     bool canShoot;
     bool isCoolDown = false;
     SpriteRenderer spr;

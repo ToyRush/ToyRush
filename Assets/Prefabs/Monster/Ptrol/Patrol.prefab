@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 7903378001114243269}
   - component: {fileID: 7903378001114243270}
   - component: {fileID: 7903378001114243273}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Patrol
   m_TagString: Monster
   m_Icon: {fileID: 0}

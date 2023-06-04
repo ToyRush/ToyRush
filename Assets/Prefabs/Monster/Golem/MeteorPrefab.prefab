@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6549403871736492567}
   - component: {fileID: 6549403871736492566}
   - component: {fileID: 6549403871736492565}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blockgollem_warning2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4881,7 +4881,7 @@ GameObject:
   - component: {fileID: 6549403872058183476}
   - component: {fileID: 6549403872058183475}
   - component: {fileID: 6549403872058183474}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blockgollem_warning (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9750,7 +9750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549403872138121918}
   - component: {fileID: 1965567586673810815}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blockgolem_warning_1s
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9801,7 +9801,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6549403872780959104}
   - component: {fileID: 3518468803413160838}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MeteorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9863,6 +9863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RenderAlignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 947349681280824475, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 947349681280824475, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
@@ -10026,6 +10031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4515265995674181637, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265995674181637, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -10116,6 +10126,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4515265996972813483, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265996972813483, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -10148,6 +10163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265997458063101, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4515265997458063101, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}

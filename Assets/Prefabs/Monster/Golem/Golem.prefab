@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6488507886406206586}
   - component: {fileID: 6488507886406206587}
   - component: {fileID: 6947634085114720157}
-  m_Layer: 3
+  m_Layer: 10
   m_Name: Golem
   m_TagString: Monster
   m_Icon: {fileID: 0}
@@ -177,8 +177,6 @@ MonoBehaviour:
     index: 0
   Position: []
   SplashObj: {fileID: 0}
-  block1: {fileID: 0}
-  block2: {fileID: 0}
   bAttack: 0
   bAttacking: 0
   attackTime: 0

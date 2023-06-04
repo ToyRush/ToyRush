@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8146157788832408440}
   - component: {fileID: 4965086420675794755}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GolemSplashPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 6709782849742335911}
   - component: {fileID: 3342541826036287032}
   - component: {fileID: 5480011528815508590}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: splash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4987,6 +4987,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Blockgollem_splash_floor
       objectReference: {fileID: 0}
+    - target: {fileID: 399309330173042103, guid: 160ffbb771fb0e447b162d0b299bed86,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 160ffbb771fb0e447b162d0b299bed86, type: 3}
 --- !u!4 &2734390879283244060 stripped
@@ -5014,4 +5019,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  attack: 0
   bPlay: 0
