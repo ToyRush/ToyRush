@@ -53,8 +53,6 @@ public class Meteor : MonoBehaviour
        RaycastHit2D[] hits  = Physics2D.CapsuleCastAll(transform.position, new Vector2(3.0f, 2.5f), 
            CapsuleDirection2D.Horizontal, 0 , new Vector2(0,0) ,0);
 
-
-
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].transform.tag == "Player")
@@ -63,7 +61,7 @@ public class Meteor : MonoBehaviour
                 bPlay = false;
                 Head1.Stop();
                 Head2.StopPartical();
-
+                print("Meteo");
                 gameObject.SetActive(false);
                 hits[i].transform.GetComponent<PlayerStat>().Damaged(attack);
             }
