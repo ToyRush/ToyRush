@@ -208,6 +208,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2734390879283244063, guid: 898539f512e437e4dbf9576c7ae35599,
+        type: 3}
+      propertyPath: m_TagString
+      value: Monster
+      objectReference: {fileID: 0}
     - target: {fileID: 6709782849742335911, guid: 898539f512e437e4dbf9576c7ae35599,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -222,6 +227,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7420377693338127094, guid: 898539f512e437e4dbf9576c7ae35599,
+        type: 3}
+      propertyPath: m_TagString
+      value: Monster
       objectReference: {fileID: 0}
     - target: {fileID: 8146157788832408440, guid: 898539f512e437e4dbf9576c7ae35599,
         type: 3}

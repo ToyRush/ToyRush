@@ -24,8 +24,8 @@ public class Patrol : Monster
         monsterInfo.speed *= monsterInfo.speedIncrease;
         distance = rigid.transform.localScale.x * 2;
         initVec = rigid.transform.position;
-        monsterInfo.hp = 4.0f;
-        monsterInfo.attack = 10;
+        monsterInfo.hp = 2.5f;
+        monsterInfo.attack = 1;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 4;
         monsterInfo.attackDis = 1.0f;

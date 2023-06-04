@@ -17,8 +17,8 @@ public class Soldier : Monster
         base.Start();
         if (this.transform.GetChild(0) != null)
             weapon = this.transform.GetChild(0).gameObject;
-        monsterInfo.hp = 7.0f;
-        monsterInfo.attack = 10;
+        monsterInfo.hp = 4.0f;
+        monsterInfo.attack = 1;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 10.0f;
         monsterInfo.attackDis = 5.0f;

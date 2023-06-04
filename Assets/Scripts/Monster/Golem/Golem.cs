@@ -28,8 +28,8 @@ public class Golem : Monster
         bAttacking = false;
         attackTime = 0;
         //move.targetPos = MonsterManager.Instance.GetNextPos(this.gameObject);
-        monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 10;
+        monsterInfo.hp = 6.0f;
+        monsterInfo.attack = 1;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 5.0f;
         monsterInfo.attackDis = 3.0f;
