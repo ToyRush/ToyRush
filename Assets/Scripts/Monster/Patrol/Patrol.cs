@@ -32,7 +32,6 @@ public class Patrol : Monster
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 4.0f;
 
-        gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
     }
     public override MonsterState BehaviorTree()
     {

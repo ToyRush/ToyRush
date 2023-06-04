@@ -183,6 +183,7 @@ public class Golem : Monster
             GameObject metor = MeteorManager.Instance.GetUnAtiveObject();
             {
                 metor.SetActive(true);
+                metor.GetComponent<Meteor>().attack = monsterInfo.attack;
                 metor.transform.position = this.transform.position + new Vector3(Random.Range(0,3), Random.Range(0, 3), 0);
                 metor.GetComponent<Meteor>().bPlay = true;
             }
