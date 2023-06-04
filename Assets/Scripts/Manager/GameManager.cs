@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     static public GameManager instance =null;
-    public GameObject menuUI;
     public PoolManager poolManager;
     public WeaponManager weaponManager;
     PlayerStat playerStat;
@@ -53,8 +52,6 @@ public class GameManager : MonoBehaviour
         if (isGameOver)
             if (Input.anyKeyDown)
                 ReStart();
-        if (Input.GetKeyDown(KeyCode.Escape))
-            ClickMenuUI();
     }
     // 스테이지 정보 관련 함수
     public void NextStage(int _stageID) // 다음 스테이지 전환 시, key 정보 전달한다.
@@ -161,30 +158,5 @@ public class GameManager : MonoBehaviour
         SoundManager.Instance.CheckStage(7);
         SceneManager.LoadScene(7);
         //GameManager.instance.ClearBoss();
-    }
-
-    // 메뉴에서 게임 이어할지 나갈지 선택하는 함수들
-
-    public void ClickMenuUI()
-    {
-        if (menuUI.activeSelf)
-        {
-            Time.timeScale = 1;
-            menuUI.SetActive(false);
-            return;
-        }
-        Time.timeScale = 0;
-        menuUI.SetActive(true);
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        menuUI.SetActive(false);
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
     }
 }

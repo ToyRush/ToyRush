@@ -35,6 +35,7 @@ using UnityEngine;
         {
             Monster monster = collision.gameObject.GetComponent<Monster>();
             monster.Damaged((int)damage);
+            gameObject.SetActive(false);
         }
         else
             gameObject.SetActive(false);
