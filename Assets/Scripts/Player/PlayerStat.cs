@@ -42,9 +42,6 @@ public class PlayerStat : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-            Damaged(1);
-
         if (shieldCnt > 0)
             OnShieldEffect();
         else
@@ -53,6 +50,7 @@ public class PlayerStat : MonoBehaviour
     public void Damaged(int damage=1)
     {
         audioSource.PlayOneShot(hitSound,1f);
+        Debug.Log(currentHealth);
         if (!isInvincible) // 무적이 아닐때만 호출
         {
             audioSource.Play();
@@ -64,14 +62,14 @@ public class PlayerStat : MonoBehaviour
             currentHealth -= damage;
             GameManager.instance.SetHealth(currentHealth);
             cameraManager.OnShakeCamera();
-            hpUI.ShowHp(currentHealth);
-            if (currentHealth ==0)
+            if (currentHealth <=0)
             {
                 playerMove.Dead();
                 dashUIObject.SetActive(false);
                 isInvincible = true;
                 return;
             }
+            hpUI.ShowHp(currentHealth);
             StartCoroutine("Invincible");
         }
     }
