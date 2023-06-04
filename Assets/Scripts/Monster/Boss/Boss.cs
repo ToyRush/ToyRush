@@ -12,7 +12,8 @@ public class Boss : Monster
 
     public bool bAttack;
     public bool bAttacking;
-
+    public float currentTime;
+    public float blockTime;
     private new  void Awake()
     {
         base.Awake();
@@ -22,14 +23,15 @@ public class Boss : Monster
    new void  Start()
     {
         base.Start();
-        monsterInfo.hp = 30.0f;
+        monsterInfo.hp = 60.0f;
         monsterInfo.attack = 2;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 100.0f;
         monsterInfo.attackDis = 100.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 5.0f;
-       // Lazer = this.transform.GetComponentInChildren<GameObject>();
+        // Lazer = this.transform.GetComponentInChildren<GameObject>();
+        blockTime = 0.2f;
         AttackCase = -1;
         bAttack = false;
         bAttacking = false;
@@ -50,11 +52,12 @@ public class Boss : Monster
             return ;
         if (bAttack == true)
             Attack();
+        if (Input.GetKeyDown(KeyCode.L))
+            Damaged(100);
     }
     // Update is called once per frame
     public override MonsterState BehaviorTree()
     {
-
         if (bAttack == false && monsterInfo.currentTime > monsterInfo.delayTime)
         {
             bAttack = true;
@@ -77,7 +80,7 @@ public class Boss : Monster
             return false;
 
         monsterInfo.hp -= attack;
-        if (monsterInfo.hp < 0.0f)
+        if (monsterInfo.hp < 0.1f)
         {
             monsterInfo.state = MonsterState.Dead;
             hitEffect.GetComponent<MonsterHit>().PlayPartical();
@@ -115,6 +118,16 @@ public class Boss : Monster
         }
         else
         {
+            if (AttackCase == 0)
+            {
+                currentTime += Time.fixedDeltaTime;
+                if (currentTime > blockTime)
+                {
+                    currentTime = 0;
+
+                    BossMeteorManager.Instance.ResponMeteor();
+                }
+            }
             if (AttackCase == 1)
             {
                 if (Laser.GetComponent<BossLaser>().bActive == false)

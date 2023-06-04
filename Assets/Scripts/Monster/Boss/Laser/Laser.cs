@@ -57,17 +57,18 @@ public class Laser : MonoBehaviour
                     size = hit.distance;
                     hitPoint = hit;
                 }
-                if (bHit == false && hit.transform.tag == "Player")
-                {
-                    bHit = true;
-                    hit.transform.gameObject.GetComponent<PlayerStat>().Damaged(attack);
-                }    
+               
             }
         }
 
         if (hitPoint != null)
         {
             point = hitPoint.Value.point;
+            if (bHit == false && hitPoint.Value.transform.tag == "Player")
+            {
+                bHit = true;
+                hitPoint.Value.transform.gameObject.GetComponent<PlayerStat>().Damaged(attack);
+            }
             //Vector2 temp = transform.position;
             //size = Vector2.Distance(temp , point);
         }
