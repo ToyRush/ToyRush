@@ -20,11 +20,10 @@ public class Patrol : Monster
     public void Reset()
     {
         base.Start();
-        monsterInfo.speedIncrease = 2.5f;
-        monsterInfo.speed *= monsterInfo.speedIncrease;
+        monsterInfo.speed = 3;
         distance = rigid.transform.localScale.x * 2;
         initVec = rigid.transform.position;
-        monsterInfo.hp = 2.5f;
+        monsterInfo.hp = 7;
         monsterInfo.attack = 2;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 4;
@@ -52,7 +51,7 @@ public class Patrol : Monster
         {
             monsterInfo.state = MonsterState.Move;
             monsterInfo.targetPos = player.transform.position;
-            monsterInfo.speedDecrease = -0.5f;
+            monsterInfo.speedDecrease = -50.0f;
             if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.attackDis)
             {
                 monsterInfo.state = MonsterState.Attack;
@@ -104,7 +103,9 @@ public class Patrol : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Dead();
+            hitEffect.GetComponent<MonsterHit>().PlayPartical();
+            spriteRenderer.enabled = false;
+            Invoke("Dead", 1.5f);
         }
         return true;
     }
@@ -148,7 +149,6 @@ public class Patrol : Monster
 
         if (collision.gameObject.tag == "Player")
         {
-            Damaged(1000);
             collision.gameObject.GetComponent<PlayerStat>().Damaged(monsterInfo.attack);
         }
     }

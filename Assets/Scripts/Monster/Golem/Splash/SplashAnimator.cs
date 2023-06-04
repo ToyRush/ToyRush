@@ -40,11 +40,14 @@ public class SplashAnimator : MonoBehaviour
         bPlay = false;
         animator.SetBool("bAttack", false);
         animator.enabled = false;
+        bAttackable = false;
+            
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (bAttackable && collision.tag == "Player")
         {
+            print("Splash");
             bAttackable = false;
             collision.gameObject.transform.GetComponent<PlayerStat>().Damaged(attack);
         }

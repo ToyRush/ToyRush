@@ -152,7 +152,9 @@ public class Golem : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Invoke("Dead", 2.0f);
+            hitEffect.GetComponent<MonsterHit>().PlayPartical();
+            spriteRenderer.enabled = false;
+            Invoke("Dead", 1.5f);
         }
         return true;
     }
@@ -184,8 +186,8 @@ public class Golem : Monster
             {
                 metor.SetActive(true);
                 metor.GetComponent<Meteor>().attack = monsterInfo.attack;
-                metor.transform.position = this.transform.position + new Vector3(Random.Range(0,3), Random.Range(0, 3), 0);
                 metor.GetComponent<Meteor>().bPlay = true;
+                metor.transform.position = this.transform.position + new Vector3(Random.Range(-3,3), Random.Range(-3, 3), 0);
             }
         }
     }

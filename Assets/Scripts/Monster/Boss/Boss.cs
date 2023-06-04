@@ -80,8 +80,9 @@ public class Boss : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Dead();
-            bossText.BossEndText(); // 성준
+            hitEffect.GetComponent<MonsterHit>().PlayPartical();
+            spriteRenderer.enabled = false;
+            Invoke("Dead", 2.0f);
         }
         return true;
     }
@@ -142,6 +143,8 @@ public class Boss : Monster
 
     public override void Dead()
     {
-        Destroy(this.gameObject, 0.0f);
+        hitEffect.GetComponent<MonsterHit>().StopPartical();
+        this.gameObject.SetActive(false);
+        bossText.BossEndText(); // 성준
     }
 }

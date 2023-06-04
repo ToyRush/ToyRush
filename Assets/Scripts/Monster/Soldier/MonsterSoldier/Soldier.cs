@@ -73,7 +73,9 @@ public class Soldier : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Invoke("Dead", 2.0f);
+            hitEffect.GetComponent<MonsterHit>().PlayPartical();
+            spriteRenderer.enabled = false;
+            Invoke("Dead", 1.5f);
         }
         return true;
     }

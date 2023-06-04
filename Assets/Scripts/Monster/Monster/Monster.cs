@@ -43,6 +43,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected Animator animator;
     protected GameObject weapon;
     public GameObject StunObj;
+    public GameObject hitEffect;
 
     public CapsuleCollider2D capsuleCollider2D;
     public Rigidbody2D rigid;
@@ -155,6 +156,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     public abstract void Move();
     public virtual void Dead()
     {
+        hitEffect.GetComponent<MonsterHit>().StopPartical();
         this.gameObject.SetActive(false);
     }
     public bool Event(string eventname)
