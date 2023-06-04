@@ -127734,6 +127734,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2929141691962341639, guid: 3bbf9066539f70c4ba758bc9c189389f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3559351204900457946, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_RootOrder
@@ -127793,6 +127798,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Scene_Transition
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030415821283886792, guid: 3bbf9066539f70c4ba758bc9c189389f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bbf9066539f70c4ba758bc9c189389f, type: 3}
