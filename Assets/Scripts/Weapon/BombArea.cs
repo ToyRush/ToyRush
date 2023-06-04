@@ -13,6 +13,10 @@ public class BombArea : MonoBehaviour
             Monster monster = collision.gameObject.GetComponent<Monster>();
             monster.Damaged(damage);
             monster.Event("Stun");
+        }else if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerStat playerStat = collision.gameObject.GetComponent<PlayerStat>();
+            playerStat.Damaged(damage-1);
         }
     }
 }

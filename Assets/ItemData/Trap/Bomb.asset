@@ -16,6 +16,6 @@ MonoBehaviour:
   itemIcon: {fileID: -780053892, guid: 0c51a81b2db1f334fade4fef3eb26b4a, type: 3}
   itemID: 200
   ItemName: "\uD3ED\uD0C4"
-  itemCnt: 1
+  itemCnt: 3
   figure: 0
   consumerType: 0
