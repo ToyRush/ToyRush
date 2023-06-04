@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 947349681280824474, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
       propertyPath: m_SortingOrder
-      value: -5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 947349681280824474, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
@@ -209,6 +209,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.radius.value
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 947349681280824477, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 947349681280824477, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
@@ -304,6 +309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265995674181636, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4515265995674181637, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
