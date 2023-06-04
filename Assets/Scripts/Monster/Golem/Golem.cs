@@ -19,6 +19,10 @@ public class Golem : Monster
     }
     void Start()
     {
+        Reset();
+    }
+    public void Reset()
+    {
         base.Start();
         bAttack = false;
         bAttacking = false;
@@ -37,7 +41,6 @@ public class Golem : Monster
 
         SplashObj.GetComponentInChildren<SplashAnimator>().attack = monsterInfo.attack;
     }
-
     // Update is called once per frame
 
     public override MonsterState BehaviorTree()
@@ -164,8 +167,16 @@ public class Golem : Monster
         }
         SplashObj.transform.localPosition = pos;
         SplashObj.GetComponent<GolemSplash>().bPlay = true;
-        //block1.GetComponent<Meteor>().bPlay = true;
-        //block2.GetComponent<Meteor>().bPlay = true; // 같이 딸려서 돌아다니네 ㄷㄷ  manager로 분리하자 위치, 공격력
+
+        for (int i = 0; i < 2; i++)
+        {
+            GameObject metor = MeteorManager.Instance.GetUnAtiveObject();
+            {
+                metor.SetActive(true);
+                metor.transform.position = this.transform.position + new Vector3(Random.Range(0,3), Random.Range(0, 3), 0);
+                metor.GetComponent<Meteor>().bPlay = true;
+            }
+        }
     }
     public void AttackEnd()
     {

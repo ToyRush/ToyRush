@@ -17,7 +17,7 @@ public class SoldierManager : MonsterManager
     public GameObject solider;
     public List<Vector3> responPos;
     public int responCount = 0;
-    public void ResponSoliders()
+    public override void ResponMonsters()
     {
         int positionIndex = 0;
         for (int i = 0; i < Instance.ObjectCount && responCount > 0; i++)

@@ -26,7 +26,7 @@ public struct MonsterInfo
     // move
     public float speed;
     public float speedIncrease;
-    public float speedDecrease;
+    public float speedDecrease; // 0~ 100
 
     public Vector3 targetPos;
     public Vector3 direction;
@@ -66,6 +66,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
         monsterInfo.speed = 1.0f;
         if (rigid != null)
             monsterInfo.targetPos = rigid.position;
+        monsterInfo.speedDecrease = 0;
     }
     protected void FixedUpdate()
     {
@@ -152,7 +153,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
         }
         if (eventname == "Slow")
         {
-
+            monsterInfo.speedDecrease = 50;
         }
         return false;
     }

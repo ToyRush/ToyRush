@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-
+using UnityEngine.Rendering.Universal;
 // 스폰 함수 구현
 // 기절 논의
 //  
@@ -15,22 +15,26 @@ public class Patrol : Monster
     public Vector3 direction;
     void Start()
     {
+        Reset();
+    }
+    public void Reset()
+    {
         base.Start();
         monsterInfo.speedIncrease = 2.5f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         distance = rigid.transform.localScale.x * 2;
         initVec = rigid.transform.position;
-        monsterInfo.hp = 100.0f;
+        monsterInfo.hp = 4.0f;
         monsterInfo.attack = 10;
         monsterInfo.state = MonsterState.Stop;
-        monsterInfo.findDis = 10;
+        monsterInfo.findDis = 4;
         monsterInfo.attackDis = 1.0f;
         monsterInfo.currentTime = 0.0f;
-        monsterInfo.delayTime = 2.0f;
+        monsterInfo.delayTime = 4.0f;
 
         gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.red;
     }
-    public new MonsterState BehaviorTree()
+    public override MonsterState BehaviorTree()
     {
         if (monsterInfo.state == MonsterState.Dead)
             return monsterInfo.state;
@@ -39,12 +43,12 @@ public class Patrol : Monster
         {
             monsterInfo.state = MonsterState.Move;
             monsterInfo.targetPos = player.transform.position;
-            monsterInfo.speedDecrease = -10.0f;
+            monsterInfo.speedDecrease = -0.5f;
             if (Vector3.Distance(this.rigid.position, player.transform.position) <= monsterInfo.attackDis)
             {
                 monsterInfo.state = MonsterState.Attack;
+                Attack();
             }
-            animator.SetInteger("State", (int)monsterInfo.state);
         }
         else
         {
@@ -60,17 +64,25 @@ public class Patrol : Monster
                 {
                     rigid.velocity = Vector2.zero;
                     monsterInfo.state = MonsterState.Stop;
-                    animator.SetInteger("State", (int)monsterInfo.state);
+                    gameObject.transform.GetChild(0).GetComponent<Light2D>().pointLightOuterRadius = 4;
+                    gameObject.transform.GetChild(0).GetComponent<CircleCollider2D>().radius = 1.3f;
+                    gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
+                    monsterInfo.findDis = 4;
                 }
             }
             else if (monsterInfo.currentTime > monsterInfo.delayTime)
             {
                 monsterInfo.currentTime = 0;
                 monsterInfo.state = MonsterState.Move;
-                animator.SetInteger("State", (int)monsterInfo.state);
-
+                gameObject.transform.GetChild(0).GetComponent<Light2D>().pointLightOuterRadius = 2;
+                gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.transform.GetChild(0).GetComponent<CircleCollider2D>().radius = 0.65f;
+                monsterInfo.findDis = 2;
             }
+            else
+                monsterInfo.currentTime += Time.fixedDeltaTime;
         }
+        animator.SetInteger("State", (int)monsterInfo.state);
         return monsterInfo.state;
     }
 
@@ -83,17 +95,14 @@ public class Patrol : Monster
         if (monsterInfo.hp < 0.0f)
         {
             monsterInfo.state = MonsterState.Dead;
-            Invoke("Dead", 2.0f);
+            Invoke("Dead", 1.0f);
         }
         return true;
     }
 
     public override void Attack()
     {
-        //if (player.GetComponent<MonsterPlayer>() != null)
-        //    player.GetComponent<MonsterPlayer>().Damaged(monsterInfo.attack);
-        //monsterInfo.state = MonsterState.Dead;
-        //animator.SetInteger("State", (int)monsterInfo.state);
+        return;
     }
 
     public override void Move()
@@ -104,7 +113,7 @@ public class Patrol : Monster
         Vector3 currentV = rigid.position;
         direction = (monsterInfo.targetPos - currentV).normalized;
         Vector2 nextDir = currentV +
-            (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease));
+            (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
         if (direction.x < 0)
             spriteRenderer.flipX = false;
         else
@@ -124,12 +133,13 @@ public class Patrol : Monster
         {
             Vector3 currentV = rigid.position;
             Vector2 nextDir = currentV +
-                (direction * -1 * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease));
+                (direction * -1 * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
             monsterInfo.targetPos = nextDir;
         }
 
         if (collision.gameObject.tag == "Player")
         {
+            Damaged(1000);
             collision.gameObject.GetComponent<PlayerStat>().Damaged(30);
         }
     }

@@ -57,7 +57,7 @@ public class Blackhole : MonoBehaviour
         if (collision.tag == "Player" && isPlaying)
         {
             Vector3 dir = (this.transform.position - collision.transform.position).normalized * blckHoleSpeed;
-            collision.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
+            collision.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force); // add force라 이상현상이 생김 (벽에  갖히거나  날라 가는 등)
 
         }
     }
@@ -67,7 +67,7 @@ public class Blackhole : MonoBehaviour
         if (collision.tag == "Player" && isPlaying)
         {
             Vector3 dir = (this.transform.position - collision.transform.position).normalized * blckHoleSpeed;
-            collision.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force);
+            collision.GetComponent<Rigidbody2D>().AddForce(dir, ForceMode2D.Force); // add force라 이상현상이 생김
         }
     }
 }

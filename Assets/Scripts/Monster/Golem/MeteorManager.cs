@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class MeteorManager : MonsterManager
 {
-    // Start is called before the first frame update
-    void Start()
+    private static MeteorManager instance = null;
+    public static MeteorManager Instance
     {
-        
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<MeteorManager>();
+            return instance;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void ResponMeteor(Vector3 pos)
     {
-        
+        for (int i = 0; i < Instance.ObjectCount; i++)
+        {
+            if (Instance.Objects[i].activeSelf == false)
+            {
+                Instance.Objects[i].SetActive(true);
+                Instance.Objects[i].GetComponent<Meteor>().PlayPartical();
+                Instance.Objects[i].transform.position = pos;
+                break;
+            }
+        }
     }
 }

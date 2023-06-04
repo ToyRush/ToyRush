@@ -7,7 +7,7 @@ public class MeteorWarning : MonoBehaviour
     public ParticleSystem Head1;
     public ParticleSystem Head2;
 
-
+    public int attack;
     public bool bPlay;
     public bool isPlaying;
     // public bool castingEnd;

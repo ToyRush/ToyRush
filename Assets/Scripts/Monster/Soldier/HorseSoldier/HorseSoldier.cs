@@ -6,38 +6,31 @@ public class HorseSoldier : Monster
 {
     static public int itemcount = 10;
     public GameObject Bullet = null;
-    void Start()
+   public  void Start()
+    {
+        Reset();
+    }
+
+    public void Reset()
     {
         base.Start();
         if (this.transform.GetChild(0) != null)
             weapon = this.transform.GetChild(0).gameObject;
-        monsterInfo.speedIncrease = 5.0f;
-        monsterInfo.speed *= monsterInfo.speedIncrease;
-        monsterInfo.hp = 100.0f;
-        monsterInfo.attack = 5;
+        monsterInfo.hp = 10.0f;
+        monsterInfo.attack = 10;
         monsterInfo.state = MonsterState.Stop;
         monsterInfo.findDis = 10.0f;
-        monsterInfo.attackDis = 10.0f;
+        monsterInfo.attackDis = 5.0f;
         monsterInfo.currentTime = 0.0f;
         monsterInfo.delayTime = 2.0f;
-    }
-
-    protected new void  FixedUpdate()
-    {
-        base.FixedUpdate();
+        monsterInfo.speedIncrease = 5.0f;
+        monsterInfo.speed *= monsterInfo.speedIncrease;
+        monsterInfo.index = 0;
     }
 
     public new MonsterState BehaviorTree()
     {
         return base.BehaviorTree();
-    }
-    public new void Update()
-    {
-        base.Update();
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            ChangeMonster();
-        }
     }
 
     public override bool Damaged(int attack)
@@ -58,7 +51,7 @@ public class HorseSoldier : Monster
     {
         if (monsterInfo.state != MonsterState.Attack || Bullet == null)
             return;
-        GameObject bullet = Instantiate(Bullet);
+        GameObject bullet = MonsterBulletManager.Instance.GetUnAtiveObject();
         Vector3 direction = (monsterInfo.targetPos - rigid.transform.position).normalized;
         Vector3 pos = rigid.transform.position;
         pos.y += 0.05f;
@@ -74,6 +67,7 @@ public class HorseSoldier : Monster
             weapon.GetComponent<SpriteRenderer>().flipX = false;
             pos.x += 0.65f;
         }
+        bullet.SetActive(true);
         bullet.transform.position = pos;
         if (bullet.GetComponent<MonsterBullet>() == null)
             bullet.AddComponent<MonsterBullet>();
@@ -117,5 +111,6 @@ public class HorseSoldier : Monster
             monsterInfo.targetPos = Position[monsterInfo.index];
         }
         rigid.MovePosition(nextDir);
+
     }
 }

@@ -42,21 +42,37 @@ public class Meteor : MonoBehaviour
         Head1.Play();
         Head2.PlayPartical();
     }
-   
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, new Vector2(3.0f, 2.5f));
+    }
     public void StopPartical()
     {
-        RaycastHit2D[] hits = Physics2D.CapsuleCastAll(transform.position, new Vector2(5.07f, 2.78f), CapsuleDirection2D.Horizontal, 0, new Vector2(0,0),1);
+        //        Collider2D[] hits = Physics2D.OverlapCapsuleAll(transform.position, new Vector2(3.0f, 2.5f), CapsuleDirection2D.Horizontal, 0);
+       RaycastHit2D[] hits  = Physics2D.CapsuleCastAll(transform.position, new Vector2(3.0f, 2.5f), 
+           CapsuleDirection2D.Horizontal, 0 , new Vector2(0,0) ,0);
 
-        foreach (RaycastHit2D hit in hits)
+
+
+        for (int i = 0; i < hits.Length; i++)
         {
-            if (hit && hit.transform.name != "Player")
+            if (hits[i].transform.tag == "Player")
             {
-                hit.transform.GetComponent<PlayerStat>().Damaged(attack);
+                isPlaying = false;
+                bPlay = false;
+                Head1.Stop();
+                Head2.StopPartical();
+
+                gameObject.SetActive(false);
+                hits[i].transform.GetComponent<PlayerStat>().Damaged(attack);
             }
         }
         isPlaying = false;
         bPlay = false;
         Head1.Stop();
         Head2.StopPartical();
+
+        gameObject.SetActive(false);
     }
 }

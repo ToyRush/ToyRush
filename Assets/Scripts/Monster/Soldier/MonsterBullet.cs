@@ -52,8 +52,8 @@ public class MonsterBullet : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerStat>().Damaged((int)attack);
             Dead();
+            collision.gameObject.GetComponent<PlayerStat>().Damaged((int)attack);
         }
     }
     public virtual void Dead()
