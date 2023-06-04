@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     // 스테이지 정보
     private int stageID=1;
-    private int[] stageKeyCnt = new int[] {1, 1, 10, 10, 1,10,1};
+    private int[] stageKeyCnt = new int[] {1, 1, 5, 5, 1,5,1};
     private int[] stageKeyID= new int[] {0,0,400,401,0,402,0};
     bool isGameOver = false;
     

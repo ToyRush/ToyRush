@@ -20408,7 +20408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05637366, g: 0.066037714, b: 0, a: 1}
+  m_Color: {r: 0.06992232, g: 0.084905684, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -22402,7 +22402,7 @@ PrefabInstance:
     - target: {fileID: 2929141691962341639, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3559351204900457946, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
@@ -22482,7 +22482,7 @@ PrefabInstance:
     - target: {fileID: 8030415821283886792, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8090837530784198694, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
@@ -24035,6 +24035,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1254849652}
   maxTime: 10
+  bgImage: {fileID: 1578526706}
 --- !u!114 &1254849650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24878,7 +24879,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6817a7b52a615694585b05a29b54f5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuUI: {fileID: 0}
   poolManager: {fileID: 1000355218}
   weaponManager: {fileID: 1284115925}
   uiObjects: {fileID: 1855825016}
