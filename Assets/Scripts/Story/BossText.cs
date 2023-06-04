@@ -64,6 +64,7 @@ public class BossText : MonoBehaviour
 
     public void BossEndText()
     {
+        bossTextUI.SetActive(true);
         talkBoss = true;
         StartCoroutine("EndTypingText");
     }
@@ -74,6 +75,7 @@ public class BossText : MonoBehaviour
         {
             talkBoss = false;
             bossTextUI.SetActive(false);
+            GameManager.instance.ClearBoss();
             yield break;
         }
         storyText.text = "";
