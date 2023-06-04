@@ -43,7 +43,7 @@ PrefabInstance:
     - target: {fileID: 3714584604092663152, guid: 3da2a446c6fddd54d9a4aa02a22da676,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3714584604092663152, guid: 3da2a446c6fddd54d9a4aa02a22da676,
         type: 3}
@@ -198,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 3714584604092663152, guid: 3da2a446c6fddd54d9a4aa02a22da676,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3714584604092663152, guid: 3da2a446c6fddd54d9a4aa02a22da676,
         type: 3}
