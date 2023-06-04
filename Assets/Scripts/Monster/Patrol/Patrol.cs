@@ -152,4 +152,10 @@ public class Patrol : Monster
             collision.gameObject.GetComponent<PlayerStat>().Damaged(monsterInfo.attack);
         }
     }
+
+    public override void Dead()
+    {
+        hitEffect.GetComponent<MonsterHit>().StopPartical();
+        this.gameObject.SetActive(false);
+    }
 }

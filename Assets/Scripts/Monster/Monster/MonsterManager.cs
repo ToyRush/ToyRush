@@ -6,8 +6,8 @@ public class MonsterManager : MonoBehaviour
 {
     public List<GameObject> Objects;
     public int ObjectCount;
-   
-    private void Awake()
+
+    protected void Start()
     {
         ObjectCount = transform.childCount;
         FindObjects();
@@ -17,8 +17,7 @@ public class MonsterManager : MonoBehaviour
         for (int i = 0; i < ObjectCount; i++)
             Objects.Add(transform.GetChild(i).gameObject);
     }
-
-    public GameObject GetUnAtiveObject()
+    public virtual GameObject GetUnAtiveObject()
     {
         for (int i = 0; i <ObjectCount; i++)
         {
