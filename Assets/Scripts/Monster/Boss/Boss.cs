@@ -144,7 +144,7 @@ public class Boss : Monster
     public override void Dead()
     {
         hitEffect.GetComponent<MonsterHit>().StopPartical();
-        this.gameObject.SetActive(false);
         bossText.BossEndText(); // º∫¡ÿ
+        this.gameObject.SetActive(false);
     }
 }

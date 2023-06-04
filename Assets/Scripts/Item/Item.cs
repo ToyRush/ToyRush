@@ -9,7 +9,8 @@ public class Item : MonoBehaviour
     private void Awake()
     {
         spr = GetComponent<SpriteRenderer>();
-        spr.sprite = itemData.itemIcon;
+        if (itemData != null)
+            spr.sprite = itemData.itemIcon;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

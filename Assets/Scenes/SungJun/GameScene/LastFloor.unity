@@ -530,7 +530,7 @@ PrefabInstance:
     - target: {fileID: 3559351205203201919, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8030415821283886792, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
@@ -17049,6 +17049,11 @@ PrefabInstance:
       propertyPath: bossText
       value: 
       objectReference: {fileID: 242492406}
+    - target: {fileID: 6147824788748781306, guid: 2ab5652c978dbbf479233760753394ca,
+        type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 6147824789513693546}
     - target: {fileID: 6147824788748781307, guid: 2ab5652c978dbbf479233760753394ca,
         type: 3}
       propertyPath: m_Name
@@ -17111,3 +17116,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ab5652c978dbbf479233760753394ca, type: 3}
+--- !u!1 &6147824789513693546 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4684248786808293356, guid: 2ab5652c978dbbf479233760753394ca,
+    type: 3}
+  m_PrefabInstance: {fileID: 6147824789513693545}
+  m_PrefabAsset: {fileID: 0}

@@ -14,6 +14,7 @@ public class MonsterKeyManager : MonsterManager
             return instance;
         }
     }
+
     public List<ItemData> KeyData;
     public List<Color> KeyColor;
     private void Start()
@@ -32,10 +33,13 @@ public class MonsterKeyManager : MonsterManager
                 result =  Objects[i].gameObject;
         }
         result.gameObject.SetActive(true);
-        int index = Random.Range(0, 2);
+        int index = Random.Range(0, 30);
+        index /= 10;
         if (index > 3)
             index = 0;
+
         result.GetComponent<SpriteRenderer>().color = KeyColor[index];
+        result.GetComponent<SpriteRenderer>().sprite = KeyData[index].itemIcon;
         result.GetComponent<Item>().itemData = KeyData[index];
         return result;
     }
