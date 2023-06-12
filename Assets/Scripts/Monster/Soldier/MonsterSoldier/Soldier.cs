@@ -63,6 +63,15 @@ public class Soldier : Monster
         }
         rigid.MovePosition(nextDir);
     }
+    private void OnDrawGizmos()
+    {
+        for(int i = 1; i < Position.Count; i++)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+            Position[i -1 ], Position[i]);
+        }
+    }
 
     public override bool Damaged(int attack)
     {
