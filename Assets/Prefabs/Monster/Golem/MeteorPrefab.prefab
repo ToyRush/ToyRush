@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6549403871736492564}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 1.8
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -4911,7 +4911,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6549403872058183473}
   serializedVersion: 8
-  lengthInSec: 1
+  lengthInSec: 1.8
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -10097,6 +10097,11 @@ PrefabInstance:
     - target: {fileID: 4515265995674181639, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
       propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265995674181639, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: lengthInSec
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4515265995674181639, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
@@ -10112,7 +10117,12 @@ PrefabInstance:
     - target: {fileID: 4515265995674181639, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}
       propertyPath: startDelay.scalar
-      value: 1
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4515265995674181639, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 4515265996972813482, guid: 48bb19929c81b1f41b63ec8f3b8ac168,
         type: 3}

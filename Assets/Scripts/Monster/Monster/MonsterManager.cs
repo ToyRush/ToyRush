@@ -28,6 +28,5 @@ public class MonsterManager : MonoBehaviour
     }
     public virtual void ResponMonsters()
     {
-
     }
 }

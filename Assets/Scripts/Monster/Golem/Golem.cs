@@ -122,7 +122,7 @@ public class Golem : Monster
     }
     public override void Move()
     {
-        if (monsterInfo.bMoveable == false)
+        if (monsterInfo.bMoveable == false || SplashObj.GetComponent<GolemSplash>().bPlay == true)
             return;
         Vector3 currentV = rigid.position;
         Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
@@ -189,6 +189,15 @@ public class Golem : Monster
                 metor.GetComponent<Meteor>().bPlay = true;
                 metor.transform.position = this.transform.position + new Vector3(Random.Range(-3,3), Random.Range(-3, 3), 0);
             }
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        for (int i = 1; i < Position.Count; i++)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+            Position[i - 1], Position[i]);
         }
     }
     public void AttackEnd()

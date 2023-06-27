@@ -17,6 +17,7 @@ public class SplashAnimator : MonoBehaviour
 
     void Start()
     {
+        // state reset
         AttackEnd();
     }
 

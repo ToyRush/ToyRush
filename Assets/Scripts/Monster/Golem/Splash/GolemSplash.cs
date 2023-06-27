@@ -17,6 +17,7 @@ public class GolemSplash : MonoBehaviour
 
     void Start()
     {
+        // state reset
         StopSplash();
     }
 
