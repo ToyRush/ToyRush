@@ -30,13 +30,15 @@ public class KeyUI : MonoBehaviour
         }
     }
 
-    public void LostGauge() // needVar*2 만큼 몬스터 생성시키면 됨
+    public void LostGauge() // needVar*2 만큼 몬스터 생성시키면 됨   // 6월 30일 몬스터 출현 추가 - 은구 -
     {
         int var = (int)(slider.maxValue - slider.value); // 현재개수
         int needVar = (int)slider.maxValue - var; 
         slider.value += (float)needVar;
         Debug.Log( needVar*2+"만큼 몬스터가 출현합니다!");
-
+        MonsterManager monmanager = GameObject.Find("MonstersGroup").GetComponent<MonsterManager>();
+        monmanager.bSpone = true;
+        monmanager.responCount = needVar * 2;
     }
 
     public void ChangeKeyInfo()

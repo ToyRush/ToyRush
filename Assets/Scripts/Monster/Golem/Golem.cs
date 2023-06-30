@@ -17,13 +17,17 @@ public class Golem : Monster
         base.Awake();
         SplashObj = transform.GetChild(0).gameObject;
     }
-    void Start()
+    public void Start()
     {
+        base.Start();
         Reset();
     }
     public void Reset()
     {
-        base.Start();
+        monsterInfo.speed = 1.0f;
+        if (rigid != null)
+            monsterInfo.targetPos = rigid.position;
+        monsterInfo.speedDecrease = 0;
         bAttack = false;
         bAttacking = false;
         attackTime = 0;
@@ -39,6 +43,8 @@ public class Golem : Monster
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.index = 0;
 
+        spriteRenderer.enabled = true;
+        capsuleCollider2D.enabled = true;
         SplashObj.GetComponentInChildren<SplashAnimator>().attack = monsterInfo.attack;
     }
     // Update is called once per frame
@@ -154,6 +160,10 @@ public class Golem : Monster
             monsterInfo.state = MonsterState.Dead;
             hitEffect.GetComponent<MonsterHit>().PlayPartical();
             spriteRenderer.enabled = false;
+
+            capsuleCollider2D.enabled = false;
+            spriteRenderer.enabled = false;
+            MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
             Invoke("Dead", 1.5f);
         }
         return true;

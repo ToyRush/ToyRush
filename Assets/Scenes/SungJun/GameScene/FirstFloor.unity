@@ -2625,7 +2625,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos: []
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
+  currentIndex: 0
+  responCount: 0
+  positionIndex: 0
+  bSpone: 0
   KeyData:
   - {fileID: 11400000, guid: b8b3a54731921d241ab19d78005e0a2c, type: 2}
   - {fileID: 11400000, guid: c8805c5ae23a3334393e504b89b25059, type: 2}
@@ -66369,10 +66375,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos:
+  - {x: -5.67, y: 36.87, z: 0}
+  - {x: 19.17, y: 26.48, z: 0}
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
-  solider: {fileID: 6488507886406206583, guid: ad5bca1d1ddba7544b9ce7d3714022da, type: 3}
-  responPos: []
+  currentIndex: 0
   responCount: 0
+  positionIndex: 0
+  bSpone: 0
 --- !u!4 &977464970
 Transform:
   m_ObjectHideFlags: 0
@@ -67905,7 +67916,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos: []
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
+  currentIndex: 0
+  responCount: 0
+  positionIndex: 0
+  bSpone: 0
 --- !u!4 &1212689958
 Transform:
   m_ObjectHideFlags: 0
@@ -129240,7 +129257,7 @@ PrefabInstance:
     - target: {fileID: 2929141691962341639, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3559351204900457946, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
@@ -129310,7 +129327,7 @@ PrefabInstance:
     - target: {fileID: 8030415821283886792, guid: 3bbf9066539f70c4ba758bc9c189389f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3bbf9066539f70c4ba758bc9c189389f, type: 3}

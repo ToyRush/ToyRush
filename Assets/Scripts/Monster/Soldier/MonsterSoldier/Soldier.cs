@@ -10,13 +10,18 @@ public class Soldier : Monster
     // Start is called before the first frame update
     public void Start()
     {
+        base.Start();
         Reset();
     }
     public void Reset()
     {
-        base.Start();
-        if (this.transform.GetChild(0) != null)
+        monsterInfo.speed = 1.0f;
+        if (rigid != null)
+            monsterInfo.targetPos = rigid.position;
+        monsterInfo.speedDecrease = 0;
+        if (this.transform.GetChild(0) != null && weapon == null)
             weapon = this.transform.GetChild(0).gameObject;
+        weapon.GetComponent<SpriteRenderer>().enabled = true;
         monsterInfo.hp = 4.0f;
         monsterInfo.attack = 1;
         monsterInfo.state = MonsterState.Stop;
@@ -27,6 +32,8 @@ public class Soldier : Monster
         monsterInfo.speedIncrease = 3.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.index = 0;
+        spriteRenderer.enabled = true;
+        capsuleCollider2D.enabled = true;
     }
 
     // Update is called once per frame
@@ -83,7 +90,10 @@ public class Soldier : Monster
         {
             monsterInfo.state = MonsterState.Dead;
             hitEffect.GetComponent<MonsterHit>().PlayPartical();
+            capsuleCollider2D.enabled = false;
+            weapon.GetComponent<SpriteRenderer>().enabled = false;
             spriteRenderer.enabled = false;
+            MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
             Invoke("Dead", 1.5f);
         }
         return true;
