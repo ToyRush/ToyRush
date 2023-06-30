@@ -61,7 +61,7 @@ Material:
     - _Cull: 2
     - _DstBlend: 10
     - _Pixel: 95.33
-    - _Power: 0.28
+    - _Power: 0.29
     - _QueueControl: 0
     - _QueueOffset: 0
     - _SrcBlend: 5
