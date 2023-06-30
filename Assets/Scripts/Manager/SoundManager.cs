@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    int targetWidth = 1920;
+    int targetHeight = 1080;
     [SerializeField] AudioClip[] BGMs;
     [SerializeField] AudioClip winBGM;
     [SerializeField] AudioClip loseBGM;
@@ -35,6 +37,7 @@ public class SoundManager : MonoBehaviour
             return;
         }
         instance = this;
+        SetResolution(targetWidth, targetHeight);
         DontDestroyOnLoad(gameObject);
         audioSource = GetComponent<AudioSource>();
         audioSource.volume = musicVolume;
@@ -87,5 +90,10 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.PlayOneShot(winBGM, musicVolume);
         audioSource.loop = false;
+    }
+
+    void SetResolution(int width, int height)
+    {
+        Screen.SetResolution(width, height, Screen.fullScreen);
     }
 }

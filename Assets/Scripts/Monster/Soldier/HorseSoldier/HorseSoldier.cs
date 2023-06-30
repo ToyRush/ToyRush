@@ -8,13 +8,17 @@ public class HorseSoldier : Monster
     public GameObject Bullet = null;
    public  void Start()
     {
+        base.Start();
         Reset();
     }
 
     public void Reset()
     {
-        base.Start();
-        if (this.transform.GetChild(0) != null)
+        monsterInfo.speed = 1.0f;
+        if (rigid != null)
+            monsterInfo.targetPos = rigid.position;
+        monsterInfo.speedDecrease = 0;
+        if (this.transform.GetChild(0) != null && weapon == null)
             weapon = this.transform.GetChild(0).gameObject;
         monsterInfo.hp = 5.0f;
         monsterInfo.attack = 1;
@@ -26,6 +30,11 @@ public class HorseSoldier : Monster
         monsterInfo.speedIncrease = 5.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.index = 0;
+
+
+        weapon.GetComponent<SpriteRenderer>().enabled = true;
+        spriteRenderer.enabled = true;
+        capsuleCollider2D.enabled = true;
     }
 
     public new MonsterState BehaviorTree()
@@ -41,14 +50,27 @@ public class HorseSoldier : Monster
         monsterInfo.hp -= attack;
         if (monsterInfo.hp < 0.0f)
         {
+
             monsterInfo.state = MonsterState.Dead;
             hitEffect.GetComponent<MonsterHit>().PlayPartical();
+
+            capsuleCollider2D.enabled = false;
+            weapon.GetComponent<SpriteRenderer>().enabled = false;
             spriteRenderer.enabled = false;
+            MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
             Invoke("Dead", 1.5f);
         }
         return true;
     }
-
+    private void OnDrawGizmos()
+    {
+        for (int i = 1; i < Position.Count; i++)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(
+            Position[i - 1], Position[i]);
+        }
+    }
     public override void Attack()
     {
         if (monsterInfo.state != MonsterState.Attack || Bullet == null)

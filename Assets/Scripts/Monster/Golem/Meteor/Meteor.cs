@@ -29,8 +29,8 @@ public class Meteor : MonoBehaviour
         {
             if (isPlaying == false)
                 PlayPartical();
-            currentTime += Time.fixedDeltaTime;
-            if (currentTime > totalDuration)
+
+            if (Head1.IsAlive() == false)
                 StopPartical();
         }
     }
@@ -53,24 +53,20 @@ public class Meteor : MonoBehaviour
        RaycastHit2D[] hits  = Physics2D.CapsuleCastAll(transform.position, new Vector2(3.0f, 2.5f), 
            CapsuleDirection2D.Horizontal, 0 , new Vector2(0,0) ,0);
 
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].transform.tag == "Player")
-            {
-                isPlaying = false;
-                bPlay = false;
-                Head1.Stop();
-                Head2.StopPartical();
-                print("Meteo");
-                gameObject.SetActive(false);
-                hits[i].transform.GetComponent<PlayerStat>().Damaged(attack);
-            }
-        }
         isPlaying = false;
         bPlay = false;
         Head1.Stop();
         Head2.StopPartical();
 
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].transform.tag == "Player")
+            {
+                print("Meteo");
+                gameObject.SetActive(false);
+                hits[i].transform.GetComponent<PlayerStat>().Damaged(attack);
+            }
+        }
         gameObject.SetActive(false);
     }
 }

@@ -156,7 +156,6 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     public abstract void Move();
     public virtual void Dead()
     {
-        MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
         hitEffect.GetComponent<MonsterHit>().StopPartical();
         this.gameObject.SetActive(false);
     }

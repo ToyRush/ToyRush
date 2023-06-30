@@ -69536,7 +69536,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1182870947}
-  - component: {fileID: 1182870948}
+  - component: {fileID: 1182870949}
   m_Layer: 0
   m_Name: MonstersGroup
   m_TagString: Untagged
@@ -69590,7 +69590,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1182870948
+--- !u!114 &1182870949
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69603,10 +69603,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos:
+  - {x: -5.67, y: 36.87, z: 0}
+  - {x: 19.17, y: 26.48, z: 0}
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
-  solider: {fileID: 6488507886406206583, guid: ad5bca1d1ddba7544b9ce7d3714022da, type: 3}
-  responPos: []
+  currentIndex: 0
   responCount: 0
+  positionIndex: 0
+  bSpone: 0
 --- !u!1001 &1189351766
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71782,7 +71787,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6817a7b52a615694585b05a29b54f5e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuUI: {fileID: 0}
   poolManager: {fileID: 841318812}
   weaponManager: {fileID: 1088486941}
   uiObjects: {fileID: 0}
@@ -72388,7 +72392,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos: []
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
+  currentIndex: 0
+  responCount: 0
+  positionIndex: 0
+  bSpone: 0
 --- !u!1 &1761272946
 GameObject:
   m_ObjectHideFlags: 0
@@ -127706,6 +127716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slider: {fileID: 1846668285}
   maxTime: 10
+  bgImage: {fileID: 0}
 --- !u!114 &1846668283
 MonoBehaviour:
   m_ObjectHideFlags: 0
