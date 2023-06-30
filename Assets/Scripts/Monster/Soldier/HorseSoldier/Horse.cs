@@ -4,31 +4,39 @@ using UnityEngine;
 
 public class Horse : Monster
 {
-    static public float liveTime = 2.0f;
+    static public float liveTime = 1.0f;
     private float DeadTime;
-    private bool isDead;
-
+    public bool isDead;
+    float playerSpeed;
+    public bool isGet;
+    static 
+    int playerHp;
+    Vector3 left = new Vector3(-0.0390000008f, -0.323000014f, 0); //왼쪽 방향
+    Vector3 right = new Vector3(0.0700000003f,-0.323000014f,0); //오른 방향
+    Vector3 direct;
     private void Start()
     {
         base.Start();
-        DeadTime = 0.0f;
-        isDead = false;
-        monsterInfo.speedIncrease = 15.0f;
-        monsterInfo.speed *= monsterInfo.speedIncrease;
+        Reset();
+    }
 
+    public void Reset()
+    {
+        playerSpeed = 0;
+        DeadTime = 0.0f;
+        isGet = false;
+        isDead = true;
+        monsterInfo.speedIncrease = 1.0f;
+        monsterInfo.speed = 10.0f;
+        playerHp = 0;
     }
     public override void Attack()
     {
-       
+        return;
     }
 
     public new MonsterState BehaviorTree()
     {
-        base.BehaviorTree();
-        if (DeadTime - liveTime >= 0.1f)
-        {
-            Destroy(this.gameObject, .2f);
-        }
         return monsterInfo.state;
     }
 
@@ -39,39 +47,74 @@ public class Horse : Monster
 
     private new void FixedUpdate()
     {
-        base.FixedUpdate();
         if (isDead)
+        {
             DeadTime += Time.fixedDeltaTime;
+
+            if (DeadTime >= liveTime)
+            {
+                Dead();
+            }
+        }
     }
-    public void SetDead()
+    private new void Update()
     {
-        isDead = true;
+        if (isGet == false)
+            return;
+
+        if (playerHp > player.GetComponent<PlayerStat>().currentHealth)
+        {
+            player.GetComponent<PlayerMove>().moveSpeed = playerSpeed;
+            HorseManager.Instance.hasPlayer = false;
+            player.gameObject.GetComponent<PlayerMove>().canDash = true;
+            Dead();
+            return;
+        }
+        else if (playerHp < player.GetComponent<PlayerStat>().currentHealth)
+            playerHp = player.GetComponent<PlayerStat>().currentHealth;
+        Vector2 inputVec = new Vector2();
+        inputVec.x = Input.GetAxisRaw("Horizontal");
+        this.transform.localPosition = Vector3.zero;
+        if (inputVec.x > 0)
+        {
+            spriteRenderer.flipX = true;
+            direct = right;// 오른 방향
+        }
+        else if (inputVec.x < 0)
+        {
+            spriteRenderer.flipX = false;
+            direct = left;
+        }
+        player.GetComponent<PlayerMove>().moveSpeed = monsterInfo.speed;
+        this.transform.localPosition += direct;
     }
 
     public override void Move()
     {
-        if (monsterInfo.bMoveable == false)
-            return;
-        Vector3 currentV = rigid.position;
-        Vector3 direction = (monsterInfo.targetPos - currentV).normalized;
-        if (direction.x < 0)
-            spriteRenderer.flipX = false;
-        else
-            spriteRenderer.flipX = true;
-        Vector2 nextDir = currentV +
-            (direction * Time.fixedDeltaTime * monsterInfo.speed * (1 - monsterInfo.speedDecrease / 100));
-
-        if (Vector3.Distance(currentV, monsterInfo.targetPos) <= 0.1f)
-        {
-            float angle = Random.Range(0, 360);
-            monsterInfo.targetPos = new Vector3(Mathf.Cos(Mathf.Deg2Rad * angle) * 2, Mathf.Sin(Mathf.Deg2Rad * angle) * 2, 0);
-        }
-        rigid.MovePosition(nextDir);
     }
 
-   
     public override void Dead()
     {
+        this.transform.SetParent(HorseManager.Instance.gameObject.transform);
+        Reset();
+        this.gameObject.SetActive(false);
+    }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && isGet == false && HorseManager.Instance.hasPlayer == false)
+        {
+            HorseManager.Instance.hasPlayer = true;
+            playerSpeed = player.GetComponent<PlayerMove>().moveSpeed;
+           // this.transform.SetParent(null);
+            this.transform.SetParent(collision.gameObject.transform);
+            collision.gameObject.GetComponent<PlayerMove>().canDash = false;
+            this.transform.position = Vector3.zero;
+            isGet = true;
+            isDead = false;
+            playerHp = player.GetComponent<PlayerStat>().currentHealth;
+        }
+
+        
     }
 }

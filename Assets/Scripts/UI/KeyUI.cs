@@ -38,7 +38,6 @@ public class KeyUI : MonoBehaviour
         Debug.Log( needVar*2+"만큼 몬스터가 출현합니다!");
         MonsterManager monmanager = GameObject.Find("MonstersGroup").GetComponent<MonsterManager>();
         monmanager.bSpone = true;
-        monmanager.responCount = needVar * 2;
     }
 
     public void ChangeKeyInfo()

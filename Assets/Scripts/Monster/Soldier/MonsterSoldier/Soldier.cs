@@ -80,11 +80,11 @@ public class Soldier : Monster
         }
     }
 
-    public override bool Damaged(int attack)
+    public override bool Damaged(int attack) // 붉은색 0.5초 맞았을 때
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;
-
+        bhitted = true;
         monsterInfo.hp -= attack;
         if (monsterInfo.hp < 0.0f)
         {
@@ -94,10 +94,11 @@ public class Soldier : Monster
             weapon.GetComponent<SpriteRenderer>().enabled = false;
             spriteRenderer.enabled = false;
             MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
-            Invoke("Dead", 1.5f);
+            Invoke("Dead", 1.0f);
         }
         return true;
     }
+
     public override void Attack()
     {
         if (monsterInfo.state != MonsterState.Attack || Bullet == null)
@@ -126,3 +127,11 @@ public class Soldier : Monster
         bullet.GetComponent<MonsterBullet>().FireBullet(direction, monsterInfo.attack);
     }
 }
+
+/*
+ *  player 말타는거 
+ *  boos patern 
+ *  일정 시간 마다 스폰
+ * 
+ * 
+ */

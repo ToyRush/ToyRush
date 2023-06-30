@@ -98,7 +98,7 @@ public class Patrol : Monster
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;
-
+        bhitted = true;
         monsterInfo.hp -= attack;
         if (monsterInfo.hp < 0.0f)
         {

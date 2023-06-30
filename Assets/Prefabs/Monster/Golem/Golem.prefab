@@ -217,6 +217,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 5480011528815508590, guid: 898539f512e437e4dbf9576c7ae35599,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 6709782849742335911, guid: 898539f512e437e4dbf9576c7ae35599,
         type: 3}
       propertyPath: m_LocalPosition.x

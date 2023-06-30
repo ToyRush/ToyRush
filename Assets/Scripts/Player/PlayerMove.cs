@@ -64,8 +64,8 @@ public class PlayerMove : MonoBehaviour
     public float jumpPower; // 점프 강도
     bool canMove = true; // 플레이어의 움직임 제어
     bool isMove=false;
-    bool isDash = false; // 구르기 제어
-    bool canDash = true;
+    public bool isDash = false; // 구르기 제어
+    public bool canDash = true;
     bool canJmup = true;
     float gravity = 2f;
     [SerializeField] LayerMask groundLayer;

@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootSound: {fileID: 8300000, guid: 34b439bf70b80a6409eadecc6be92d68, type: 3}
-  damage: 1
+  damage: 2
   speed: 15
   loadBullet: 5
   damageArea: {fileID: 8374138477803018432}

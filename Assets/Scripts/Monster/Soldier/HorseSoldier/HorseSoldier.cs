@@ -6,7 +6,8 @@ public class HorseSoldier : Monster
 {
     static public int itemcount = 10;
     public GameObject Bullet = null;
-   public  void Start()
+
+    public  void Start()
     {
         base.Start();
         Reset();
@@ -30,8 +31,6 @@ public class HorseSoldier : Monster
         monsterInfo.speedIncrease = 5.0f;
         monsterInfo.speed *= monsterInfo.speedIncrease;
         monsterInfo.index = 0;
-
-
         weapon.GetComponent<SpriteRenderer>().enabled = true;
         spriteRenderer.enabled = true;
         capsuleCollider2D.enabled = true;
@@ -46,7 +45,7 @@ public class HorseSoldier : Monster
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;
-
+        bhitted = true;
         monsterInfo.hp -= attack;
         if (monsterInfo.hp < 0.0f)
         {
@@ -57,8 +56,17 @@ public class HorseSoldier : Monster
             capsuleCollider2D.enabled = false;
             weapon.GetComponent<SpriteRenderer>().enabled = false;
             spriteRenderer.enabled = false;
+            GameObject horse = HorseManager.Instance.GetUnAtiveObject();
+            if (horse != null)
+            {
+                horse.SetActive(true);
+                horse.GetComponent<Horse>().Reset();
+              horse.GetComponent<Horse>().isDead = true;
+                horse.transform.position = this.transform.position;
+            }
+
             MonsterKeyManager.Instance.GetUnAtiveObject().transform.position = this.transform.position;
-            Invoke("Dead", 1.5f);
+            Invoke("Dead", 1.0f);
         }
         return true;
     }

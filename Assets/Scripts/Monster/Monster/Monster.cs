@@ -53,13 +53,24 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected GameObject player;
     public List<Vector3> Position;
 
+    public float currentTime;
+    public int hitcount;
+    public bool bhitted;
+    public float hittedTime;
+    Color pre;
+
     protected  void Awake()
     {
+        bhitted = false;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         animator = gameObject.GetComponent<Animator>();
         capsuleCollider2D = gameObject.GetComponent<CapsuleCollider2D>();
         rigid = gameObject.GetComponent <Rigidbody2D>();
+        hittedTime = 0.5f;
         monsterInfo = new MonsterInfo();
+        currentTime = 0;
+        pre = spriteRenderer.color;
+        hitcount = 0;
     }
 
     protected  void Start()
@@ -74,8 +85,32 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected void FixedUpdate()
     {
         BehaviorTree();
-        if (monsterInfo.state == MonsterState.Move || monsterInfo.state == MonsterState.Run  )
+        if (monsterInfo.state == MonsterState.Move || monsterInfo.state == MonsterState.Run)
             Move();
+        if (bhitted == true)
+        {
+            currentTime += Time.fixedDeltaTime;
+            if (currentTime < hittedTime)
+            {
+            hitcount++;
+                if (hitcount >= 3)
+                {
+
+                    hitcount = 0;
+                if (spriteRenderer.color == Color.red)
+                    spriteRenderer.color = pre;
+                else
+                    spriteRenderer.color = Color.red;
+                }
+            }
+            else
+            {
+                bhitted = false;
+                currentTime = 0;
+                hitcount = 0;
+                spriteRenderer.color = pre;
+            }
+        }
     }
 
     protected void Update()
@@ -156,7 +191,12 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     public abstract void Move();
     public virtual void Dead()
     {
-        hitEffect.GetComponent<MonsterHit>().StopPartical();
+        if (Position.Count > 0)
+            monsterInfo.targetPos =Position[0];
+        bhitted = false;
+        spriteRenderer.color = pre;
+        if (hitEffect != null && hitEffect.GetComponent<MonsterHit>() != null)
+            hitEffect.GetComponent<MonsterHit>().StopPartical();
         this.gameObject.SetActive(false);
     }
     public bool Event(string eventname)

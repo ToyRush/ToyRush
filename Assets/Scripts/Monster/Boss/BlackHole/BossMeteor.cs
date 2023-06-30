@@ -45,7 +45,7 @@ public class BossMeteor : MonoBehaviour
     {
         if (other.tag == "Player")
             other.GetComponent<PlayerStat>().Damaged(attack);
-        StopPartical();
+        Invoke("StopPartical", 0.5f);
     }
     public void StopPartical()
     {

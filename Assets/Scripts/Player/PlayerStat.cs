@@ -18,7 +18,7 @@ public class PlayerStat : MonoBehaviour
     ItemData itemData;
     HpUI hpUI;
     int maxHealth=5;
-    int currentHealth;
+    public int currentHealth;
     int damage;
     int heal;
     bool isInvincible=false; // 무적인가?

@@ -16,35 +16,23 @@ public class SoldierManager : MonsterManager
     }
     public override void ResponMonsters()
     {
-        if (responCount <= 0)
-            return;
-        if (currentIndex >= Instance.ObjectCount)
-            currentIndex = 0;
-        if (Instance.Objects[currentIndex].GetComponent<Soldier>().monsterInfo.state == MonsterState.Dead)
+        if (positionIndex >= responPos.Count)
+            positionIndex = 0;
+
+        // Debug.Log(Instance.Objects[currentIndex].name + "spone");
+
+        for (int i = 0; i < ObjectCount; i++)
         {
-           // Debug.Log(Instance.Objects[currentIndex].name + "spone");
-            Instance.Objects[currentIndex].SetActive(true);
-            Instance.Objects[currentIndex].transform.position = responPos[positionIndex++];
-            Instance.Objects[currentIndex].GetComponent<Soldier>().Reset();
-            //Instance.Objects[currentIndex].GetComponent<Soldier>().Position.Clear();
-            //Instance.Objects[currentIndex].GetComponent<Soldier>().Position.Add(GameObject.FindWithTag("Player").transform.position);
-            if (positionIndex >= responPos.Count)
-                positionIndex = 0;
-            responCount--;
+            if (Instance.Objects[i].GetComponent<Soldier>().monsterInfo.state == MonsterState.Dead || Instance.Objects[i].activeSelf == false)
+            {
+                Instance.Objects[i].SetActive(true);
+                Instance.Objects[i].transform.position = responPos[positionIndex];
+                if (Instance.Objects[i].GetComponent<Soldier>().Position.Count != 0)
+                    Instance.Objects[i].transform.position = Instance.Objects[i].GetComponent<Soldier>().Position[0];
+                Instance.Objects[i].GetComponent<Soldier>().Reset();
+                break;
+            }
         }
-        currentIndex++;
-        //}
-        //for (int i = 0; i < responCount; i++)
-        //{
-        //    GameObject monster =  Instantiate(solider, responPos[positionIndex++], Quaternion.identity, Instance.gameObject.transform);
-        //    if (positionIndex > responPos.Count)
-        //        positionIndex = 0;
-        //    responCount--;
-        //    monster.SetActive(true);
-        //    monster.GetComponent<Soldier>().Reset();
-        //    monster.transform.position = responPos[positionIndex++];
-        //    monster.GetComponent<Soldier>().Position.Clear();
-        //    monster.GetComponent<Soldier>().Position.Add(GameObject.FindWithTag("Player").transform.position);
-        //}
+        positionIndex++;
     }
 }
