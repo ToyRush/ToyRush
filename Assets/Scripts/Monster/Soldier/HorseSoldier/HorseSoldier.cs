@@ -15,7 +15,18 @@ public class HorseSoldier : Monster
 
     public void Reset()
     {
-        monsterInfo.speed = 1.0f;
+        if (StunObj != null)
+        {
+            StunObj.SetActive(true);
+            StunObj.GetComponent<MonsterStun>().StopPartical();
+        }
+
+        if (slowEffect != null)
+        { 
+            slowEffect.SetActive(true);
+            slowEffect.GetComponent<MonsterSlow>().StopPartical();
+        }
+    monsterInfo.speed = 1.0f;
         if (rigid != null)
             monsterInfo.targetPos = rigid.position;
         monsterInfo.speedDecrease = 0;

@@ -196,14 +196,33 @@ public abstract class Monster : MonoBehaviour , MonsterAction
             monsterInfo.targetPos =Position[0];
         bhitted = false;
         spriteRenderer.color = pre;
+
+        if (StunObj != null)
+        {
+            StunObj.GetComponent<MonsterStun>().StopPartical();
+            StunObj.SetActive(false);
+        }
+
+        if (slowEffect != null)
+        {
+            slowEffect.GetComponent<MonsterSlow>().StopPartical();
+            slowEffect.SetActive(false);
+        }
+
+        monsterInfo.currentTime = 0;
+
         if (hitEffect != null && hitEffect.GetComponent<MonsterHit>() != null)
             hitEffect.GetComponent<MonsterHit>().StopPartical();
         this.gameObject.SetActive(false);
     }
     public bool Event(string eventname)
     {
+        if (monsterInfo.state ==  MonsterState.Dead)
+            return false;
         if (eventname == "Stun")
         {
+            if (StunObj == null)
+                return false;
             StunObj.SetActive(true);
             StunObj.GetComponent<MonsterStun>().PlayPartical();
             StunObj.GetComponent<MonsterStun>().totalDuration = monsterInfo.delayTime;
@@ -212,13 +231,15 @@ public abstract class Monster : MonoBehaviour , MonsterAction
         }
         else if (eventname == "Slow")
         {
+            if (slowEffect == null)
+                return false;
             monsterInfo.speedDecrease = 80;
             slowEffect.SetActive(true);
             slowEffect.GetComponent<MonsterSlow>().PlayPartical();
             slowEffect.GetComponent<MonsterSlow>().totalDuration = monsterInfo.delayTime;
-            monsterInfo.state = MonsterState.Stun;
+            monsterInfo.state = MonsterState.Stop;
             monsterInfo.currentTime = 0;
         }
-        return false;
+        return true;
     }
 }
