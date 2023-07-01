@@ -24,6 +24,11 @@ public class Golem : Monster
     }
     public void Reset()
     {
+        if (StunObj != null)
+            StunObj.SetActive(true);
+
+        if (slowEffect != null)
+            slowEffect.SetActive(true);
         monsterInfo.speed = 1.0f;
         if (rigid != null)
             monsterInfo.targetPos = rigid.position;
@@ -153,7 +158,7 @@ public class Golem : Monster
     {
         if (monsterInfo.state == MonsterState.Dead)
             return false;
-
+        bhitted = true;
         monsterInfo.hp -= attack;
         if (monsterInfo.hp < 0.0f)
         {
