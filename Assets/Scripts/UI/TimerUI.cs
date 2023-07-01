@@ -41,6 +41,7 @@ public class TimerUI : MonoBehaviour
         {
             case 0:
             case 1:
+            case 4:
             case 6:
             case 7:
                 isCount = false;
