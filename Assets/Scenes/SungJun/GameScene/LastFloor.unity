@@ -391,9 +391,11 @@ MonoBehaviour:
   storyText: {fileID: 1979719199}
   typingTimer: 1
   bossStartTexts:
-  - "\uCC0D\uCC0D\uCC0D\uCC0D.. \uC2DC\uB044\uB7FD\uB124!"
-  - "\uC801\uB2F9\uD788 \uAE30\uC5B4\uC624\uB974\uB780 \uB9D0\uC774\uB2E4! \uC774
-    \uADC0\uCC2E\uC740 \uC19C\uBB49\uCE58\uB4E4\uC544!"
+  - "\uC5B4\uB5A4 \uAC74\uBC29\uC9C4 \uB140\uC11D\uB4E4\uC774 \uC774\uB807\uAC8C
+    \uC18C\uB780\uC744 \uD53C\uC6B0\uB294\uAC70\uC57C??"
+  - "....!!! \uB108.. \uBCA0\uC5B4\uD0B9\uACFC \uB2EE\uC558\uAD6C\uB9CC!"
+  - "\uB108\uB3C4 \uACE7 \uADF8 \uB140\uC11D \uACC1\uC73C\uB85C \uBCF4\uB0B4\uC8FC\uB9C8.
+    \uD06C\uD06C\uD06C.. \uB364\uBCBC\uB77C!"
   bossEndTexts:
   - "\uD06C\uC73D.....! \uC774\uB7F4\uB9AC\uAC00 \uC5C6\uC5B4...!"
   - "\uBD84\uBA85\uD788 \uC19C\uBB49\uCE58\uB4E4\uC5D0\uAC90 \uB354 \uC774\uC0C1
@@ -1398,7 +1400,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Objects: []
+  responPos: []
+  sponeMonster: {fileID: 0}
   ObjectCount: 0
+  positionIndex: 0
+  ResoneTime: 0
+  currentTime: 0
+  bSpone: 0
 --- !u!1001 &810751547
 PrefabInstance:
   m_ObjectHideFlags: 0
