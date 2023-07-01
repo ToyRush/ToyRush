@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BombArea : MonoBehaviour
 {
-   [SerializeField] int damage;
+   [SerializeField] int damage; 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

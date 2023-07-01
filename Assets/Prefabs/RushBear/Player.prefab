@@ -733,8 +733,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 719240666992d644a804b40a29df97d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 6
   jumpPower: 15
+  isDash: 0
+  canDash: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -785,6 +787,7 @@ MonoBehaviour:
   dashUIObject: {fileID: 8390132610593297426}
   hitSound: {fileID: 8300000, guid: 2876e7fa4419a4a7096b8bb38641daa3, type: 3}
   healSound: {fileID: 8300000, guid: c48a972d3d024c2408a3331750786a29, type: 3}
+  currentHealth: 0
 --- !u!114 &8390132612242615471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +804,7 @@ MonoBehaviour:
   leftGun: {fileID: 8390132610450536263}
   rightPos: {fileID: 8390132610857755338}
   leftPos: {fileID: 8390132611644633351}
+  direction: 0
 --- !u!114 &8390132612242615456
 MonoBehaviour:
   m_ObjectHideFlags: 0

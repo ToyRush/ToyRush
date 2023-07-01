@@ -12,6 +12,9 @@ public class KeyUI : MonoBehaviour
     private float maxTime;
     [SerializeField] Image bgImage;
     private int stageKeyID=400;
+    [SerializeField] 
+    private GameObject showKeyInfoUI;
+    private bool isShowKeyInfoUI = false;
 
     private void Start()
     {
@@ -20,12 +23,14 @@ public class KeyUI : MonoBehaviour
 
     public void ChargeGauge(int _stageKeyID)
     {
-        if (stageKeyID == _stageKeyID)
+        if (stageKeyID == _stageKeyID && !isShowKeyInfoUI)
         {
             slider.value -= 1f;
             if (slider.value == 0)
             {
                 GameManager.instance.OpenDoor();
+                showKeyInfoUI.SetActive(true);
+                isShowKeyInfoUI = true;
             }
         }
     }
@@ -42,6 +47,7 @@ public class KeyUI : MonoBehaviour
 
     public void ChangeKeyInfo()
     {
+        isShowKeyInfoUI = false;
         if (GameManager.instance.GetStageKeyCnt() == 1)
         {
             slider.maxValue = 1f;

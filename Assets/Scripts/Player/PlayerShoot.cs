@@ -95,7 +95,7 @@ public class PlayerShoot : MonoBehaviour
             bullet.GetComponent<Bullet>().Init(dir);
             GameManager.instance.weaponManager.ShootGun();
             isCoolDown = true;
-            Invoke("CoolDown", 0.2f);
+            Invoke("CoolDown", 0.3f);
         }
     }
 

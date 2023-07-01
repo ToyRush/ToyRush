@@ -6,9 +6,10 @@ using UnityEngine.UI;
 public class TimerUI : MonoBehaviour
 {
     public float maxTime=0f;
-    private float[] remainTime = new float[] { 0, 0, 0, 90, 90, 90, 0, 0};
+    private float[] remainTime = new float[] { 0, 0, 90, 90, 90, 90, 0, 0};
     bool isCount = false;
     [SerializeField]Text timerText;
+    [SerializeField] GameObject timerInfoUI;
     int min;
     int sec; 
     // Update is called once per frame
@@ -23,12 +24,13 @@ public class TimerUI : MonoBehaviour
             if (time<=0)
             {
                 GameManager.instance.TimeOver();
+                timerInfoUI.SetActive(true);
                 isCount = false;
             }
         }
         else
         {
-            timerText.text = "00  00";
+            timerText.text = "0  0";
         }
     }
 

@@ -2628,9 +2628,9 @@ MonoBehaviour:
   responPos: []
   sponeMonster: {fileID: 0}
   ObjectCount: 0
-  currentIndex: 0
-  responCount: 0
   positionIndex: 0
+  ResoneTime: 0
+  currentTime: 0
   bSpone: 0
   KeyData:
   - {fileID: 11400000, guid: b8b3a54731921d241ab19d78005e0a2c, type: 2}
@@ -66380,9 +66380,9 @@ MonoBehaviour:
   - {x: 19.17, y: 26.48, z: 0}
   sponeMonster: {fileID: 0}
   ObjectCount: 0
-  currentIndex: 0
-  responCount: 0
   positionIndex: 0
+  ResoneTime: 0
+  currentTime: 0
   bSpone: 0
 --- !u!4 &977464970
 Transform:
@@ -67919,9 +67919,9 @@ MonoBehaviour:
   responPos: []
   sponeMonster: {fileID: 0}
   ObjectCount: 0
-  currentIndex: 0
-  responCount: 0
   positionIndex: 0
+  ResoneTime: 0
+  currentTime: 0
   bSpone: 0
 --- !u!4 &1212689958
 Transform:
