@@ -162,6 +162,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StunObj: {fileID: 5672806001750248492}
   hitEffect: {fileID: 6196442442443083657}
+  slowEffect: {fileID: 3568635519088642165, guid: 08b527f53e1f26c489e33a65dce1794d,
+    type: 3}
   capsuleCollider2D: {fileID: 0}
   rigid: {fileID: 0}
   monsterInfo:
@@ -181,6 +183,10 @@ MonoBehaviour:
     index: 0
   Position:
   - {x: 0, y: 0, z: 0}
+  currentTime: 0
+  hitcount: 0
+  bhitted: 0
+  hittedTime: 0
   Bullet: {fileID: 64744396944566774, guid: ddbb2502c4897f74eb9ad761c7652267, type: 3}
 --- !u!1 &7618012495745728066
 GameObject:
