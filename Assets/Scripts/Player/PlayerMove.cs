@@ -62,7 +62,7 @@ public class PlayerMove : MonoBehaviour
     [Header("기획자 변수 : 속도 조절 변수")]
     public float moveSpeed; // 플레이어의 이동 속도
     public float jumpPower; // 점프 강도
-    bool canMove = true; // 플레이어의 움직임 제어
+    public bool canMove = true; // 플레이어의 움직임 제어
     bool isMove=false;
     public bool isDash = false; // 구르기 제어
     public bool canDash = true;

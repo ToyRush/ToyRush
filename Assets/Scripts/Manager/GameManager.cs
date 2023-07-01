@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     static public GameManager instance =null;
     public PoolManager poolManager;
     public WeaponManager weaponManager;
+    public GameObject informationUI;
     PlayerStat playerStat;
     KeyUI keyUI;
     Door door;
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     // 저장할 데이터
     int health=5;
     int shiledCnt=0;
+    public bool canClick = false;
+    private bool informationActive = false; 
     [SerializeField] GameObject uiObjects;
     [SerializeField] GameObject gameoverUI;
 
@@ -47,8 +50,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.T) && canClick)
+        {
+            informationActive = !informationActive;
+            informationUI.SetActive(informationActive);
+        }
+        if (Input.GetKeyDown(KeyCode.L) )
+        {
             OpenDoor();
+        }
         if (isGameOver)
             if (Input.anyKeyDown)
                 ReStart();
