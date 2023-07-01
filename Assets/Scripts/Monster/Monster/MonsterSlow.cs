@@ -30,7 +30,6 @@ public class MonsterSlow : MonoBehaviour
         if (isPlaying == true)
             return;
         isPlaying = true;
-        currentTime = 0;
         particle.Play();
     }
     public void StopPartical()
