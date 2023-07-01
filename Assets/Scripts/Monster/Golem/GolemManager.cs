@@ -16,21 +16,16 @@ public class GolemManager : MonsterManager
     }
     public override void ResponMonsters()
     {
-        if (positionIndex >= responPos.Count)
-            positionIndex = 0;
-
         for (int i = 0; i < ObjectCount; i++)
         {
             if (Instance.Objects[i].GetComponent<Golem>().monsterInfo.state == MonsterState.Dead || Instance.Objects[i].activeSelf == false)
             {
                 Instance.Objects[i].SetActive(true);
-                Instance.Objects[i].transform.position = responPos[positionIndex];
                 if (Instance.Objects[i].GetComponent<Golem>().Position.Count != 0)
                     Instance.Objects[i].transform.position = Instance.Objects[i].GetComponent<Golem>().Position[0];
                 Instance.Objects[i].GetComponent<Golem>().Reset();
                 break;
             }
         }
-        positionIndex++;
     }
 }
