@@ -13,8 +13,9 @@ public class Boss : Monster
 
     public bool bAttack;
     public bool bAttacking;
-    public float currentTime;
+    public new float currentTime;
     public float blockTime;
+    public float bombTime;
     private new  void Awake()
     {
         base.Awake();
@@ -34,6 +35,7 @@ public class Boss : Monster
         monsterInfo.delayTime = 5.0f;
         // Lazer = this.transform.GetComponentInChildren<GameObject>();
         blockTime = 0.2f;
+        bombTime = 2.7f;
         AttackCase = -1;
         bAttack = false;
         bAttacking = false;
@@ -64,7 +66,7 @@ public class Boss : Monster
         {
             bAttack = true;
             AttackCase++;
-            if (AttackCase >= 2)
+            if (AttackCase >= 3)
                 AttackCase = 0;
             monsterInfo.state = MonsterState.Attack;
         }
@@ -119,7 +121,9 @@ public class Boss : Monster
             }
             else if (AttackCase == 2)
             {
-               
+                Bomb.SetActive(true);
+                Bomb.GetComponent<BossBombAttack>(); // ~~
+                BossBombManager.Instance.attackcount = 0;
             }
         }
         else
@@ -146,12 +150,18 @@ public class Boss : Monster
             }
             else if (AttackCase == 2)
             {
-                if (Laser.GetComponent<BossLaser>().bActive == false)
+                currentTime += Time.fixedDeltaTime;
+                if (currentTime > bombTime)
                 {
-                    monsterInfo.currentTime = 0;
-                    bAttacking = false;
-                    bAttack = false;
-                    Laser.SetActive(false);
+                    currentTime = 0;
+
+                    BossBombManager.Instance.ResponMeteor();
+                    if (BossBombManager.Instance.attackcount == BossBombManager.Instance.maxBombCounts)
+                    {
+                        bAttacking = false;
+                        bAttacking = false;
+                        bAttack = false;
+                    }
                 }
             }
         }

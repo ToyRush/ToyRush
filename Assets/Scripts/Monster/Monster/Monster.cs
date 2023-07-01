@@ -96,12 +96,11 @@ public abstract class Monster : MonoBehaviour , MonsterAction
             hitcount++;
                 if (hitcount >= 3)
                 {
-
                     hitcount = 0;
-                if (spriteRenderer.color == Color.red)
-                    spriteRenderer.color = pre;
-                else
-                    spriteRenderer.color = Color.red;
+                    if (spriteRenderer.color == Color.red)
+                        spriteRenderer.color = pre;
+                    else
+                        spriteRenderer.color = Color.red;
                 }
             }
             else
