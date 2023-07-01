@@ -12,17 +12,16 @@ public class HorseManager : MonsterManager
         get
         {
             if (instance == null)
+            {
                 instance = FindObjectOfType<HorseManager>();
-            instance.hasPlayer = false;
+                instance.hasPlayer = false;
+            }
             return instance;
         }
     }
     public override void ResponMonsters()
     {
         ObjectCount = transform.childCount;
-        if (positionIndex >= responPos.Count)
-            positionIndex = 0;
-
         // Debug.Log(Instance.Objects[currentIndex].name + "spone");
 
         for (int i = 0; i < ObjectCount; i++)
@@ -30,13 +29,11 @@ public class HorseManager : MonsterManager
             if (Instance.Objects[i].GetComponent<HorseSoldier>().monsterInfo.state == MonsterState.Dead)
             {
                 Instance.Objects[i].SetActive(true);
-                Instance.Objects[i].transform.position = responPos[positionIndex];
                 if (Instance.Objects[i].GetComponent<HorseSoldier>().Position.Count != 0)
                     Instance.Objects[i].transform.position = Instance.Objects[i].GetComponent<HorseSoldier>().Position[0];
                 Instance.Objects[i].GetComponent<HorseSoldier>().Reset();
                 break;
             }
         }
-        positionIndex++;
     }
 }

@@ -44,6 +44,7 @@ public abstract class Monster : MonoBehaviour , MonsterAction
     protected GameObject weapon;
     public GameObject StunObj;
     public GameObject hitEffect;
+    public GameObject slowEffect;
 
     public CapsuleCollider2D capsuleCollider2D;
     public Rigidbody2D rigid;
@@ -209,9 +210,14 @@ public abstract class Monster : MonoBehaviour , MonsterAction
             monsterInfo.state = MonsterState.Stun;
             monsterInfo.currentTime = 0;
         }
-        if (eventname == "Slow")
+        else if (eventname == "Slow")
         {
             monsterInfo.speedDecrease = 80;
+            slowEffect.SetActive(true);
+            slowEffect.GetComponent<MonsterSlow>().PlayPartical();
+            slowEffect.GetComponent<MonsterSlow>().totalDuration = monsterInfo.delayTime;
+            monsterInfo.state = MonsterState.Stun;
+            monsterInfo.currentTime = 0;
         }
         return false;
     }

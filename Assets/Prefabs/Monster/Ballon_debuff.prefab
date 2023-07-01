@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3568635519088642170}
   - component: {fileID: 3568635519088642171}
   - component: {fileID: 3568635519088642164}
+  - component: {fileID: 2648864707991861205}
   m_Layer: 0
   m_Name: Ballon_debuff
   m_TagString: Untagged
@@ -4812,3 +4813,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &2648864707991861205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568635519088642165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0c24dfab51f4445980e43a13b82479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  totalDuration: 0
+  bPlayBlackHole: 0
+  isPlaying: 0

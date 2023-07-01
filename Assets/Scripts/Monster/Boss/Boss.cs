@@ -8,7 +8,8 @@ public class Boss : Monster
 
     public int AttackCase;
     public GameObject BlackHole;
-    public GameObject Laser;
+    public GameObject Laser; 
+    public GameObject Bomb;
 
     public bool bAttack;
     public bool bAttacking;
@@ -19,6 +20,7 @@ public class Boss : Monster
         base.Awake();
         BlackHole = transform.GetChild(0).gameObject;
         Laser = transform.GetChild(1).gameObject;
+        Bomb = transform.GetChild(2).gameObject;
     }
    new void  Start()
     {
@@ -104,7 +106,7 @@ public class Boss : Monster
                 BlackHole.GetComponent<Blackhole>().bPlayBlackHole = true;
                 Invoke("EndBlackHole", 5.0f);
             }
-            if (AttackCase == 1)
+            else if (AttackCase == 1)
             {
                 Laser.SetActive(true);
                 int bright = Random.Range(0,9);
@@ -114,6 +116,10 @@ public class Boss : Monster
                     Laser.GetComponent<BossLaser>().bRight = false;
                 Laser.GetComponent<BossLaser>().bActive = true;
 
+            }
+            else if (AttackCase == 2)
+            {
+               
             }
         }
         else
@@ -128,7 +134,17 @@ public class Boss : Monster
                     BossMeteorManager.Instance.ResponMeteor();
                 }
             }
-            if (AttackCase == 1)
+            else if (AttackCase == 1)
+            {
+                if (Laser.GetComponent<BossLaser>().bActive == false)
+                {
+                    monsterInfo.currentTime = 0;
+                    bAttacking = false;
+                    bAttack = false;
+                    Laser.SetActive(false);
+                }
+            }
+            else if (AttackCase == 2)
             {
                 if (Laser.GetComponent<BossLaser>().bActive == false)
                 {
