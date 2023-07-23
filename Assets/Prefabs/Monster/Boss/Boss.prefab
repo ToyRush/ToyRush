@@ -183,6 +183,7 @@ MonoBehaviour:
   bAttacking: 0
   currentTime: 0
   blockTime: 0
+  bombTime: 0
 --- !u!1001 &1014256402984715788
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -426,6 +427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6147824788748781310}
     m_Modifications:
+    - target: {fileID: 1971850106, guid: 41d3aad25f2f81a45bd897560bb166b4, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1971850108, guid: 41d3aad25f2f81a45bd897560bb166b4, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -547,10 +552,20 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.97
       objectReference: {fileID: 0}
+    - target: {fileID: 7144870124465377274, guid: 41d3aad25f2f81a45bd897560bb166b4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7374911853024428305, guid: 41d3aad25f2f81a45bd897560bb166b4,
         type: 3}
       propertyPath: m_Name
       value: Boss_Bomb_cast
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666726375000715336, guid: 41d3aad25f2f81a45bd897560bb166b4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7666726375000715339, guid: 41d3aad25f2f81a45bd897560bb166b4,
         type: 3}
@@ -566,6 +581,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.905
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666726375176965254, guid: 41d3aad25f2f81a45bd897560bb166b4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7666726375176965257, guid: 41d3aad25f2f81a45bd897560bb166b4,
         type: 3}
@@ -596,6 +616,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.905
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666726376060521205, guid: 41d3aad25f2f81a45bd897560bb166b4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7666726376174735896, guid: 41d3aad25f2f81a45bd897560bb166b4,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7666726376174735899, guid: 41d3aad25f2f81a45bd897560bb166b4,
         type: 3}

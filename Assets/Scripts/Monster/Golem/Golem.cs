@@ -25,10 +25,10 @@ public class Golem : Monster
     public void Reset()
     {
         if (StunObj != null)
-            StunObj.SetActive(true);
+            StunObj.SetActive(false);
 
         if (slowEffect != null)
-            slowEffect.SetActive(true);
+            slowEffect.SetActive(false);
         monsterInfo.speed = 1.0f;
         if (rigid != null)
             monsterInfo.targetPos = rigid.position;

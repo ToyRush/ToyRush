@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBombManager : MonsterManager
 {
-    private Vector3[] positions;
+    public Vector3[] positions;
     public int maxBombCounts;
     public int attackcount;
     private static BossBombManager instance = null;
@@ -17,7 +17,8 @@ public class BossBombManager : MonsterManager
                 instance = FindObjectOfType<BossBombManager>();
                 instance.maxBombCounts = 7;
                 instance.attackcount = 0;
-                for (int i = 0; i < instance.ObjectCount; i++)
+                instance.positions = new Vector3[Instance.transform.childCount];
+                for (int i = 0; i < Instance.transform.childCount; i++)
                     instance.positions.SetValue(instance.transform.GetChild(i).gameObject.transform.position,i);
             }
             return instance;
@@ -32,7 +33,7 @@ public class BossBombManager : MonsterManager
         {
             if (i >= Instance.ObjectCount)
                 i = 0;
-            if (Instance.Objects[i].activeSelf == false)
+            if (Instance.Objects[i] != null && Instance.Objects[i].activeSelf == false)
             {
                 instance.attackcount++;
                 Instance.Objects[i].SetActive(true);
