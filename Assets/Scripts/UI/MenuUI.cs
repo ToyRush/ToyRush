@@ -22,4 +22,15 @@ public class MenuUI : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(menuUI.activeSelf)
+                menuUI.SetActive(false);
+            else
+                menuUI.SetActive(true);
+        }
+    }
 }

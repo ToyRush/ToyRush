@@ -618,8 +618,8 @@ MonoBehaviour:
     \uC900\uBE44 \uB418\uC5C8\uB294\uAC00?  "
   - "\uC774 \uAE00\uC744 \uBCF4\uACE0 \uC788\uB294 \uBC14\uB85C \uC790\uB124\uB9D0\uC774\uC57C.
     \uC900\uBE44 \uB418\uC5C8\uC73C\uBA74 \uBC84\uD2BC\uC744 \uB204\uB974\uAC8C! "
-  fadeTimer: 0.1
-  typeEffectTimer: 0.1
+  fadeTimer: 0.5
+  typeEffectTimer: 1
   textUI: {fileID: 146089943}
   startPage: {fileID: 729031434}
   nextSound: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
